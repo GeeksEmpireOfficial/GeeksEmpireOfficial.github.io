@@ -5,9 +5,9 @@ void main() {
 }
 
 class EntryConfigurations extends StatelessWidget {
+
   const EntryConfigurations({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +19,7 @@ class EntryConfigurations extends StatelessWidget {
       home: const MyHomePage(title: 'Coming Soon...'),
     );
   }
+
 }
 
 class MyHomePage extends StatefulWidget {
