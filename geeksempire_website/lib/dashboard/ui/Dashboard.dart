@@ -19,7 +19,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   late AnimationController animationController;
 
   late Animation<Offset> offsetAnimation;
-  late Animation<double> doubleAnimation;
+  late Animation<double> scaleAnimation;
+  BorderRadius radiusAnimation = BorderRadius.circular(0);
 
   late Animation<Offset> offsetAnimationItems;
   double opacityAnimation = 0.37;
@@ -38,12 +39,12 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         reverseDuration: const Duration(milliseconds: 333),
         animationBehavior: AnimationBehavior.preserve);
 
-    offsetAnimation = Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0.49, 0))
+    offsetAnimation = Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0.39, 0))
         .animate(CurvedAnimation(
         parent: animationController,
         curve: Curves.easeIn
     ));
-    doubleAnimation = Tween<double>(begin: 1, end: 0.91)
+    scaleAnimation = Tween<double>(begin: 1, end: 0.91)
         .animate(CurvedAnimation(
         parent: animationController,
         curve: Curves.easeOut
@@ -64,10 +65,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: StringsResources.geeksEmpire(),
-            color: ColorsResources.premiumDark,
+            color: ColorsResources.black,
             theme: ThemeData(
               fontFamily: 'Ubuntu',
-              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.premiumDark),
+              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.black),
               pageTransitionsTheme: const PageTransitionsTheme(builders: {
                 TargetPlatform.android: ZoomPageTransitionsBuilder(),
                 TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
@@ -75,7 +76,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             ),
             home: Scaffold(
                 resizeToAvoidBottomInset: true,
-                backgroundColor: ColorsResources.premiumDark,
+                backgroundColor: ColorsResources.black,
                 body: Stack(
                     children: [
 
@@ -99,25 +100,34 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     return SlideTransition(
         position: offsetAnimation,
         child: ScaleTransition(
-            scale: doubleAnimation,
+            scale: scaleAnimation,
             child: Stack(
                 children: [
 
                   /* Start - Content */
-                  Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(19))
-                      ),
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                      child: ListView(
-                        padding: const EdgeInsets.fromLTRB(19, 119, 19, 73),
-                        physics: const BouncingScrollPhysics(),
-                        children: [
-
-
-
-                        ],
+                  AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.fastOutSlowIn,
+                    decoration: BoxDecoration(
+                      color: ColorsResources.premiumDark,
+                      borderRadius: radiusAnimation,
+                      border: Border.all(
+                        color: Colors.transparent,
+                        width: 0
                       )
+                    ),
+                    child: Container(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                        child: ListView(
+                          padding: const EdgeInsets.fromLTRB(19, 119, 19, 73),
+                          physics: const BouncingScrollPhysics(),
+                          children: [
+
+
+
+                          ],
+                        )
+                    )
                   ),
                   /* End - Content */
 
@@ -143,6 +153,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
                                   opacityAnimation = 0.37;
 
+                                  radiusAnimation = BorderRadius.circular(0);
+
                                 });
 
                               } else {
@@ -157,6 +169,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 setState(() {
 
                                   opacityAnimation = 1;
+
+                                  radiusAnimation = BorderRadius.circular(37);
 
                                 });
 
@@ -180,7 +194,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   Widget menuItems() {
 
     return Container(
-        width: calculatePercentage(53, displayLogicalWidth(context)),
+        width: calculatePercentage(37, displayLogicalWidth(context)),
         alignment: AlignmentDirectional.centerStart,
         color: Colors.black,
         child: SlideTransition(
