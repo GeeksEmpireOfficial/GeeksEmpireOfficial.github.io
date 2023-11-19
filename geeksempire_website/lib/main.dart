@@ -1,47 +1,32 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
+import 'package:sachiel_website/firebase_options.dart';
 
-void main() {
-  runApp(const EntryConfigurations());
-}
+void main() async {
 
-class EntryConfigurations extends StatelessWidget {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  const EntryConfigurations({super.key});
+  Widget dashboard = const Dashboard();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Geeks Empire',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Coming Soon...'),
-    );
-  }
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: dashboard,
+      routes: <String, WidgetBuilder> {
+        '/Home': (BuildContext context) => dashboard,
+      },
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute<void>(
+            settings: settings,
+            builder: (BuildContext context) {
 
-}
+              return dashboard;
+            }
+        );
+      }
+  )
+  );
 
-class MyHomePage extends StatefulWidget {
-
-  final String title;
-
-  const MyHomePage({super.key, required this.title});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Container()
-    );
-  }
 }
