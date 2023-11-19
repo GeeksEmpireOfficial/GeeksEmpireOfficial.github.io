@@ -84,6 +84,8 @@ flutter:
 
     - assets/logo.png
 
+    - assets/menu.png
+
     - assets/privacy.png
 
     - assets/register_icon.png
