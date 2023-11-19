@@ -105,8 +105,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
                   /* Start - Content */
                   Container(
-                      width: displayLogicalWidth(context),
-                      height: displayLogicalHeight(context),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(19))
                       ),
@@ -116,21 +114,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         physics: const BouncingScrollPhysics(),
                         children: [
 
-                          Container(
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(19))
-                              ),
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                              child: ListView(
-                                  padding: const EdgeInsets.fromLTRB(19, 157, 19, 73),
-                                  physics: const BouncingScrollPhysics(),
-                                  children:[
 
-
-
-                                  ]
-                              )
-                          ),
 
                         ],
                       )
