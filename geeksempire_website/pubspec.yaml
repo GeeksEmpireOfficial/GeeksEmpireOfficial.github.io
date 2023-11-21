@@ -98,6 +98,8 @@ flutter:
     - assets/tos.png
     - assets/twitter_icon.png
 
+    - assets/youtube_icon.png
+
   fonts:
     - family: Ubuntu
       fonts:

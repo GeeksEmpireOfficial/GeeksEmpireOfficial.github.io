@@ -55,4 +55,9 @@ class StringsResources {
     return "https://www.threads.net/@geeksempire.co";
   }
 
+  static String youtubeLink() {
+
+    return "https://www.youtube.com/@GeeksEmpireCo/";
+  }
+
 }

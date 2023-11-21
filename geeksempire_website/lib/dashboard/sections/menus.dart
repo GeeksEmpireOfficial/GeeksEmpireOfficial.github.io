@@ -271,7 +271,7 @@ class _MenusState extends State<Menus> {
                         )
                     ),
 
-                    Container(
+                    const SizedBox(
                       width: 13,
                     ),
 
@@ -283,6 +283,23 @@ class _MenusState extends State<Menus> {
                         },
                         child: const Image(
                           image: AssetImage("assets/twitter_icon.png"),
+                          height: 51,
+                          width: 51,
+                        )
+                    ),
+
+                    const SizedBox(
+                      width: 13,
+                    ),
+
+                    InkWell(
+                        onTap: () {
+
+                          launchUrlString(StringsResources.youtubeLink(), mode: LaunchMode.externalApplication);
+
+                        },
+                        child: const Image(
+                          image: AssetImage("assets/youtube_icon.png"),
                           height: 51,
                           width: 51,
                         )
