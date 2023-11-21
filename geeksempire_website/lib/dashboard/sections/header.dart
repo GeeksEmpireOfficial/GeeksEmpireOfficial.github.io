@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Header extends StatefulWidget {
 
@@ -155,40 +156,7 @@ class _HeaderState extends State<Header> {
                                   child: InkWell(
                                       onTap: () {
 
-                                        if (widget.dashboardState.menuOpen) {
-
-                                          widget.dashboardState.menuOpen = false;
-
-                                          widget.dashboardState.animationController.reverse().whenComplete(() {
-
-                                          });
-
-                                          widget.dashboardState.setState(() {
-
-                                            widget.dashboardState.opacityAnimation = 0.37;
-
-                                            widget.dashboardState.radiusAnimation = BorderRadius.circular(0);
-
-                                          });
-
-                                        } else {
-
-
-                                          widget.dashboardState.menuOpen = true;
-
-                                          widget.dashboardState.animationController.forward().whenComplete(() {
-
-                                          });
-
-                                          widget.dashboardState.setState(() {
-
-                                            widget.dashboardState.opacityAnimation = 1;
-
-                                            widget.dashboardState.radiusAnimation = BorderRadius.circular(37);
-
-                                          });
-
-                                        }
+                                        launchUrlString("mailto:Support@GeeksEmpire.co", mode: LaunchMode.externalApplication);
 
                                       },
                                       child: const Image(
@@ -204,7 +172,7 @@ class _HeaderState extends State<Header> {
                 )
             ),
 
-            Container(
+            const SizedBox(
                 height: 33,
                 child: Image(
                   image: AssetImage("assets/shadow.png"),
