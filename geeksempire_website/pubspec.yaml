@@ -91,6 +91,9 @@ flutter:
 
     - assets/register_icon.png
 
+    - assets/support.png
+    - assets/shadow.png
+
     - assets/threads_icon.png
     - assets/tos.png
     - assets/twitter_icon.png

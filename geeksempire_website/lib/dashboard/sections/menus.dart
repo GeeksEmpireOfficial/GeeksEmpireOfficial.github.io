@@ -31,7 +31,7 @@ class _MenusState extends State<Menus> {
   Widget build(BuildContext context) {
 
     return ListView(
-        padding: const EdgeInsets.fromLTRB(19, 37, 0, 37),
+        padding: const EdgeInsets.fromLTRB(37, 37, 0, 37),
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         children: [

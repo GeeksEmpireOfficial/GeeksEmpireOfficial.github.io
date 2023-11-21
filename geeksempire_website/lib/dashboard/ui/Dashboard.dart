@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sachiel_website/dashboard/sections/header.dart';
 import 'package:sachiel_website/dashboard/sections/menus.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
@@ -10,9 +11,9 @@ class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Dashboard> createState() => DashboardState();
 }
-class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
+class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   /*
    * Start - Menu
@@ -40,7 +41,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         reverseDuration: const Duration(milliseconds: 333),
         animationBehavior: AnimationBehavior.preserve);
 
-    offsetAnimation = Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0.39, 0))
+    offsetAnimation = Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0.51, 0))
         .animate(CurvedAnimation(
         parent: animationController,
         curve: Curves.easeIn
@@ -125,66 +126,15 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                           children: [
 
 
-
                           ],
                         )
                     )
                   ),
                   /* End - Content */
 
-                  /* Start - Menu */
-                  Positioned(
-                    left: 37,
-                    top: 37,
-                    child: SizedBox(
-                        height: 59,
-                        width: 59,
-                        child: InkWell(
-                            onTap: () {
-
-                              if (menuOpen) {
-
-                                menuOpen = false;
-
-                                animationController.reverse().whenComplete(() {
-
-                                });
-
-                                setState(() {
-
-                                  opacityAnimation = 0.37;
-
-                                  radiusAnimation = BorderRadius.circular(0);
-
-                                });
-
-                              } else {
-
-
-                                menuOpen = true;
-
-                                animationController.forward().whenComplete(() {
-
-                                });
-
-                                setState(() {
-
-                                  opacityAnimation = 1;
-
-                                  radiusAnimation = BorderRadius.circular(37);
-
-                                });
-
-                              }
-
-                            },
-                            child: const Image(
-                              image: AssetImage("assets/menu.png"),
-                            )
-                        )
-                    ),
-                  )
-                  /* End - Menu */
+                  /* Start - Header */
+                  Header(dashboardState: this),
+                  /* End - Header */
 
                 ]
             )
