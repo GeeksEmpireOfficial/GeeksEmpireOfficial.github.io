@@ -87,10 +87,13 @@ flutter:
     - assets/menu.png
 
     - assets/privacy.png
+    - assets/projects_icon.png
 
     - assets/register_icon.png
 
+    - assets/threads_icon.png
     - assets/tos.png
+    - assets/twitter_icon.png
 
   fonts:
     - family: Ubuntu

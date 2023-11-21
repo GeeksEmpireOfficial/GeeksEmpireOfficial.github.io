@@ -3,6 +3,7 @@ import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
 import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Dashboard extends StatefulWidget {
 
@@ -194,7 +195,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   Widget menuItems() {
 
     return Container(
-        width: calculatePercentage(37, displayLogicalWidth(context)),
+        width: calculatePercentage(53, displayLogicalWidth(context)),
         alignment: AlignmentDirectional.centerStart,
         color: Colors.black,
         child: SlideTransition(
@@ -212,6 +213,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                           height: 73,
                           child: InkWell(
                               onTap: () {
+
+                                launchUrlString('#', mode: LaunchMode.externalApplication);
 
                               },
                               child: Row(
@@ -242,6 +245,223 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
                                   ]
                               )
+                          )
+                      ),
+
+                      const Divider(
+                        height: 99,
+                        color: Colors.transparent,
+                      ),
+
+                      SizedBox(
+                          height: 51,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
+
+                                        launchUrlString(StringsResources.projectsLink(), mode: LaunchMode.externalApplication);
+
+                                      },
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+
+                                            const Padding(
+                                                padding: EdgeInsets.all(3),
+                                                child: Image(
+                                                  image: AssetImage("assets/projects_icon.png"),
+                                                  color: ColorsResources.light,
+                                                  height: 51,
+                                                  width: 51,
+                                                )
+                                            ),
+
+                                            const SizedBox(
+                                              width: 19,
+                                            ),
+
+                                            Expanded(
+                                                child: Text(
+                                                  StringsResources.projects(),
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                      color: ColorsResources.lightTransparent,
+                                                      fontSize: 19
+                                                  ),
+                                                )
+                                            )
+
+                                          ]
+                                      )
+                                  )
+                              )
+                          )
+                      ),
+
+                      const Divider(
+                        height: 19,
+                        color: ColorsResources.premiumDarkTransparent,
+                      ),
+
+                      SizedBox(
+                          height: 51,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
+
+                                        launchUrlString(StringsResources.termServiceLink(), mode: LaunchMode.externalApplication);
+
+                                      },
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+
+                                            const Padding(
+                                                padding: EdgeInsets.fromLTRB(3, 11, 11, 11),
+                                                child: Image(
+                                                  image: AssetImage("assets/tos.png"),
+                                                  color: ColorsResources.light,
+                                                  height: 51,
+                                                  width: 51,
+                                                )
+                                            ),
+
+                                            const SizedBox(
+                                              width: 7,
+                                            ),
+
+                                            Expanded(
+                                                child: Text(
+                                                  StringsResources.termService(),
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                      color: ColorsResources.lightTransparent,
+                                                      fontSize: 15
+                                                  ),
+                                                )
+                                            )
+
+                                          ]
+                                      )
+                                  )
+                              )
+                          )
+                      ),
+
+                      const Divider(
+                        height: 7,
+                        color: Colors.transparent,
+                      ),
+
+                      SizedBox(
+                          height: 51,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
+
+                                        launchUrlString(StringsResources.privacyPolicyLink(), mode: LaunchMode.externalApplication);
+
+                                      },
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+
+                                            const Padding(
+                                                padding: EdgeInsets.fromLTRB(3, 11, 11, 11),
+                                                child: Image(
+                                                  image: AssetImage("assets/privacy.png"),
+                                                  color: ColorsResources.light,
+                                                  height: 51,
+                                                  width: 51,
+                                                )
+                                            ),
+
+                                            const SizedBox(
+                                              width: 7,
+                                            ),
+
+                                            Expanded(
+                                                child: Text(
+                                                  StringsResources.privacyPolicy(),
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                      color: ColorsResources.lightTransparent,
+                                                      fontSize: 15
+                                                  ),
+                                                )
+                                            )
+
+                                          ]
+                                      )
+                                  )
+                              )
+                          )
+                      ),
+
+                      const Divider(
+                        height: 73,
+                        color: Colors.transparent,
+                      ),
+
+                      SizedBox(
+                          height: 51,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+
+                                InkWell(
+                                    onTap: () {
+
+                                      launchUrlString(StringsResources.threadsLink(), mode: LaunchMode.externalApplication);
+
+                                    },
+                                    child: const Image(
+                                      image: AssetImage("assets/threads_icon.png"),
+                                      height: 51,
+                                      width: 51,
+                                    )
+                                ),
+
+                                Container(
+                                  width: 13,
+                                ),
+
+                                InkWell(
+                                    onTap: () {
+
+                                      launchUrlString(StringsResources.twitterLink(), mode: LaunchMode.externalApplication);
+
+                                    },
+                                    child: const Image(
+                                      image: AssetImage("assets/twitter_icon.png"),
+                                      height: 51,
+                                      width: 51,
+                                    )
+                                )
+
+                              ]
                           )
                       ),
 
