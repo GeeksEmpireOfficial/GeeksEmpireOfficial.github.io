@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/resources/strings_resources.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Header extends StatefulWidget {
@@ -116,7 +115,7 @@ class _HeaderState extends State<Header> {
                               )
                           ),
 
-                          Expanded(
+                          const Expanded(
                               child: Center(
                                   child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -126,7 +125,7 @@ class _HeaderState extends State<Header> {
                                         SizedBox(
                                             height: 57,
                                             width: 57,
-                                            child: const Image(
+                                            child: Image(
                                               image: AssetImage("assets/logo.png"),
                                             )
                                         ),
@@ -135,13 +134,19 @@ class _HeaderState extends State<Header> {
                                           width: 19,
                                         ),
 
-                                        Text(
-                                            StringsResources.geeksEmpire(),
-                                            style: TextStyle(
-                                                color: ColorsResources.premiumLight,
-                                                fontSize: 33 / scaleParameter
+                                        SizedBox(
+                                            height: 57,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(top: 5, bottom: 5),
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Image(
+                                                  image: AssetImage("assets/geeks_empire.png"),
+                                                  fit: BoxFit.contain,
+                                                )
+                                              )
                                             )
-                                        )
+                                        ),
 
                                       ]
                                   )

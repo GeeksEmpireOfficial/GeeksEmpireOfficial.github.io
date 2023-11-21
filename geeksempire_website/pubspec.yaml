@@ -82,6 +82,8 @@ flutter:
 
   assets:
 
+    - assets/geeks_empire.png
+
     - assets/logo.png
 
     - assets/menu.png
