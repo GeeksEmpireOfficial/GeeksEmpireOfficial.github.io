@@ -60,7 +60,7 @@ class _HeaderState extends State<Header> {
                     blur: 37,
                     colorOpacity: 0.73,
                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(37), topRight: Radius.circular(37)),
-                    blurColor: ColorsResources.red,
+                    blurColor: ColorsResources.premiumDark,
                     overlay: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
