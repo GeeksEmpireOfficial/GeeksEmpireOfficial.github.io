@@ -6,6 +6,13 @@ class ContentProvider {
 
     List<ContentDataStructure> allContent = [];
 
+    allContent.add(ContentDataStructure('co.geeksempire.premium.storefront.android',
+        'Premium Storefront', 'How To Find An Application Or A Game Among Over 3 Millions Choices?',
+        'We have searched for you 🙂 We have found the best applications for you 👍 We have tested them for you 💠 Don\'t you want to be sure about the quality & security of the applications you about to pay...? Our collections assure you about those critical criteria. There are always some awesome applications & games that you cannot find them easily. You have to search, scroll deep down! You have to waste your time & money to find the best applications.',
+        'https://play-lh.googleusercontent.com/2Z3zs1qbhsLH5ZyZuHiDFG-2-ppTrEONNFYEVXx5W9uXlRto-c2rBeXiLnzjzkfwQgk=s512',
+        'https://play-lh.googleusercontent.com/kUkrEZyqLkSxb2W3EXdkrKBkKg2qqP29QKtWKB9MSPH9yZOJ3ZUE1BFr_d4hikGTZoI=w1080,https://play-lh.googleusercontent.com/EIV1oWwIf_Y2y6PXwSb4NTOmz3DVGDp39dlpwER-xQxhdpQVoxFLdw3sUQdFx7Oq7CU=w1080',
+        'https://www.youtube.com/watch?v=jOkw0Hmq4ac&list=PLTs5v2BrWyWmPUYwgXIcmtQLJ19XOKS1k', 'https://twitter.com/GeeksEmpire', 'https://facebook.com/PremiumStorefront'));
+
     allContent.add(ContentDataStructure('net.geekstools.floatshort.PRO',
         'Float It: Floating Multitasking', 'Floating Multitasking: The Fastest Multitasking Application For Android',
         'Floating Multitasking  We should be a Multitasking Master for today’s busy life. ⚡ While we cannot do anything about how fast the time flows, we still can control how we manage it. Being more productive helps us to live full capacity. Even when we work with several applications, there are many small actions that may affect our time management. Time is much more valuable for us to spend it in switching among apps!',
