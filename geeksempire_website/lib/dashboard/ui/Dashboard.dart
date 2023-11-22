@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sachiel_website/dashboard/sections/content/content.dart';
+import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
+import 'package:sachiel_website/dashboard/sections/content/provider/content_provider.dart';
 import 'package:sachiel_website/dashboard/sections/header.dart';
 import 'package:sachiel_website/dashboard/sections/menus.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
@@ -15,6 +18,8 @@ class Dashboard extends StatefulWidget {
 }
 class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
+  PageController pageController = PageController();
+
   /*
    * Start - Menu
    */
@@ -30,6 +35,22 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   bool menuOpen = false;
   /*
    * End - Menu
+   */
+
+  /*
+   * Start - Content Provider
+   */
+  ContentProvider contentProvider = ContentProvider();
+
+  List<ContentDataStructure> allContent = [];
+
+  Widget contentPlaceholder = Container();
+  Widget nextIconPlaceholder = Container();
+
+  bool nextVisibility = true;
+  int pageIndex = 0;
+  /*
+   * End - Content Provider
    */
 
   @override
@@ -57,6 +78,8 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         parent: animationController,
         curve: Curves.easeIn
     ));
+
+    prepareContent();
 
   }
 
@@ -118,23 +141,56 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         width: 0
                       )
                     ),
-                    child: Container(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                        child: ListView(
-                          padding: const EdgeInsets.fromLTRB(19, 119, 19, 73),
-                          physics: const BouncingScrollPhysics(),
-                          children: [
-
-
-                          ],
-                        )
-                    )
+                    child: contentPlaceholder
                   ),
                   /* End - Content */
 
                   /* Start - Header */
                   Header(dashboardState: this),
                   /* End - Header */
+
+                  /* Start - Next */
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        height: 73,
+                        child: InkWell(
+                          onTap: () {
+
+                            pageController.nextPage(duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+
+                          },
+                          child: Visibility(
+                            visible: nextVisibility,
+                            child: Stack(
+                                children: [
+
+                                  const Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Image(
+                                      image: AssetImage("assets/next_background.png"),
+                                    )
+                                  ),
+
+                                  Center(
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(99),
+                                          child: nextIconPlaceholder
+                                      )
+                                  )
+
+                                ]
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  /* End - Next */
 
                 ]
             )
@@ -158,5 +214,69 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         )
     );
   }
+
+  /* Start - Content Provider */
+  void prepareContent() {
+
+    List<Widget> allContentWidgets = [];
+
+    allContent = contentProvider.process();
+
+    for (var element in allContent) {
+
+      allContentWidgets.add(Item(contentDataStructure: element));
+
+    }
+
+    nextApplicationIcon();
+
+    setState(() {
+
+      contentPlaceholder = PageView(
+          controller: pageController,
+          scrollDirection: Axis.vertical,
+          physics: const PageScrollPhysics(),
+          onPageChanged: (index) {
+
+            pageIndex = index;
+
+            nextApplicationIcon();
+
+          },
+          children: allContentWidgets
+      );
+
+    });
+
+  }
+
+  void nextApplicationIcon() {
+
+    if ((pageIndex + 1) == allContent.length) {
+
+      setState(() {
+
+        nextVisibility = false;
+
+      });
+
+    } else {
+
+      setState(() {
+
+        nextIconPlaceholder = Image.network(
+          allContent[pageIndex + 1].applicationIcon,
+          height: 51,
+          width: 51,
+        );
+
+        nextVisibility = true;
+
+      });
+
+    }
+
+  }
+  /* End - Content Provider */
 
 }
