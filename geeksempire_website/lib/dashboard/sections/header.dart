@@ -47,14 +47,14 @@ class _HeaderState extends State<Header> {
     }
 
     return SizedBox(
-      height: 210,
+      height: 175,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
             SizedBox(
-                height: 137,
+                height: 101,
                 child: Blur(
                     blur: 37,
                     colorOpacity: 0.73,
