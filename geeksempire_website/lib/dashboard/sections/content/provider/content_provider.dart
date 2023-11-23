@@ -21,11 +21,25 @@ class ContentProvider {
         'https://www.youtube.com/watch?v=nk8uHMq8-Yc&list=PLTs5v2BrWyWkStqKF9_9R3ewgR3AifcZO', 'https://twitter.com/GeeksEmpire', 'https://facebook.com/FloatIt.Android'));
 
     allContent.add(ContentDataStructure('net.geekstools.supershortcuts.PRO',
-        'Super Shortcut: Multitasking', 'FBe Productive: Split Open Applications Together For Multitasking From A Shortcut',
+        'Super Shortcut: Multitasking', 'Be Productive: Split Open Applications Together For Multitasking From A Shortcut',
         'Do A Great Multitasking; Replace Several Applications Shortcut & Folders with One Super Shortcut & Protect Your Privacy 🦸 🦸‍♂️ To Do A Great Multitasking. Shortcuts are the most popular way to have quick access to applications and help you to perform simple multitasking. They make your home page so crowded. On the other hand, cluttering the Home page make you confused and decrease your productivity. Wouldn’t be nice to have one shortcut that allows access to other shortcuts instead of having dirty home screen.',
         'https://play-lh.googleusercontent.com/ook_aCJB3ZFQvPqGtfVlVDwsDj-fWXodeH3AI-tYk7NZzD4-3xbyNpWs_jomou_uKg=s512',
         'https://play-lh.googleusercontent.com/7L_enUj4ahf4r4Z1JE44hQwJss8dqotRvjyhpFo-akqELm01L8vH8W_hQFfItwPoYA=w1080,https://play-lh.googleusercontent.com/rWjGHxG_tuWICFPZhaaQbmfPh8WkC1RRE-_6kA70wUXyllyzPKrjvKdAN7C9h_kF9mQ=w1080,https://play-lh.googleusercontent.com/VVmf06IuWTeZj1hBN__bLG5rKkGpeYL2qpYEEgPYZ-OlCkkU9sxMtn6S2eccFbZr8ZEB=w1080',
         'https://www.youtube.com/watch?v=84NgoS2ccs4&list=PLTs5v2BrWyWmEpqaArzs43ZRsMOleBNvw', 'https://twitter.com/GeeksEmpire', 'https://facebook.com/SuperShortcuts'));
+
+    allContent.add(ContentDataStructure('co.geeksempire.sachiel.signals',
+        'Sachiels AI; Trading Signals', 'Sachiels AI; AI Trading Signals For Forex, Cryptocurrencies, Stocks',
+        'One of the biggest advantages of AI Trading Signals is its ability to analyze vast amounts of data almost instantly. AI algorithms, on the other hand, can shift through millions of data points in a matter of seconds, looking for patterns and trends that would be impossible for a human to identify. AI will not get tired, get emotional, forget something... It will serve you 24 / 7.',
+        'https://play-lh.googleusercontent.com/Ejo7TGbjHI9qyJcgDVoNloV6qC3-YP8RMS5U_DOWde6s9fgp6rg1R_t9lywIVJCtBA=s512',
+        'https://play-lh.googleusercontent.com/9Cd4cV73565p08aVG1DBzaSKwYucel_fAfb56JYEmVuZU2Y_tWUWHBDRGvz8Rmn7SNI=w1080,https://play-lh.googleusercontent.com/HE6_zPpa-5ZmXh774sNAyKifmL4VECp9I0pirMyNKL0IojpDo9UXzwCVdDGrWzH8yzg0=w1080,https://play-lh.googleusercontent.com/JXaC1Bjfg-q880r9H8vZXoN8FIrvzIsxxq3Ze8titB9D5qcxNAXaBcOdS8S-v3jKWsQ=w1080',
+        'https://www.youtube.com/watch?v=m3Kyws-Aukc&list=PLTs5v2BrWyWm2cG8dvb-DsOYBo5TM8I4x', 'https://twitter.com/SachielsAI', 'https://facebook.com/SachielsAI'));
+
+    allContent.add(ContentDataStructure('co.geeksempire.sachiels.ai.candlesticks.candlesticks',
+        'Sachiels AI; Candlesticks', 'Sachiels AI Candlesticks Patterns Notifications',
+        'A Unique Candlesticks Patterns Notifier Powered By #SachielsAI. Get Notifications Whenever An Important Candlesticks Pattern Formed In The Markets. For Example a Doji Candlesticks, a Shooting Star Candlesticks Patterns.',
+        'https://play-lh.googleusercontent.com/yX-rFs8lqLDLIJFu4WVCkTtI88OJQ1Tw5J4-Xe44EDo4PYTRV1NrHuuzZCOgfGPsx73n=w512',
+        'https://play-lh.googleusercontent.com/Uj_TUaXRrHsntUjg5v_7DQd2DGcQVi4Z8ZvEewkH4fazOpBz6ZYg04a1Raw7qPfBAyM=w1080,https://play-lh.googleusercontent.com/cR4nV2DGktmh3c7JZfWvWn9wRcW-AMRqGx3bQjEyVslBYH1rhSVp0CCerUWT2EcXcg=w1080,https://play-lh.googleusercontent.com/xPne1qPFYvbyoyP3LHso21wqFaBXiC-fk5k0mnF0A_DBlgr5F6h5hFDaOm5ru7xZeQ=w1080',
+        'https://www.youtube.com/watch?v=m3Kyws-Aukc&list=PLTs5v2BrWyWm2cG8dvb-DsOYBo5TM8I4x', 'https://twitter.com/SachielsAI', 'https://facebook.com/SachielsAI'));
 
     return allContent;
   }
