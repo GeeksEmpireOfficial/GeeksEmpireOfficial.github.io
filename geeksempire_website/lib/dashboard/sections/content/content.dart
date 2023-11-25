@@ -65,18 +65,23 @@ class _ItemState extends State<Item> {
    */
   Widget coverNameSummary() {
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
+    return SizedBox(
+      height: 571,
+      width: 549,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
 
-        ClipRRect(
-          borderRadius: BorderRadius.circular(19),
-          child: Image.network(
-            widget.contentDataStructure.applicationName
-          ),
-        )
+            ClipRRect(
+              borderRadius: BorderRadius.circular(19),
+              child: Image.network(
+                widget.contentDataStructure.applicationCoverValue(),
+                fit: BoxFit.cover,
+              ),
+            )
 
-      ]
+          ]
+      )
     );
   }
   /* End
