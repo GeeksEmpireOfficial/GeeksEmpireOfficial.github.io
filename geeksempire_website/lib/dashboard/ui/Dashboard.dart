@@ -161,7 +161,15 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         child: InkWell(
                           onTap: () {
 
-                            pageController.nextPage(duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+                            if ((pageIndex + 1) == allContent.length) {
+
+                              pageController.jumpToPage(0);
+
+                            } else {
+
+                              pageController.nextPage(duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+
+                            }
 
                           },
                           child: Visibility(
@@ -256,7 +264,13 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
       setState(() {
 
-        nextVisibility = false;
+        nextIconPlaceholder = Image.network(
+          allContent[0].applicationIcon,
+          height: 51,
+          width: 51,
+        );
+
+        nextVisibility = true;
 
       });
 
