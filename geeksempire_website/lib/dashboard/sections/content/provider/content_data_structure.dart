@@ -1,81 +1,88 @@
 class ContentDataStructure {
 
-  String packageName = "";
+  String _packageName = "";
 
-  String applicationName = "";
-  String applicationSummary = "";
-  String applicationDescription = "";
+  String _applicationName = "";
+  String _applicationSummary = "";
+  String _applicationDescription = "";
 
-  String applicationIcon = "";
+  String _applicationIcon = "";
+  String _applicationCover = "";
   /// CSV Of Screenshots Links
-  String applicationScreenshots = "";
+  String _applicationScreenshots = "";
 
-  String applicationYoutube = "https://www.youtube.com/@GeeksEmpireCo/community";
-  String applicationX = "https://twitter.com/GeeksEmpire";
-  String applicationFacebook = "https://facebook.com/GeeksEmpire";
+  String _applicationYoutube = "https://www.youtube.com/@GeeksEmpireCo/community";
+  String _applicationX = "https://twitter.com/GeeksEmpire";
+  String _applicationFacebook = "https://facebook.com/GeeksEmpire";
 
   ContentDataStructure(String inputPackageName, String inputApplicationName, String inputApplicationSummary, String inputApplicationDescription,
-      String inputApplicationIcon, String inputApplicationScreenshots,
+      String inputApplicationIcon, String inputApplicationCover, String inputApplicationScreenshots,
       String inputApplicationYoutube, String inputApplicationX, String inputApplicationFacebook) {
 
-    packageName = inputPackageName;
+    _packageName = inputPackageName;
 
-    applicationName = inputApplicationName;
-    applicationSummary = inputApplicationSummary;
-    applicationDescription = inputApplicationDescription;
+    _applicationName = inputApplicationName;
+    _applicationSummary = inputApplicationSummary;
+    _applicationDescription = inputApplicationDescription;
 
-    applicationIcon = inputApplicationIcon;
-    applicationScreenshots = inputApplicationScreenshots;
+    _applicationIcon = inputApplicationIcon;
+    _applicationCover = inputApplicationCover;
+    _applicationScreenshots = inputApplicationScreenshots;
 
-    applicationYoutube = inputApplicationYoutube;
-    applicationX = inputApplicationX;
-    applicationFacebook = inputApplicationFacebook;
+    _applicationYoutube = inputApplicationYoutube;
+    _applicationX = inputApplicationX;
+    _applicationFacebook = inputApplicationFacebook;
 
   }
 
   String packageNameValue() {
 
-    return packageName.toString();
+    return _packageName.toString();
   }
 
   String applicationNameValue() {
 
-    return applicationName.toString();
+    return _applicationName.toString();
   }
 
   String applicationSummaryValue() {
 
-    return applicationSummary.toString();
+    return _applicationSummary.toString();
   }
 
   String applicationDescriptionValue() {
 
-    return applicationDescription.toString();
+    return _applicationDescription.toString();
   }
 
   String applicationIconValue() {
 
-    return applicationIcon.toString();
+    return _applicationIcon.toString();
+  }
+
+  String applicationCoverValue() {
+
+    return _applicationCover.toString();
   }
 
   List<String> applicationScreenshotsValue() {
 
-    return applicationScreenshots.toString().split(",");
+    return _applicationScreenshots.toString().split(",");
   }
 
   String applicationYoutubeValue() {
 
-    return applicationYoutube.toString();
+    return _applicationYoutube.toString();
   }
 
   String applicationXValue() {
 
-    return applicationX.toString();
+    return _applicationX.toString();
   }
 
   String applicationFacebookValue() {
 
-    return applicationFacebook.toString();
+    return _applicationFacebook.toString();
   }
 
 }
