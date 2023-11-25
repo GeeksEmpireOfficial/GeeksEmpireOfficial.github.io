@@ -76,8 +76,21 @@ class _ItemState extends State<Item> {
               borderRadius: BorderRadius.circular(19),
               child: Image.network(
                 widget.contentDataStructure.applicationCoverValue(),
+                width: 549,
                 fit: BoxFit.cover,
               ),
+            ),
+
+            Row(
+              children: [
+
+                Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(19),
+                  )
+                )
+
+              ]
             )
 
           ]
