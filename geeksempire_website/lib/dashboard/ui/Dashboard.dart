@@ -265,7 +265,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       setState(() {
 
         nextIconPlaceholder = Image.network(
-          allContent[0].applicationIcon,
+          allContent[0].applicationIconValue(),
           height: 51,
           width: 51,
         );
