@@ -41,6 +41,13 @@ class ContentProvider {
         'https://play-lh.googleusercontent.com/Uj_TUaXRrHsntUjg5v_7DQd2DGcQVi4Z8ZvEewkH4fazOpBz6ZYg04a1Raw7qPfBAyM=w1080,https://play-lh.googleusercontent.com/cR4nV2DGktmh3c7JZfWvWn9wRcW-AMRqGx3bQjEyVslBYH1rhSVp0CCerUWT2EcXcg=w1080,https://play-lh.googleusercontent.com/xPne1qPFYvbyoyP3LHso21wqFaBXiC-fk5k0mnF0A_DBlgr5F6h5hFDaOm5ru7xZeQ=w1080',
         'https://www.youtube.com/watch?v=m3Kyws-Aukc&list=PLTs5v2BrWyWm2cG8dvb-DsOYBo5TM8I4x', 'https://twitter.com/SachielsAI', 'https://facebook.com/SachielsAI'));
 
+    allContent.add(ContentDataStructure('co.geeksempire.frames.you',
+        ' You; Personalize The Bezels', 'You Personalize The Bezels Of Your Smartphone With Modern, Classic, Cool Frames.',
+        'Next level of personalization is to customize shape of bezels. Don\'t you get tired of the same rectangle over years? they just made bezels thinner & added round corners. It\'s still a boring rectangle. Let\'s add some frame to our phones. Make our phones romantic with lovely, floral frames. Or add some energetic bezels as gamers. Add A Beautiful Frame Over Your Display To Get Rid Of Boring Black Bezels. Customize Your Smartphone Display With Frames. You Personalize The Bezels Of Your Smartphone With Modern, Classic, Cool Frames.',
+        'https://play-lh.googleusercontent.com/lc-osgwMCmVxDNDt7SAdYig4YD51EXXkrv3X4-0HrR4XF0Fq6heOyIQG08t2ynpfwRI=s512',
+        'https://play-lh.googleusercontent.com/h_BWJMusHsw5X6ONGL_9VmeZ0JGmd4bfX-rfYIBvgJhB6h9gcVXQ5nE3J39yb1DYo6lL=w1080,https://play-lh.googleusercontent.com/LCvHD0M5nS0q4U2bs7u4gfxelC0L4miorMVGkkx1CAElDt1jbj8TlcXmo4X0I3T3Wm_x=w1080,https://play-lh.googleusercontent.com/9BJ-sjgkZCHy6ZB2U4nX3lIMKq3ys13lizCYU-0OYwkNBWDcP_CpjnCF120zCr6MaLY=w1080',
+        'https://www.youtube.com/watch?v=aGekRHcp_0U', 'https://twitter.com/GeeksEmpire', 'https://facebook.com/GeeksEmpire'));
+
     return allContent;
   }
 
