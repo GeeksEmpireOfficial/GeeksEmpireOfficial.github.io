@@ -173,7 +173,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
                             if ((pageIndex + 1) == allContent.length) {
 
-                              pageController.jumpToPage(0);
+                              pageController.animateToPage(0, duration: const Duration(milliseconds: 777), curve: Curves.easeInOutCubic);
 
                             } else {
 
