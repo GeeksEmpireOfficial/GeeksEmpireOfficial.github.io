@@ -371,8 +371,24 @@ class _ItemState extends State<Item> {
       child: SizedBox(
           height: 537,
           width: 716,
-          child: Image.network(
-            screenshotLink,
+          child: GestureDetector(
+            onHorizontalDragEnd: (dragDetails) {
+              debugPrint('Delta X: ${dragDetails.velocity.pixelsPerSecond}');
+
+              if (dragDetails.velocity.pixelsPerSecond.dx < 0) {
+
+                scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+
+              } else {
+
+                scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+
+              }
+
+            },
+            child: Image.network(
+              screenshotLink,
+            )
           )
       )
     );
