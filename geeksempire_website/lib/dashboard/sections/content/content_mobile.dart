@@ -62,8 +62,8 @@ class _ItemMobileState extends State<ItemMobile> {
             ClipRRect(
               borderRadius: BorderRadius.circular(19),
               child: SizedBox(
-                width: 549,
-                height: 267,
+                height: 137,
+                width: 279,
                 child: Image.network(
                   widget.contentDataStructure.applicationCoverValue(),
                   fit: BoxFit.cover,
@@ -148,7 +148,7 @@ class _ItemMobileState extends State<ItemMobile> {
 
     widget.contentDataStructure.applicationScreenshotsValue().forEach((element) {
 
-      allScreenshots.add(screenshots(element));
+      allScreenshots.add(screenshotItem(element));
 
     });
 
@@ -174,7 +174,7 @@ class _ItemMobileState extends State<ItemMobile> {
 
   }
 
-  Widget screenshots(String screenshotLink) {
+  Widget screenshotItem(String screenshotLink) {
 
     return Padding(
       padding: const EdgeInsets.only(right: 13),

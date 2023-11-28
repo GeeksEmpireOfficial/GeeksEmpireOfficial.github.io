@@ -173,7 +173,7 @@ class _ItemDesktopState extends State<ItemDesktop> {
 
     widget.contentDataStructure.applicationScreenshotsValue().forEach((element) {
 
-      allScreenshots.add(screenshots(element));
+      allScreenshots.add(screenshotItem(element));
 
     });
 
@@ -199,7 +199,7 @@ class _ItemDesktopState extends State<ItemDesktop> {
 
   }
 
-  Widget screenshots(String screenshotLink) {
+  Widget screenshotItem(String screenshotLink) {
 
     return Padding(
       padding: const EdgeInsets.only(right: 13),
