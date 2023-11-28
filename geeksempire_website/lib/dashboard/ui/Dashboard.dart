@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/sections/content/content.dart';
 import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
 import 'package:sachiel_website/dashboard/sections/content/provider/content_provider.dart';
@@ -54,6 +55,13 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
    * End - Content Provider
    */
 
+  /* Start - Next Page */
+  double nextPageIndicatorHeight = 73;
+  double nextPageIconHeight = 51;
+  double nextPageIconWidth = 51;
+  /* End - Next Page */
+
+
   @override
   void initState() {
     super.initState();
@@ -80,7 +88,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         curve: Curves.easeIn
     ));
 
-    prepareContent();
+    initializeScales();
 
   }
 
@@ -158,7 +166,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
-                        height: 73,
+                        height: nextPageIndicatorHeight,
                         child: InkWell(
                           onTap: () {
 
@@ -265,10 +273,14 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
       setState(() {
 
-        nextIconPlaceholder = Image.network(
-          allContent[0].applicationIconValue(),
-          height: 51,
-          width: 51,
+        nextIconPlaceholder = SizedBox(
+          height: nextPageIconHeight,
+          width: nextPageIconWidth,
+          child: Image.network(
+            allContent[0].applicationIconValue(),
+            height: nextPageIconHeight,
+            width: nextPageIconWidth,
+          )
         );
 
         nextVisibility = true;
@@ -279,10 +291,14 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
       setState(() {
 
-        nextIconPlaceholder = Image.network(
-          allContent[pageIndex + 1].applicationIconValue(),
-          height: 51,
-          width: 51,
+        nextIconPlaceholder = SizedBox(
+          height: nextPageIconHeight,
+          width: nextPageIconWidth,
+          child: Image.network(
+            allContent[pageIndex + 1].applicationIconValue(),
+            height: nextPageIconHeight,
+            width: nextPageIconWidth,
+          )
         );
 
         nextVisibility = true;
@@ -293,5 +309,31 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   }
   /* End - Content Provider */
+
+  void initializeScales() {
+
+    if (GetPlatform.isDesktop) {
+
+      /* Start - Next Page */
+      nextPageIndicatorHeight = 73;
+
+      nextPageIconHeight = 51;
+      nextPageIconWidth = 51;
+      /* End - Next Page */
+
+    } else {
+
+      /* Start - Next Page */
+      nextPageIndicatorHeight = 53;
+
+      nextPageIconHeight = 37;
+      nextPageIconWidth = 37;
+      /* End - Next Page */
+
+    }
+
+    prepareContent();
+
+  }
 
 }
