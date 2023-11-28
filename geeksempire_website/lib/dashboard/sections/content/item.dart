@@ -3,16 +3,18 @@ import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class ItemDesktop extends StatefulWidget {
+class Item extends StatefulWidget {
 
   ContentDataStructure contentDataStructure;
 
-  ItemDesktop({Key? key, required this.contentDataStructure}) : super(key: key);
+  Item({Key? key, required this.contentDataStructure}) : super(key: key);
 
   @override
-  State<ItemDesktop> createState() => _ItemDesktopState();
+  State<Item> createState() => _ItemState();
 }
-class _ItemDesktopState extends State<ItemDesktop> {
+class _ItemState extends State<Item> {
+
+  ScrollController scrollController = ScrollController();
 
   Widget screenshotsPlaceholder = const SizedBox(
     height: 537,
@@ -178,30 +180,43 @@ class _ItemDesktopState extends State<ItemDesktop> {
                           color: Colors.transparent,
                         ),
 
-                        SizedBox(
-                          height: 67,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(19),
-                            child: Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: ColorsResources.premiumLight,
-                                  splashFactory: InkRipple.splashFactory,
-                                  onTap: () {
+                        Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
 
-                                    Future.delayed(const Duration(milliseconds: 357), () {
+                              BoxShadow(
+                                color: ColorsResources.black.withOpacity(0.19),
+                                blurRadius: 19,
+                                offset: const Offset(0, 13)
+                              )
 
-                                      launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
+                            ]
+                          ),
+                          child: SizedBox(
+                              height: 67,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(19),
+                                  child: Material(
+                                      shadowColor: Colors.transparent,
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                          splashColor: ColorsResources.premiumLight,
+                                          splashFactory: InkRipple.splashFactory,
+                                          onTap: () {
 
-                                    });
+                                            Future.delayed(const Duration(milliseconds: 357), () {
 
-                                  },
-                                  child: const Image(
-                                    image: AssetImage('assets/install_icon.png'),
+                                              launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
+
+                                            });
+
+                                          },
+                                          child: const Image(
+                                            image: AssetImage('assets/install_icon.png'),
+                                          )
+                                      )
                                   )
                               )
-                            )
                           )
                         )
 
@@ -337,6 +352,8 @@ class _ItemDesktopState extends State<ItemDesktop> {
                 child: ListView(
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
+                    controller: scrollController,
+                    shrinkWrap: false,
                     children: allScreenshots
                 )
             )
