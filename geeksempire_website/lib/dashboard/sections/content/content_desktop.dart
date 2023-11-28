@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ItemDesktop extends StatefulWidget {
 
@@ -90,7 +91,7 @@ class _ItemDesktopState extends State<ItemDesktop> {
                         child: Text(
                           widget.contentDataStructure.applicationDescriptionValue(),
                           maxLines: 7,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: ColorsResources.premiumLight,
                             fontSize: 19,
                             overflow: TextOverflow.fade,
@@ -105,7 +106,109 @@ class _ItemDesktopState extends State<ItemDesktop> {
                   width: 13
                 ),
 
+                Expanded(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
 
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+
+                              SizedBox(
+                                  height: 59,
+                                  width: 59,
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                      },
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Image(
+                                          image: AssetImage('assets/facebook_icon.png'),
+                                        )
+                                      )
+                                  )
+                              ),
+
+                              SizedBox(
+                                  height: 59,
+                                  width: 59,
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                      },
+                                      child: const Padding(
+                                          padding: EdgeInsets.all(5),
+                                          child: Image(
+                                            image: AssetImage('assets/twitter_icon.png'),
+                                          )
+                                      )
+                                  )
+                              ),
+
+                              SizedBox(
+                                  height: 59,
+                                  width: 59,
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                      },
+                                      child: const Padding(
+                                          padding: EdgeInsets.all(5),
+                                          child: Image(
+                                            image: AssetImage('assets/youtube_icon.png'),
+                                          )
+                                      )
+                                  )
+                              ),
+
+                            ]
+                        ),
+
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+
+                        SizedBox(
+                          height: 67,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(19),
+                            child: Material(
+                                shadowColor: Colors.transparent,
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  splashColor: ColorsResources.premiumLight,
+                                  splashFactory: InkRipple.splashFactory,
+                                  onTap: () {
+
+                                    Future.delayed(const Duration(milliseconds: 357), () {
+
+                                      launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
+
+                                    });
+
+                                  },
+                                  child: const Image(
+                                    image: AssetImage('assets/install_icon.png'),
+                                  )
+                              )
+                            )
+                          )
+                        )
+
+                      ]
+                  )
+
+                )
               ]
             )
             /*
