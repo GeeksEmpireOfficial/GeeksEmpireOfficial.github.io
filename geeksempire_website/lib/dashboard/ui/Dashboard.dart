@@ -57,6 +57,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   /* Start - Next Page */
   double nextPageIndicatorHeight = 73;
+
   double nextPageIconHeight = 51;
   double nextPageIconWidth = 51;
   /* End - Next Page */
@@ -312,25 +313,29 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   void initializeScales() {
 
-    if (GetPlatform.isDesktop) {
+    setState(() {
 
-      /* Start - Next Page */
-      nextPageIndicatorHeight = 73;
+      if (GetPlatform.isDesktop) {
 
-      nextPageIconHeight = 51;
-      nextPageIconWidth = 51;
-      /* End - Next Page */
+        /* Start - Next Page */
+        nextPageIndicatorHeight = 73;
 
-    } else {
+        nextPageIconHeight = 51;
+        nextPageIconWidth = 51;
+        /* End - Next Page */
 
-      /* Start - Next Page */
-      nextPageIndicatorHeight = 53;
+      } else {
 
-      nextPageIconHeight = 37;
-      nextPageIconWidth = 37;
-      /* End - Next Page */
+        /* Start - Next Page */
+        nextPageIndicatorHeight = 53;
 
-    }
+        nextPageIconHeight = 37;
+        nextPageIconWidth = 37;
+        /* End - Next Page */
+
+      }
+
+    });
 
     prepareContent();
 

@@ -31,20 +31,13 @@ class _HeaderState extends State<Header> {
   @override
   void initState() {
     super.initState();
+
+    initializeScales();
+
   }
 
   @override
   Widget build(BuildContext context) {
-
-    if (GetPlatform.isDesktop) {
-
-      scaleParameter = 1;
-
-    } else {
-
-      scaleParameter = 1.73;
-
-    }
 
     return SizedBox(
       height: 175,
@@ -189,6 +182,20 @@ class _HeaderState extends State<Header> {
 
       )
     );
+  }
+
+  void initializeScales() {
+
+    if (GetPlatform.isDesktop) {
+
+      scaleParameter = 1;
+
+    } else {
+
+      scaleParameter = 1.73;
+
+    }
+
   }
 
 }

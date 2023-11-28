@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 
@@ -17,6 +18,8 @@ class _ItemState extends State<Item> {
     height: 537,
   );
 
+  double scaleParameter = 1;
+
   @override
   void initState() {
     super.initState();
@@ -29,7 +32,7 @@ class _ItemState extends State<Item> {
   Widget build(BuildContext context) {
 
     return Padding(
-        padding: const EdgeInsets.fromLTRB(137, 137, 137, 79),
+        padding: EdgeInsets.fromLTRB(137 / scaleParameter, 137 / scaleParameter, 137 / scaleParameter, 79 / scaleParameter),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -72,7 +75,7 @@ class _ItemState extends State<Item> {
     );
   }
 
-  /* Start
+  /* Start -
    * Cover, Name, Summary
    */
   Widget coverNameSummary() {
@@ -160,11 +163,11 @@ class _ItemState extends State<Item> {
       )
     );
   }
-  /* End
+  /* End -
    * Cover, Name, Summary
    */
 
-  /* Start
+  /* Start -
    * Screenshots
    */
   void prepareScreenshots() async {
@@ -178,7 +181,6 @@ class _ItemState extends State<Item> {
     });
 
     setState(() {
-
 
       screenshotsPlaceholder = SizedBox(
         height: 537,
@@ -213,12 +215,22 @@ class _ItemState extends State<Item> {
       )
     );
   }
-  /* End
+  /* End -
    * Screenshots
    */
 
   void initializeScales() {
 
+    if (GetPlatform.isDesktop) {
+
+      scaleParameter = 1;
+
+
+    } else {
+
+      scaleParameter = 3;
+
+    }
 
     prepareScreenshots();
 
