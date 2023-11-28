@@ -29,42 +29,17 @@ class _ItemMobileState extends State<ItemMobile> {
   Widget build(BuildContext context) {
 
     return Padding(
-        padding: const EdgeInsets.fromLTRB(137, 137, 137, 79),
+        padding: const EdgeInsets.fromLTRB(37, 137, 37, 79),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
 
             /* Start
-             * Cover, Name, Summary, Screenshots
+             * Cover, Name, Summary
              */
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-
-                /* Start
-                 * Cover, Name, Summary
-                 */
-                coverNameSummary(),
-                /* End
-                 * Cover, Name, Summary
-                 */
-
-                const SizedBox(
-                  height: 19,
-                ),
-
-                /* Start
-                 * Screenshots
-                 */
-                screenshotsPlaceholder
-                /* End
-                 * Screenshots
-                 */
-
-              ]
-            )
+            coverNameSummary(),
             /* End
-             * Cover, Name, Summary, Screenshots
+             * Cover, Name, Summary
              */
 
           ]
