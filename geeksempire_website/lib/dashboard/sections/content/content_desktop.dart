@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
+import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 
 class ItemDesktop extends StatefulWidget {
@@ -62,9 +62,54 @@ class _ItemDesktopState extends State<ItemDesktop> {
                  */
 
               ]
-            )
+            ),
             /* End
              * Cover, Name, Summary, Screenshots
+             */
+
+            const Divider(
+              height: 19,
+              color: Colors.transparent,
+            ),
+
+            /*
+             * Start - Description, Contact, Install
+             */
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(37),
+                  child: Container(
+                    color: ColorsResources.black.withOpacity(0.07),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(37, 13, 37, 13),
+                      child: SizedBox(
+                        width: 1231,
+                        child: Text(
+                          widget.contentDataStructure.applicationDescriptionValue(),
+                          maxLines: 7,
+                          style: TextStyle(
+                            color: ColorsResources.premiumLight,
+                            fontSize: 19,
+                            overflow: TextOverflow.fade,
+                            height: 1.19
+                          ),
+                        )
+                      )
+                    )
+                  )
+                ),
+                const SizedBox(
+                  width: 13
+                ),
+
+
+              ]
+            )
+            /*
+             * End - Description, Contact, Install
              */
 
           ]

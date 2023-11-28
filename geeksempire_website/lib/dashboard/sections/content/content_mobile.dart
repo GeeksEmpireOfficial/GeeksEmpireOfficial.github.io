@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
+import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 
 class ItemMobile extends StatefulWidget {
@@ -21,7 +21,7 @@ class _ItemMobileState extends State<ItemMobile> {
   void initState() {
     super.initState();
 
-    prepareScreenshots();
+    // prepareScreenshots();
 
   }
 
