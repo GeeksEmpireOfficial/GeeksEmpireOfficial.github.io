@@ -21,7 +21,7 @@ class _ItemState extends State<Item> {
   void initState() {
     super.initState();
 
-    prepareScreenshots();
+    initializeScales();
 
   }
 
@@ -216,5 +216,12 @@ class _ItemState extends State<Item> {
   /* End
    * Screenshots
    */
+
+  void initializeScales() {
+
+
+    prepareScreenshots();
+
+  }
 
 }

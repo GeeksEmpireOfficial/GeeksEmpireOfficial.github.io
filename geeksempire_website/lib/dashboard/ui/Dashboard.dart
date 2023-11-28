@@ -8,6 +8,7 @@ import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
 import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';
+import 'package:sachiel_website/utils/ui/nexted_page_controller.dart';
 
 class Dashboard extends StatefulWidget {
 
@@ -243,7 +244,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       contentPlaceholder = PageView(
           controller: pageController,
           scrollDirection: Axis.vertical,
-          physics: const PageScrollPhysics(),
+          physics: const NextedPageController(),
           onPageChanged: (index) {
 
             pageIndex = index;
