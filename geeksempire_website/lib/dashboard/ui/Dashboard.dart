@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sachiel_website/dashboard/sections/content/content.dart';
+import 'package:sachiel_website/dashboard/sections/content/content_mobile.dart';
 import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
 import 'package:sachiel_website/dashboard/sections/content/provider/content_provider.dart';
 import 'package:sachiel_website/dashboard/sections/header.dart';
@@ -242,7 +242,16 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
     for (var element in allContent) {
 
-      allContentWidgets.add(Item(contentDataStructure: element));
+      if (GetPlatform.isDesktop) {
+
+        // allContentWidgets.add(ItemDesktop(contentDataStructure: element));
+        allContentWidgets.add(ItemMobile(contentDataStructure: element));
+
+      } else {
+
+        allContentWidgets.add(ItemMobile(contentDataStructure: element));
+
+      }
 
     }
 

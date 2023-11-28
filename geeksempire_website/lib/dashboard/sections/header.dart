@@ -188,11 +188,11 @@ class _HeaderState extends State<Header> {
 
     if (GetPlatform.isDesktop) {
 
-      scaleParameter = 1;
+      scaleParameter = 1.99;
 
     } else {
 
-      scaleParameter = 1.73;
+      scaleParameter = 1.99;
 
     }
 

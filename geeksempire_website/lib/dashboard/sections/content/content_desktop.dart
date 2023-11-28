@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/sections/content/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 
-class Item extends StatefulWidget {
+class ItemDesktop extends StatefulWidget {
 
   ContentDataStructure contentDataStructure;
 
-  Item({Key? key, required this.contentDataStructure}) : super(key: key);
+  ItemDesktop({Key? key, required this.contentDataStructure}) : super(key: key);
 
   @override
-  State<Item> createState() => _ItemState();
+  State<ItemDesktop> createState() => _ItemDesktopState();
 }
-class _ItemState extends State<Item> {
+class _ItemDesktopState extends State<ItemDesktop> {
 
   Widget screenshotsPlaceholder = const SizedBox(
     height: 537,
   );
 
-  double scaleParameter = 1;
-
   @override
   void initState() {
     super.initState();
 
-    initializeScales();
+    prepareScreenshots();
 
   }
 
@@ -32,7 +29,7 @@ class _ItemState extends State<Item> {
   Widget build(BuildContext context) {
 
     return Padding(
-        padding: EdgeInsets.fromLTRB(137 / scaleParameter, 137 / scaleParameter, 137 / scaleParameter, 79 / scaleParameter),
+        padding: const EdgeInsets.fromLTRB(137, 137, 137, 79),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -218,22 +215,5 @@ class _ItemState extends State<Item> {
   /* End -
    * Screenshots
    */
-
-  void initializeScales() {
-
-    if (GetPlatform.isDesktop) {
-
-      scaleParameter = 1;
-
-
-    } else {
-
-      scaleParameter = 3;
-
-    }
-
-    prepareScreenshots();
-
-  }
 
 }
