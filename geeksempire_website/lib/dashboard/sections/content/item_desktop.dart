@@ -249,7 +249,7 @@ class _ItemDesktopState extends State<ItemDesktop> {
               ClipRRect(
                   borderRadius: BorderRadius.circular(19),
                   child: SizedBox(
-                    width: calculatePercentage(100, displayLogicalWidth(context)),
+                    width: calculatePercentage(27, displayLogicalWidth(context)),
                     child: Image.network(
                       widget.contentDataStructure.applicationCoverValue(),
                       fit: BoxFit.cover,
@@ -265,8 +265,8 @@ class _ItemDesktopState extends State<ItemDesktop> {
                         ClipRRect(
                             borderRadius: BorderRadius.circular(37),
                             child: SizedBox(
-                                width: calculatePercentage(13, displayLogicalHeight(context)),
                                 height: calculatePercentage(13, displayLogicalHeight(context)),
+                                width: calculatePercentage(13, displayLogicalHeight(context)),
                                 child: Image.network(
                                   widget.contentDataStructure.applicationIconValue(),
                                   fit: BoxFit.cover,
@@ -300,7 +300,7 @@ class _ItemDesktopState extends State<ItemDesktop> {
               ),
 
               Padding(
-                  padding: const EdgeInsets.only(left: 19, right: 37, top: 19),
+                  padding: const EdgeInsets.only(left: 19, right: 19, top: 19),
                   child: SizedBox(
                       height: calculatePercentage(15, displayLogicalHeight(context)),
                       child: Align(

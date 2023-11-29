@@ -3,7 +3,6 @@ import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class ItemMobile extends StatefulWidget {
 
@@ -32,50 +31,39 @@ class _ItemMobileState extends State<ItemMobile> {
         padding: EdgeInsets.fromLTRB(calculatePercentage(7, displayLogicalWidth(context)), 137, calculatePercentage(7, displayLogicalWidth(context)), calculatePercentage(3, displayLogicalHeight(context))),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
               /* Start
              * Cover, Name, Summary, Screenshots
              */
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-
-                    /* Start
-                 * Cover, Name, Summary
-                 */
-                    coverNameSummary(),
-                    /* End
-                 * Cover, Name, Summary
-                 */
-
-                    SizedBox(
-                      height: calculatePercentage(1, displayLogicalHeight(context)),
-                    ),
-
-                    /* Start
-                 * Screenshots
-                 */
-                    screenshotsPlaceholder
-                    /* End
-                 * Screenshots
-                 */
-
-                  ]
-              ),
+              coverNameSummary(),
               /* End
              * Cover, Name, Summary, Screenshots
              */
 
               const Divider(
-                height: 19,
+                height: 1,
+                color: Colors.transparent,
+              ),
+
+              /* Start
+                 * Screenshots
+                 */
+              screenshotsPlaceholder,
+              /* End
+                 * Screenshots
+                 */
+
+              const Divider(
+                height: 13,
                 color: Colors.transparent,
               ),
 
               /*
              * Start - Description, Contact, Install
              */
-              Row(
+              /*Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
 
@@ -222,7 +210,7 @@ class _ItemMobileState extends State<ItemMobile> {
                     )
 
                   ]
-              )
+              )*/
               /*
              * End - Description, Contact, Install
              */
@@ -240,16 +228,17 @@ class _ItemMobileState extends State<ItemMobile> {
     prepareScreenshots();
 
     return SizedBox(
-        height: calculatePercentage(61, displayLogicalHeight(context)),
-        width: calculatePercentage(27, displayLogicalWidth(context)),
+        height: calculatePercentage(37, displayLogicalHeight(context)),
+        width: calculatePercentage(83, displayLogicalWidth(context)),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
               ClipRRect(
                   borderRadius: BorderRadius.circular(19),
                   child: SizedBox(
-                    width: calculatePercentage(100, displayLogicalWidth(context)),
+                    width: calculatePercentage(83, displayLogicalWidth(context)),
                     child: Image.network(
                       widget.contentDataStructure.applicationCoverValue(),
                       fit: BoxFit.cover,
@@ -258,15 +247,15 @@ class _ItemMobileState extends State<ItemMobile> {
               ),
 
               Padding(
-                  padding: EdgeInsets.only(left: calculatePercentage(1.37, displayLogicalWidth(context)), right: calculatePercentage(1.37, displayLogicalWidth(context)), top: 19),
+                  padding: EdgeInsets.only(left: calculatePercentage(6, displayLogicalWidth(context)), right: calculatePercentage(6, displayLogicalWidth(context)), top: calculatePercentage(1.79, displayLogicalHeight(context))),
                   child: Row(
                       children: [
 
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(37),
+                            borderRadius: BorderRadius.circular(19),
                             child: SizedBox(
-                                width: calculatePercentage(13, displayLogicalHeight(context)),
-                                height: calculatePercentage(13, displayLogicalHeight(context)),
+                                height: calculatePercentage(9, displayLogicalHeight(context)),
+                                width: calculatePercentage(9, displayLogicalHeight(context)),
                                 child: Image.network(
                                   widget.contentDataStructure.applicationIconValue(),
                                   fit: BoxFit.cover,
@@ -275,12 +264,12 @@ class _ItemMobileState extends State<ItemMobile> {
                         ),
 
                         SizedBox(
-                          width: calculatePercentage(1, displayLogicalWidth(context)),
+                          width: calculatePercentage(5, displayLogicalWidth(context)),
                         ),
 
                         SizedBox(
-                            height: calculatePercentage(15, displayLogicalHeight(context)),
-                            width: calculatePercentage(15, displayLogicalWidth(context)),
+                            height: calculatePercentage(9, displayLogicalHeight(context)),
+                            width: calculatePercentage(37, displayLogicalWidth(context)),
                             child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -288,7 +277,7 @@ class _ItemMobileState extends State<ItemMobile> {
                                   maxLines: 2,
                                   style: TextStyle(
                                       color: ColorsResources.premiumLight,
-                                      fontSize: calculatePercentage(2.73, displayLogicalWidth(context)),
+                                      fontSize: calculatePercentage(7, displayLogicalWidth(context)),
                                       overflow: TextOverflow.ellipsis
                                   ),
                                 )
@@ -300,16 +289,16 @@ class _ItemMobileState extends State<ItemMobile> {
               ),
 
               Padding(
-                  padding: const EdgeInsets.only(left: 19, right: 37, top: 19),
+                  padding: EdgeInsets.only(left: calculatePercentage(1, displayLogicalWidth(context)), right: calculatePercentage(1, displayLogicalWidth(context)), top: calculatePercentage(1.79, displayLogicalHeight(context))),
                   child: SizedBox(
-                      height: calculatePercentage(15, displayLogicalHeight(context)),
+                      width: calculatePercentage(83, displayLogicalWidth(context)),
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             widget.contentDataStructure.applicationSummaryValue(),
                             style: TextStyle(
                               color: ColorsResources.premiumLight,
-                              fontSize: calculatePercentage(1.73, displayLogicalWidth(context)),
+                              fontSize: calculatePercentage(3.99, displayLogicalWidth(context)),
                             ),
                           )
                       )
@@ -340,19 +329,16 @@ class _ItemMobileState extends State<ItemMobile> {
     setState(() {
 
       screenshotsPlaceholder = SizedBox(
-          height: calculatePercentage(61, displayLogicalHeight(context)),
-          width: calculatePercentage(57, displayLogicalWidth(context)),
-          child: Padding(
-              padding: const EdgeInsets.only(left: 37),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(37),
-                  child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      controller: scrollController,
-                      shrinkWrap: false,
-                      children: allScreenshots
-                  )
+          height: calculatePercentage(31, displayLogicalHeight(context)),
+          width: calculatePercentage(93, displayLogicalWidth(context)),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(19),
+              child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  controller: scrollController,
+                  shrinkWrap: false,
+                  children: allScreenshots
               )
           )
       );
@@ -372,29 +358,29 @@ class _ItemMobileState extends State<ItemMobile> {
     }
 
     return Padding(
-        padding: EdgeInsets.only(right: rightPadding),
-        child: SizedBox(
-            height: calculatePercentage(61, displayLogicalHeight(context)),
-            child: GestureDetector(
-                onHorizontalDragEnd: (dragDetails) {
-                  debugPrint('Delta X: ${dragDetails.velocity.pixelsPerSecond}');
+      padding: EdgeInsets.only(right: rightPadding),
+      child: SizedBox(
+          height: calculatePercentage(41, displayLogicalWidth(context)),
+          child: GestureDetector(
+              onHorizontalDragEnd: (dragDetails) {
+                debugPrint('Delta X: ${dragDetails.velocity.pixelsPerSecond}');
 
-                  if (dragDetails.velocity.pixelsPerSecond.dx < 0) {
+                if (dragDetails.velocity.pixelsPerSecond.dx < 0) {
 
-                    scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+                  scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
 
-                  } else {
+                } else {
 
-                    scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+                  scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
 
-                  }
+                }
 
-                },
-                child: Image.network(
-                  screenshotLink,
-                )
-            )
-        )
+              },
+              child: Image.network(
+                screenshotLink,
+              )
+          )
+      )
     );
   }
 /* End -
