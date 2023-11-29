@@ -8,7 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-double calculatePercentage(int percentageAmount, double completeValue) {
+double calculatePercentage(double percentageAmount, double completeValue) {
 
   double resultValue = completeValue.toDouble();
 

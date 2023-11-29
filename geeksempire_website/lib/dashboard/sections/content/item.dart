@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
+import 'package:sachiel_website/utils/modifications/numbers.dart';
+import 'package:sachiel_website/utils/ui/display.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Item extends StatefulWidget {
@@ -16,221 +18,218 @@ class _ItemState extends State<Item> {
 
   ScrollController scrollController = ScrollController();
 
-  Widget screenshotsPlaceholder = const SizedBox(
-    height: 537,
-  );
+  Widget screenshotsPlaceholder = Container();
 
   @override
   void initState() {
     super.initState();
-
-    prepareScreenshots();
-
   }
 
   @override
   Widget build(BuildContext context) {
 
     return Padding(
-        padding: const EdgeInsets.fromLTRB(137, 137, 137, 79),
+        padding: EdgeInsets.fromLTRB(calculatePercentage(7, displayLogicalWidth(context)), 137, calculatePercentage(7, displayLogicalWidth(context)), calculatePercentage(3, displayLogicalHeight(context))),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
 
-            /* Start
+              /* Start
              * Cover, Name, Summary, Screenshots
              */
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
 
-                /* Start
+                    /* Start
                  * Cover, Name, Summary
                  */
-                coverNameSummary(),
-                /* End
+                    coverNameSummary(),
+                    /* End
                  * Cover, Name, Summary
                  */
 
-                const SizedBox(
-                  height: 19,
-                ),
+                    SizedBox(
+                      height: calculatePercentage(1, displayLogicalHeight(context)),
+                    ),
 
-                /* Start
+                    /* Start
                  * Screenshots
                  */
-                screenshotsPlaceholder
-                /* End
+                    screenshotsPlaceholder
+                    /* End
                  * Screenshots
                  */
 
-              ]
-            ),
-            /* End
+                  ]
+              ),
+              /* End
              * Cover, Name, Summary, Screenshots
              */
 
-            const Divider(
-              height: 19,
-              color: Colors.transparent,
-            ),
+              const Divider(
+                height: 19,
+                color: Colors.transparent,
+              ),
 
-            /*
+              /*
              * Start - Description, Contact, Install
              */
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
 
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(37),
-                  child: Container(
-                    color: ColorsResources.black.withOpacity(0.07),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(37, 13, 37, 13),
-                      child: SizedBox(
-                        width: 1231,
-                        child: Text(
-                          widget.contentDataStructure.applicationDescriptionValue(),
-                          maxLines: 7,
-                          style: const TextStyle(
-                            color: ColorsResources.premiumLight,
-                            fontSize: 19,
-                            overflow: TextOverflow.fade,
-                            height: 1.19
-                          ),
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(37),
+                        child: Container(
+                            color: ColorsResources.black.withOpacity(0.07),
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(37, 13, 37, 13),
+                                child: SizedBox(
+                                    width: calculatePercentage(63, displayLogicalWidth(context)),
+                                    height: calculatePercentage(6, displayLogicalWidth(context)),
+                                    child: Text(
+                                      widget.contentDataStructure.applicationDescriptionValue(),
+
+                                      style: const TextStyle(
+                                          color: ColorsResources.premiumLight,
+                                          fontSize: 19,
+                                          height: 1.19
+                                      ),
+                                    )
+                                )
+                            )
                         )
-                      )
-                    )
-                  )
-                ),
-                const SizedBox(
-                  width: 13
-                ),
+                    ),
 
-                Expanded(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                    SizedBox(
+                        width: calculatePercentage(1, displayLogicalWidth(context))
+                    ),
 
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                    Expanded(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
 
-                              SizedBox(
-                                  height: 59,
-                                  width: 59,
-                                  child: InkWell(
-                                      onTap: () {
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
 
-                                        launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
+                                    SizedBox(
+                                        height: calculatePercentage(6, displayLogicalHeight(context)),
+                                        width: calculatePercentage(6, displayLogicalHeight(context)),
+                                        child: InkWell(
+                                            onTap: () {
 
-                                      },
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(5),
-                                        child: Image(
-                                          image: AssetImage('assets/facebook_icon.png'),
+                                              launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                            },
+                                            child: const Padding(
+                                                padding: EdgeInsets.all(5),
+                                                child: Image(
+                                                  image: AssetImage('assets/facebook_icon.png'),
+                                                )
+                                            )
                                         )
-                                      )
-                                  )
+                                    ),
+
+                                    SizedBox(
+                                        height: calculatePercentage(6, displayLogicalHeight(context)),
+                                        width: calculatePercentage(6, displayLogicalHeight(context)),
+                                        child: InkWell(
+                                            onTap: () {
+
+                                              launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                            },
+                                            child: const Padding(
+                                                padding: EdgeInsets.all(5),
+                                                child: Image(
+                                                  image: AssetImage('assets/twitter_icon.png'),
+                                                )
+                                            )
+                                        )
+                                    ),
+
+                                    SizedBox(
+                                        height: calculatePercentage(6, displayLogicalHeight(context)),
+                                        width: calculatePercentage(6, displayLogicalHeight(context)),
+                                        child: InkWell(
+                                            onTap: () {
+
+                                              launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                            },
+                                            child: const Padding(
+                                                padding: EdgeInsets.all(5),
+                                                child: Image(
+                                                  image: AssetImage('assets/youtube_icon.png'),
+                                                )
+                                            )
+                                        )
+                                    ),
+
+                                  ]
                               ),
 
-                              SizedBox(
-                                  height: 59,
-                                  width: 59,
-                                  child: InkWell(
-                                      onTap: () {
+                              Divider(
+                                height: calculatePercentage(1, displayLogicalHeight(context)),
+                                color: Colors.transparent,
+                              ),
 
-                                        launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
+                              Container(
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
 
-                                      },
-                                      child: const Padding(
-                                          padding: EdgeInsets.all(5),
-                                          child: Image(
-                                            image: AssetImage('assets/twitter_icon.png'),
+                                        BoxShadow(
+                                            color: ColorsResources.black.withOpacity(0.19),
+                                            blurRadius: 19,
+                                            offset: const Offset(0, 13)
+                                        )
+
+                                      ]
+                                  ),
+                                  child: SizedBox(
+                                      height: calculatePercentage(6, displayLogicalHeight(context)),
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(19),
+                                          child: Material(
+                                              shadowColor: Colors.transparent,
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                  splashColor: ColorsResources.premiumLight,
+                                                  splashFactory: InkRipple.splashFactory,
+                                                  onTap: () {
+
+                                                    Future.delayed(const Duration(milliseconds: 357), () {
+
+                                                      launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
+
+                                                    });
+
+                                                  },
+                                                  child: const Image(
+                                                    image: AssetImage('assets/install_icon.png'),
+                                                  )
+                                              )
                                           )
                                       )
                                   )
-                              ),
-
-                              SizedBox(
-                                  height: 59,
-                                  width: 59,
-                                  child: InkWell(
-                                      onTap: () {
-
-                                        launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
-
-                                      },
-                                      child: const Padding(
-                                          padding: EdgeInsets.all(5),
-                                          child: Image(
-                                            image: AssetImage('assets/youtube_icon.png'),
-                                          )
-                                      )
-                                  )
-                              ),
-
-                            ]
-                        ),
-
-                        const Divider(
-                          height: 13,
-                          color: Colors.transparent,
-                        ),
-
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-
-                              BoxShadow(
-                                color: ColorsResources.black.withOpacity(0.19),
-                                blurRadius: 19,
-                                offset: const Offset(0, 13)
                               )
 
                             ]
-                          ),
-                          child: SizedBox(
-                              height: 67,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(19),
-                                  child: Material(
-                                      shadowColor: Colors.transparent,
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                          splashColor: ColorsResources.premiumLight,
-                                          splashFactory: InkRipple.splashFactory,
-                                          onTap: () {
-
-                                            Future.delayed(const Duration(milliseconds: 357), () {
-
-                                              launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
-
-                                            });
-
-                                          },
-                                          child: const Image(
-                                            image: AssetImage('assets/install_icon.png'),
-                                          )
-                                      )
-                                  )
-                              )
-                          )
                         )
 
-                      ]
-                  )
+                    )
 
-                )
-              ]
-            )
-            /*
+                  ]
+              )
+              /*
              * End - Description, Contact, Install
              */
 
-          ]
+            ]
         )
     );
   }
@@ -240,87 +239,86 @@ class _ItemState extends State<Item> {
    */
   Widget coverNameSummary() {
 
+    prepareScreenshots();
+
     return SizedBox(
-      height: 571,
-      width: 549,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+        height: calculatePercentage(61, displayLogicalHeight(context)),
+        width: calculatePercentage(27, displayLogicalWidth(context)),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
 
-            ClipRRect(
-              borderRadius: BorderRadius.circular(19),
-              child: SizedBox(
-                width: 549,
-                height: 267,
-                child: Image.network(
-                  widget.contentDataStructure.applicationCoverValue(),
-                  fit: BoxFit.cover,
-                ),
-              )
-            ),
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(19),
+                  child: SizedBox(
+                    width: calculatePercentage(100, displayLogicalWidth(context)),
+                    child: Image.network(
+                      widget.contentDataStructure.applicationCoverValue(),
+                      fit: BoxFit.cover,
+                    ),
+                  )
+              ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 37, right: 37, top: 19),
-              child: Row(
-                  children: [
+              Padding(
+                  padding: EdgeInsets.only(left: calculatePercentage(1.37, displayLogicalWidth(context)), right: calculatePercentage(1.37, displayLogicalWidth(context)), top: 19),
+                  child: Row(
+                      children: [
 
-                    Padding(
-                        padding: const EdgeInsets.only(),
-                        child: ClipRRect(
+                        ClipRRect(
                             borderRadius: BorderRadius.circular(37),
                             child: SizedBox(
-                                width: 137,
-                                height: 137,
+                                width: calculatePercentage(13, displayLogicalHeight(context)),
+                                height: calculatePercentage(13, displayLogicalHeight(context)),
                                 child: Image.network(
                                   widget.contentDataStructure.applicationIconValue(),
                                   fit: BoxFit.cover,
                                 )
                             )
-                        )
-                    ),
+                        ),
 
-                    const SizedBox(
-                      width: 19,
-                    ),
+                        SizedBox(
+                          width: calculatePercentage(1.3, displayLogicalWidth(context)),
+                        ),
 
-                    SizedBox(
-                        height: 137,
-                        width: 319,
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              widget.contentDataStructure.applicationNameValue(),
-                              style: const TextStyle(
-                                  color: ColorsResources.premiumLight,
-                                  fontSize: 41
-                              ),
+                        SizedBox(
+                            height: calculatePercentage(15, displayLogicalHeight(context)),
+                            width: calculatePercentage(15, displayLogicalWidth(context)),
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  widget.contentDataStructure.applicationNameValue(),
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                      color: ColorsResources.premiumLight,
+                                      fontSize: 41,
+                                  ),
+                                )
                             )
                         )
-                    )
 
-                  ]
+                      ]
+                  )
+              ),
+
+              Padding(
+                  padding: const EdgeInsets.only(left: 19, right: 37, top: 19),
+                  child: SizedBox(
+                      height: calculatePercentage(15, displayLogicalHeight(context)),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.contentDataStructure.applicationSummaryValue(),
+                            style: const TextStyle(
+                                color: ColorsResources.premiumLight,
+                                fontSize: 27
+                            ),
+                          )
+                      )
+                  )
               )
-            ),
 
-            Padding(
-                padding: const EdgeInsets.only(left: 19, right: 37, top: 19),
-                child: SizedBox(
-                    height: 73,
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          widget.contentDataStructure.applicationSummaryValue(),
-                          style: const TextStyle(
-                              color: ColorsResources.premiumLight,
-                              fontSize: 27
-                          ),
-                        )
-                    )
-                )
-            )
-
-          ]
-      )
+            ]
+        )
     );
   }
   /* End -
@@ -343,21 +341,21 @@ class _ItemState extends State<Item> {
     setState(() {
 
       screenshotsPlaceholder = SizedBox(
-        height: 537,
-        width: 1097,
-        child: Padding(
-            padding: const EdgeInsets.only(left: 37),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(37),
-                child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    controller: scrollController,
-                    shrinkWrap: false,
-                    children: allScreenshots
-                )
-            )
-        )
+          height: calculatePercentage(61, displayLogicalHeight(context)),
+          width: calculatePercentage(57, displayLogicalWidth(context)),
+          child: Padding(
+              padding: const EdgeInsets.only(left: 37),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(37),
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      controller: scrollController,
+                      shrinkWrap: false,
+                      children: allScreenshots
+                  )
+              )
+          )
       );
 
     });
@@ -375,33 +373,32 @@ class _ItemState extends State<Item> {
     }
 
     return Padding(
-      padding: EdgeInsets.only(right: rightPadding),
-      child: SizedBox(
-          height: 537,
-          width: 716,
-          child: GestureDetector(
-            onHorizontalDragEnd: (dragDetails) {
-              debugPrint('Delta X: ${dragDetails.velocity.pixelsPerSecond}');
+        padding: EdgeInsets.only(right: rightPadding),
+        child: SizedBox(
+            height: calculatePercentage(61, displayLogicalHeight(context)),
+            child: GestureDetector(
+                onHorizontalDragEnd: (dragDetails) {
+                  debugPrint('Delta X: ${dragDetails.velocity.pixelsPerSecond}');
 
-              if (dragDetails.velocity.pixelsPerSecond.dx < 0) {
+                  if (dragDetails.velocity.pixelsPerSecond.dx < 0) {
 
-                scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+                    scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
 
-              } else {
+                  } else {
 
-                scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+                    scrollController.animateTo((dragDetails.velocity.pixelsPerSecond.dx / 5) * -1, duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
 
-              }
+                  }
 
-            },
-            child: Image.network(
-              screenshotLink,
+                },
+                child: Image.network(
+                  screenshotLink,
+                )
             )
-          )
-      )
+        )
     );
   }
-  /* End -
+/* End -
    * Screenshots
    */
 
