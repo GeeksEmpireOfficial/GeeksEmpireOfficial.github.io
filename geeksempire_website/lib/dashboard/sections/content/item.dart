@@ -20,6 +20,8 @@ class _ItemState extends State<Item> {
     height: 537,
   );
 
+  List<Widget> allScreenshots = [];
+
   @override
   void initState() {
     super.initState();
@@ -332,11 +334,9 @@ class _ItemState extends State<Item> {
    */
   void prepareScreenshots() async {
 
-    List<Widget> allScreenshots = [];
+    widget.contentDataStructure.applicationScreenshotsValue().indexed.forEach((element) {
 
-    widget.contentDataStructure.applicationScreenshotsValue().forEach((element) {
-
-      allScreenshots.add(screenshotItem(element));
+      allScreenshots.add(screenshotItem(element.$1, element.$2));
 
     });
 
@@ -364,10 +364,18 @@ class _ItemState extends State<Item> {
 
   }
 
-  Widget screenshotItem(String screenshotLink) {
+  Widget screenshotItem(int index, String screenshotLink) {
+
+    double rightPadding = 13;
+
+    if ((index + 1) == allScreenshots.length) {
+
+      rightPadding = 0;
+
+    }
 
     return Padding(
-      padding: const EdgeInsets.only(right: 13),
+      padding: EdgeInsets.only(right: rightPadding),
       child: SizedBox(
           height: 537,
           width: 716,
