@@ -5,16 +5,16 @@ import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class Item extends StatefulWidget {
+class ItemMobile extends StatefulWidget {
 
   ContentDataStructure contentDataStructure;
 
-  Item({Key? key, required this.contentDataStructure}) : super(key: key);
+  ItemMobile({Key? key, required this.contentDataStructure}) : super(key: key);
 
   @override
-  State<Item> createState() => _ItemState();
+  State<ItemMobile> createState() => _ItemMobileState();
 }
-class _ItemState extends State<Item> {
+class _ItemMobileState extends State<ItemMobile> {
 
   ScrollController scrollController = ScrollController();
 
