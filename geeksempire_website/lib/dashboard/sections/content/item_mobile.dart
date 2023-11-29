@@ -3,6 +3,7 @@ import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ItemMobile extends StatefulWidget {
 
@@ -55,162 +56,127 @@ class _ItemMobileState extends State<ItemMobile> {
                  * Screenshots
                  */
 
-              const Divider(
-                height: 13,
-                color: Colors.transparent,
+              SizedBox(
+                height: calculatePercentage(3, displayLogicalHeight(context))
               ),
 
               /*
              * Start - Description, Contact, Install
              */
-              /*Row(
+              Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
 
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(37),
-                        child: Container(
-                            color: ColorsResources.black.withOpacity(0.07),
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(37, 13, 37, 13),
-                                child: SizedBox(
-                                    width: calculatePercentage(63, displayLogicalWidth(context)),
-                                    height: calculatePercentage(6, displayLogicalWidth(context)),
-                                    child: Text(
-                                      widget.contentDataStructure.applicationDescriptionValue(),
-                                      style: TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: calculatePercentage(1.11, displayLogicalWidth(context)),
-                                          height: 1.19
-                                      ),
+                    Expanded(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+
+                            SizedBox(
+                                height: calculatePercentage(13, displayLogicalWidth(context)),
+                                width: calculatePercentage(13, displayLogicalWidth(context)),
+                                child: InkWell(
+                                    onTap: () {
+
+                                      launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                    },
+                                    child: const Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Image(
+                                          image: AssetImage('assets/facebook_icon.png'),
+                                        )
+                                    )
+                                )
+                            ),
+
+                            SizedBox(
+                                height: calculatePercentage(13, displayLogicalWidth(context)),
+                                width: calculatePercentage(13, displayLogicalWidth(context)),
+                                child: InkWell(
+                                    onTap: () {
+
+                                      launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                    },
+                                    child: const Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Image(
+                                          image: AssetImage('assets/twitter_icon.png'),
+                                        )
+                                    )
+                                )
+                            ),
+
+                            SizedBox(
+                                height: calculatePercentage(13, displayLogicalWidth(context)),
+                                width: calculatePercentage(13, displayLogicalWidth(context)),
+                                child: InkWell(
+                                    onTap: () {
+
+                                      launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
+
+                                    },
+                                    child: const Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Image(
+                                          image: AssetImage('assets/youtube_icon.png'),
+                                        )
+                                    )
+                                )
+                            ),
+
+                          ]
+                      ),
+                    ),
+
+                    SizedBox(
+                        width: calculatePercentage(1, displayLogicalHeight(context))
+                    ),
+
+                    Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+
+                              BoxShadow(
+                                  color: ColorsResources.black.withOpacity(0.19),
+                                  blurRadius: 19,
+                                  offset: const Offset(0, 13)
+                              )
+
+                            ]
+                        ),
+                        child: SizedBox(
+                            height: calculatePercentage(4.5, displayLogicalHeight(context)),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(19),
+                                child: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.premiumLight,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () {
+
+                                          Future.delayed(const Duration(milliseconds: 357), () {
+
+                                            launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
+
+                                          });
+
+                                        },
+                                        child: const Image(
+                                          image: AssetImage('assets/install_icon.png'),
+                                        )
                                     )
                                 )
                             )
                         )
-                    ),
-
-                    SizedBox(
-                        width: calculatePercentage(1, displayLogicalWidth(context))
-                    ),
-
-                    Expanded(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-
-                                    SizedBox(
-                                        height: calculatePercentage(4, displayLogicalWidth(context)),
-                                        width: calculatePercentage(4, displayLogicalWidth(context)),
-                                        child: InkWell(
-                                            onTap: () {
-
-                                              launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
-
-                                            },
-                                            child: const Padding(
-                                                padding: EdgeInsets.all(5),
-                                                child: Image(
-                                                  image: AssetImage('assets/facebook_icon.png'),
-                                                )
-                                            )
-                                        )
-                                    ),
-
-                                    SizedBox(
-                                        height: calculatePercentage(4, displayLogicalWidth(context)),
-                                        width: calculatePercentage(4, displayLogicalWidth(context)),
-                                        child: InkWell(
-                                            onTap: () {
-
-                                              launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
-
-                                            },
-                                            child: const Padding(
-                                                padding: EdgeInsets.all(5),
-                                                child: Image(
-                                                  image: AssetImage('assets/twitter_icon.png'),
-                                                )
-                                            )
-                                        )
-                                    ),
-
-                                    SizedBox(
-                                        height: calculatePercentage(4, displayLogicalWidth(context)),
-                                        width: calculatePercentage(4, displayLogicalWidth(context)),
-                                        child: InkWell(
-                                            onTap: () {
-
-                                              launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
-
-                                            },
-                                            child: const Padding(
-                                                padding: EdgeInsets.all(5),
-                                                child: Image(
-                                                  image: AssetImage('assets/youtube_icon.png'),
-                                                )
-                                            )
-                                        )
-                                    ),
-
-                                  ]
-                              ),
-
-                              SizedBox(
-                                  height: calculatePercentage(1, displayLogicalHeight(context))
-                              ),
-
-                              Container(
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-
-                                        BoxShadow(
-                                            color: ColorsResources.black.withOpacity(0.19),
-                                            blurRadius: 19,
-                                            offset: const Offset(0, 13)
-                                        )
-
-                                      ]
-                                  ),
-                                  child: SizedBox(
-                                      height: calculatePercentage(6, displayLogicalHeight(context)),
-                                      child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(19),
-                                          child: Material(
-                                              shadowColor: Colors.transparent,
-                                              color: Colors.transparent,
-                                              child: InkWell(
-                                                  splashColor: ColorsResources.premiumLight,
-                                                  splashFactory: InkRipple.splashFactory,
-                                                  onTap: () {
-
-                                                    Future.delayed(const Duration(milliseconds: 357), () {
-
-                                                      launchUrlString(widget.contentDataStructure.packageNameValue(), mode: LaunchMode.externalApplication);
-
-                                                    });
-
-                                                  },
-                                                  child: const Image(
-                                                    image: AssetImage('assets/install_icon.png'),
-                                                  )
-                                              )
-                                          )
-                                      )
-                                  )
-                              )
-
-                            ]
-                        )
-
                     )
 
                   ]
-              )*/
+              )
               /*
              * End - Description, Contact, Install
              */
