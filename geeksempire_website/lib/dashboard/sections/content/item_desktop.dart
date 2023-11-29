@@ -90,10 +90,9 @@ class _ItemDesktopState extends State<ItemDesktop> {
                                     height: calculatePercentage(6, displayLogicalWidth(context)),
                                     child: Text(
                                       widget.contentDataStructure.applicationDescriptionValue(),
-
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           color: ColorsResources.premiumLight,
-                                          fontSize: 19,
+                                          fontSize: calculatePercentage(1.11, displayLogicalWidth(context)),
                                           height: 1.19
                                       ),
                                     )
@@ -117,8 +116,8 @@ class _ItemDesktopState extends State<ItemDesktop> {
                                   children: [
 
                                     SizedBox(
-                                        height: calculatePercentage(6, displayLogicalHeight(context)),
-                                        width: calculatePercentage(6, displayLogicalHeight(context)),
+                                        height: calculatePercentage(4, displayLogicalWidth(context)),
+                                        width: calculatePercentage(4, displayLogicalWidth(context)),
                                         child: InkWell(
                                             onTap: () {
 
@@ -135,8 +134,8 @@ class _ItemDesktopState extends State<ItemDesktop> {
                                     ),
 
                                     SizedBox(
-                                        height: calculatePercentage(6, displayLogicalHeight(context)),
-                                        width: calculatePercentage(6, displayLogicalHeight(context)),
+                                        height: calculatePercentage(4, displayLogicalWidth(context)),
+                                        width: calculatePercentage(4, displayLogicalWidth(context)),
                                         child: InkWell(
                                             onTap: () {
 
@@ -153,8 +152,8 @@ class _ItemDesktopState extends State<ItemDesktop> {
                                     ),
 
                                     SizedBox(
-                                        height: calculatePercentage(6, displayLogicalHeight(context)),
-                                        width: calculatePercentage(6, displayLogicalHeight(context)),
+                                        height: calculatePercentage(4, displayLogicalWidth(context)),
+                                        width: calculatePercentage(4, displayLogicalWidth(context)),
                                         child: InkWell(
                                             onTap: () {
 
@@ -173,9 +172,8 @@ class _ItemDesktopState extends State<ItemDesktop> {
                                   ]
                               ),
 
-                              Divider(
-                                height: calculatePercentage(1, displayLogicalHeight(context)),
-                                color: Colors.transparent,
+                              SizedBox(
+                                height: calculatePercentage(1, displayLogicalHeight(context))
                               ),
 
                               Container(
@@ -277,7 +275,7 @@ class _ItemDesktopState extends State<ItemDesktop> {
                         ),
 
                         SizedBox(
-                          width: calculatePercentage(1.3, displayLogicalWidth(context)),
+                          width: calculatePercentage(1, displayLogicalWidth(context)),
                         ),
 
                         SizedBox(
@@ -288,9 +286,10 @@ class _ItemDesktopState extends State<ItemDesktop> {
                                 child: Text(
                                   widget.contentDataStructure.applicationNameValue(),
                                   maxLines: 2,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       color: ColorsResources.premiumLight,
-                                      fontSize: 41,
+                                      fontSize: calculatePercentage(2.73, displayLogicalWidth(context)),
+                                      overflow: TextOverflow.ellipsis
                                   ),
                                 )
                             )
@@ -308,9 +307,9 @@ class _ItemDesktopState extends State<ItemDesktop> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             widget.contentDataStructure.applicationSummaryValue(),
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: ColorsResources.premiumLight,
-                                fontSize: 27
+                                fontSize: calculatePercentage(1.73, displayLogicalWidth(context)),
                             ),
                           )
                       )
