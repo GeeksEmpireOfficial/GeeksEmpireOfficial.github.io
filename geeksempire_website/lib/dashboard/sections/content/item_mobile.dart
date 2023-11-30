@@ -36,33 +36,32 @@ class _ItemMobileState extends State<ItemMobile> {
             children: [
 
               /* Start
-             * Cover, Name, Summary, Screenshots
-             */
+               * Cover, Name, Summary, Screenshots
+               */
               coverNameSummary(),
               /* End
-             * Cover, Name, Summary, Screenshots
-             */
+               * Cover, Name, Summary, Screenshots
+               */
 
-              const Divider(
-                height: 1,
-                color: Colors.transparent,
+              SizedBox(
+                height: calculatePercentage(3, displayLogicalHeight(context))
               ),
 
               /* Start
-                 * Screenshots
-                 */
+               * Screenshots
+               */
               screenshotsPlaceholder,
               /* End
-                 * Screenshots
-                 */
+               * Screenshots
+               */
 
               SizedBox(
                 height: calculatePercentage(3, displayLogicalHeight(context))
               ),
 
               /*
-             * Start - Description, Contact, Install
-             */
+               * Start - Contact, Install
+               */
               Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -74,8 +73,8 @@ class _ItemMobileState extends State<ItemMobile> {
                           children: [
 
                             SizedBox(
-                                height: calculatePercentage(13, displayLogicalWidth(context)),
-                                width: calculatePercentage(13, displayLogicalWidth(context)),
+                                height: calculatePercentage(11, displayLogicalWidth(context)),
+                                width: calculatePercentage(11, displayLogicalWidth(context)),
                                 child: InkWell(
                                     onTap: () {
 
@@ -92,8 +91,8 @@ class _ItemMobileState extends State<ItemMobile> {
                             ),
 
                             SizedBox(
-                                height: calculatePercentage(13, displayLogicalWidth(context)),
-                                width: calculatePercentage(13, displayLogicalWidth(context)),
+                                height: calculatePercentage(11, displayLogicalWidth(context)),
+                                width: calculatePercentage(11, displayLogicalWidth(context)),
                                 child: InkWell(
                                     onTap: () {
 
@@ -110,8 +109,8 @@ class _ItemMobileState extends State<ItemMobile> {
                             ),
 
                             SizedBox(
-                                height: calculatePercentage(13, displayLogicalWidth(context)),
-                                width: calculatePercentage(13, displayLogicalWidth(context)),
+                                height: calculatePercentage(11, displayLogicalWidth(context)),
+                                width: calculatePercentage(11, displayLogicalWidth(context)),
                                 child: InkWell(
                                     onTap: () {
 
@@ -132,7 +131,7 @@ class _ItemMobileState extends State<ItemMobile> {
                     ),
 
                     SizedBox(
-                        width: calculatePercentage(1, displayLogicalHeight(context))
+                        width: calculatePercentage(3, displayLogicalHeight(context))
                     ),
 
                     Container(
@@ -148,7 +147,7 @@ class _ItemMobileState extends State<ItemMobile> {
                             ]
                         ),
                         child: SizedBox(
-                            height: calculatePercentage(4.5, displayLogicalHeight(context)),
+                            height: calculatePercentage(3.79, displayLogicalHeight(context)),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(19),
                                 child: Material(
@@ -178,8 +177,8 @@ class _ItemMobileState extends State<ItemMobile> {
                   ]
               )
               /*
-             * End - Description, Contact, Install
-             */
+               * End - Description, Contact, Install
+               */
 
             ]
         )
@@ -194,7 +193,7 @@ class _ItemMobileState extends State<ItemMobile> {
     prepareScreenshots();
 
     return SizedBox(
-        height: calculatePercentage(37, displayLogicalHeight(context)),
+        height: calculatePercentage(39, displayLogicalHeight(context)),
         width: calculatePercentage(83, displayLogicalWidth(context)),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -205,6 +204,7 @@ class _ItemMobileState extends State<ItemMobile> {
                   borderRadius: BorderRadius.circular(19),
                   child: SizedBox(
                     width: calculatePercentage(83, displayLogicalWidth(context)),
+                    height: calculatePercentage(21, displayLogicalHeight(context)),
                     child: Image.network(
                       widget.contentDataStructure.applicationCoverValue(),
                       fit: BoxFit.cover,
@@ -243,7 +243,7 @@ class _ItemMobileState extends State<ItemMobile> {
                                   maxLines: 2,
                                   style: TextStyle(
                                       color: ColorsResources.premiumLight,
-                                      fontSize: calculatePercentage(7, displayLogicalWidth(context)),
+                                      fontSize: calculatePercentage(6, displayLogicalWidth(context)),
                                       overflow: TextOverflow.ellipsis
                                   ),
                                 )
@@ -258,13 +258,14 @@ class _ItemMobileState extends State<ItemMobile> {
                   padding: EdgeInsets.only(left: calculatePercentage(1, displayLogicalWidth(context)), right: calculatePercentage(1, displayLogicalWidth(context)), top: calculatePercentage(1.79, displayLogicalHeight(context))),
                   child: SizedBox(
                       width: calculatePercentage(83, displayLogicalWidth(context)),
+                      height: calculatePercentage(5, displayLogicalHeight(context)),
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             widget.contentDataStructure.applicationSummaryValue(),
                             style: TextStyle(
                               color: ColorsResources.premiumLight,
-                              fontSize: calculatePercentage(3.99, displayLogicalWidth(context)),
+                              fontSize: calculatePercentage(3.73, displayLogicalWidth(context)),
                             ),
                           )
                       )

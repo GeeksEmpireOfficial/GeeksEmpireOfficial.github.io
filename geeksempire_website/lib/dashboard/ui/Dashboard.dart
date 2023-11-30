@@ -336,7 +336,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       } else {
 
         /* Start - Next Page */
-        nextPageIndicatorHeight = 53;
+        nextPageIndicatorHeight = 49;
 
         nextPageIconHeight = 37;
         nextPageIconWidth = 37;
