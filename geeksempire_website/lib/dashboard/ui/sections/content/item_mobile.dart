@@ -350,7 +350,7 @@ class _ItemMobileState extends State<ItemMobile> {
       )
     );
   }
-/* End -
+  /* End -
    * Screenshots
    */
 
