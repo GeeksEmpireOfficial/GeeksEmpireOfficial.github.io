@@ -29,7 +29,7 @@ class _ItemMobileState extends State<ItemMobile> {
   Widget build(BuildContext context) {
 
     return Padding(
-        padding: EdgeInsets.fromLTRB(calculatePercentage(7, displayLogicalWidth(context)), 137, calculatePercentage(7, displayLogicalWidth(context)), calculatePercentage(3, displayLogicalHeight(context))),
+        padding: EdgeInsets.fromLTRB(calculatePercentage(7, displayLogicalWidth(context)), 101, calculatePercentage(7, displayLogicalWidth(context)), calculatePercentage(3, displayLogicalHeight(context))),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

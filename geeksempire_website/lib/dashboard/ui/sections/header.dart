@@ -47,7 +47,7 @@ class _HeaderState extends State<Header> {
           children: [
 
             SizedBox(
-                height: 101,
+                height: 101 / scaleParameter,
                 child: Blur(
                     blur: 37,
                     colorOpacity: 0.73,
@@ -60,8 +60,8 @@ class _HeaderState extends State<Header> {
                           Padding(
                               padding: EdgeInsets.only(left: 37 / scaleParameter),
                               child: SizedBox(
-                                  height: 59,
-                                  width: 59,
+                                  height: 59 / scaleParameter,
+                                  width: 59 / scaleParameter,
                                   child: InkWell(
                                       onTap: () {
 
@@ -108,7 +108,7 @@ class _HeaderState extends State<Header> {
                               )
                           ),
 
-                          const Expanded(
+                          Expanded(
                               child: Center(
                                   child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -116,20 +116,20 @@ class _HeaderState extends State<Header> {
                                       children: [
 
                                         SizedBox(
-                                            height: 57,
-                                            width: 57,
-                                            child: Image(
+                                            height: 57 / scaleParameter,
+                                            width: 57 / scaleParameter,
+                                            child: const Image(
                                               image: AssetImage("assets/logo.png"),
                                             )
                                         ),
 
                                         SizedBox(
-                                          width: 19,
+                                          width: 19 / scaleParameter,
                                         ),
 
                                         SizedBox(
-                                            height: 57,
-                                            child: Padding(
+                                            height: 57 / scaleParameter,
+                                            child: const Padding(
                                               padding: EdgeInsets.only(top: 5, bottom: 5),
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
@@ -149,8 +149,8 @@ class _HeaderState extends State<Header> {
                           Padding(
                               padding: EdgeInsets.only(right: 37 / scaleParameter),
                               child: SizedBox(
-                                  height: 59,
-                                  width: 59,
+                                  height: 59 / scaleParameter,
+                                  width: 59 / scaleParameter,
                                   child: InkWell(
                                       onTap: () {
 
@@ -170,9 +170,9 @@ class _HeaderState extends State<Header> {
                 )
             ),
 
-            const SizedBox(
-                height: 33,
-                child: Image(
+            SizedBox(
+                height: 33 / scaleParameter,
+                child: const Image(
                   image: AssetImage("assets/shadow.png"),
                   fit: BoxFit.cover,
                 )
@@ -192,7 +192,7 @@ class _HeaderState extends State<Header> {
 
     } else {
 
-      scaleParameter = 1.99;
+      scaleParameter = 1.37;
 
     }
 
