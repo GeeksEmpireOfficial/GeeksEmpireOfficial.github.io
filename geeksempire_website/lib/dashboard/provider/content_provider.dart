@@ -15,7 +15,7 @@ class ContentProvider {
         'https://www.youtube.com/watch?v=jOkw0Hmq4ac&list=PLTs5v2BrWyWmPUYwgXIcmtQLJ19XOKS1k', 'https://twitter.com/GeeksEmpire', 'https://facebook.com/PremiumStorefront'));
 
     allContent.add(ContentDataStructure('https://play.google.com/store/apps/details?id=net.geekstools.floatshort.PRO',
-        'Float It: Floating Multitasking', 'Floating Multitasking: The Fastest Multitasking Application For Android',
+        'Floating Multitasking', 'The Fastest Floating Multitasking Application For Android',
         'Floating Multitasking  We should be a Multitasking Master for today’s busy life. ⚡ While we cannot do anything about how fast the time flows, we still can control how we manage it. Being more productive helps us to live full capacity. Even when we work with several applications, there are many small actions that may affect our time management. Time is much more valuable for us to spend it in switching among apps!',
         'https://play-lh.googleusercontent.com/FcYIaI1njwsDIRqvD6v2Uec27iGqUIuVcAqBWcdgrTGVayXlF0UVoqx97SibOAVfa8E=s512',
         'https://geeksempire.co/wp-content/uploads/2022/12/Float-It-Cover.png',
@@ -47,7 +47,7 @@ class ContentProvider {
         'https://www.youtube.com/watch?v=m3Kyws-Aukc&list=PLTs5v2BrWyWm2cG8dvb-DsOYBo5TM8I4x', 'https://twitter.com/SachielsAI', 'https://facebook.com/SachielsAI'));
 
     allContent.add(ContentDataStructure('https://play.google.com/store/apps/details?id=co.geeksempire.frames.you',
-        ' You; Personalize The Bezels', 'You Personalize The Bezels Of Your Smartphone With Modern, Classic, Cool Frames.',
+        'You; Personalize The Bezels', 'You Personalize The Bezels Of Your Smartphone With Modern, Classic, Cool Frames.',
         'Next level of personalization is to customize shape of bezels. Don\'t you get tired of the same rectangle over years? they just made bezels thinner & added round corners. It\'s still a boring rectangle. Let\'s add some frame to our phones. Make our phones romantic with lovely, floral frames. Or add some energetic bezels as gamers. Add A Beautiful Frame Over Your Display To Get Rid Of Boring Black Bezels. Customize Your Smartphone Display With Frames. You Personalize The Bezels Of Your Smartphone With Modern, Classic, Cool Frames.',
         'https://play-lh.googleusercontent.com/lc-osgwMCmVxDNDt7SAdYig4YD51EXXkrv3X4-0HrR4XF0Fq6heOyIQG08t2ynpfwRI=s512',
         'https://geeksempire.co/wp-content/uploads/2023/04/You-Cover-1.png',
