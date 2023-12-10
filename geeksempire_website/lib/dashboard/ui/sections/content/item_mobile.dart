@@ -143,7 +143,7 @@ class _ItemMobileState extends State<ItemMobile> {
                             ]
                         ),
                         child: SizedBox(
-                            height: calculatePercentage(3.79, displayLogicalHeight(context)),
+                            height: calculatePercentage(11, displayLogicalWidth(context)),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(19),
                                 child: Material(
@@ -162,10 +162,13 @@ class _ItemMobileState extends State<ItemMobile> {
 
                                         },
                                         child: SizedBox(
-                                          height: calculatePercentage(3.79, displayLogicalHeight(context)),
-                                          child: const Image(
-                                            image: AssetImage('assets/install_icon.png'),
-                                            fit: BoxFit.fitHeight,
+                                          height: calculatePercentage(11, displayLogicalWidth(context)),
+                                          child: const Padding(
+                                            padding: EdgeInsets.fromLTRB(13, 7, 0, 7),
+                                            child: Image(
+                                              image: AssetImage('assets/install_icon.png'),
+                                              fit: BoxFit.fill,
+                                            )
                                           )
                                         )
                                     )
