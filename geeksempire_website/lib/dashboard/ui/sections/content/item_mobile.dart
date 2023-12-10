@@ -66,73 +66,69 @@ class _ItemMobileState extends State<ItemMobile> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
 
-                    Expanded(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
 
-                            SizedBox(
-                                height: calculatePercentage(11, displayLogicalWidth(context)),
-                                width: calculatePercentage(11, displayLogicalWidth(context)),
-                                child: InkWell(
-                                    onTap: () {
+                          SizedBox(
+                              height: calculatePercentage(11, displayLogicalWidth(context)),
+                              width: calculatePercentage(11, displayLogicalWidth(context)),
+                              child: InkWell(
+                                  onTap: () {
 
-                                      launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
+                                    launchUrlString(widget.contentDataStructure.applicationFacebookValue(), mode: LaunchMode.externalNonBrowserApplication);
 
-                                    },
-                                    child: const Padding(
-                                        padding: EdgeInsets.all(5),
-                                        child: Image(
-                                          image: AssetImage('assets/facebook_icon.png'),
-                                        )
-                                    )
-                                )
-                            ),
+                                  },
+                                  child: const Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Image(
+                                        image: AssetImage('assets/facebook_icon.png'),
+                                      )
+                                  )
+                              )
+                          ),
 
-                            SizedBox(
-                                height: calculatePercentage(11, displayLogicalWidth(context)),
-                                width: calculatePercentage(11, displayLogicalWidth(context)),
-                                child: InkWell(
-                                    onTap: () {
+                          SizedBox(
+                              height: calculatePercentage(11, displayLogicalWidth(context)),
+                              width: calculatePercentage(11, displayLogicalWidth(context)),
+                              child: InkWell(
+                                  onTap: () {
 
-                                      launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
+                                    launchUrlString(widget.contentDataStructure.applicationXValue(), mode: LaunchMode.externalNonBrowserApplication);
 
-                                    },
-                                    child: const Padding(
-                                        padding: EdgeInsets.all(5),
-                                        child: Image(
-                                          image: AssetImage('assets/twitter_icon.png'),
-                                        )
-                                    )
-                                )
-                            ),
+                                  },
+                                  child: const Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Image(
+                                        image: AssetImage('assets/twitter_icon.png'),
+                                      )
+                                  )
+                              )
+                          ),
 
-                            SizedBox(
-                                height: calculatePercentage(11, displayLogicalWidth(context)),
-                                width: calculatePercentage(11, displayLogicalWidth(context)),
-                                child: InkWell(
-                                    onTap: () {
+                          SizedBox(
+                              height: calculatePercentage(11, displayLogicalWidth(context)),
+                              width: calculatePercentage(11, displayLogicalWidth(context)),
+                              child: InkWell(
+                                  onTap: () {
 
-                                      launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
+                                    launchUrlString(widget.contentDataStructure.applicationYoutubeValue(), mode: LaunchMode.externalNonBrowserApplication);
 
-                                    },
-                                    child: const Padding(
-                                        padding: EdgeInsets.all(5),
-                                        child: Image(
-                                          image: AssetImage('assets/youtube_icon.png'),
-                                        )
-                                    )
-                                )
-                            ),
+                                  },
+                                  child: const Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Image(
+                                        image: AssetImage('assets/youtube_icon.png'),
+                                      )
+                                  )
+                              )
+                          ),
 
-                          ]
-                      ),
+                        ]
                     ),
 
-                    SizedBox(
-                        width: calculatePercentage(3, displayLogicalHeight(context))
-                    ),
+                    Expanded(child: Container()),
 
                     Container(
                         decoration: BoxDecoration(
@@ -165,8 +161,12 @@ class _ItemMobileState extends State<ItemMobile> {
                                           });
 
                                         },
-                                        child: const Image(
-                                          image: AssetImage('assets/install_icon.png'),
+                                        child: SizedBox(
+                                          height: calculatePercentage(3.79, displayLogicalHeight(context)),
+                                          child: const Image(
+                                            image: AssetImage('assets/install_icon.png'),
+                                            fit: BoxFit.fitHeight,
+                                          )
                                         )
                                     )
                                 )
