@@ -210,6 +210,7 @@ class _ItemMobileState extends State<ItemMobile> {
                     height: calculatePercentage(21, displayLogicalHeight(context)),
                     child: Image.network(
                       widget.contentDataStructure.applicationCoverValue(),
+                      alignment: Alignment.bottomCenter,
                       fit: BoxFit.cover,
                     ),
                   )
