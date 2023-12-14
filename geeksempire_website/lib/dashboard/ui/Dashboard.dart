@@ -169,42 +169,42 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
                         height: nextPageIndicatorHeight,
-                        child: InkWell(
-                          onTap: () {
-
-                            if ((pageIndex + 1) == allContent.length) {
-
-                              pageController.animateToPage(0, duration: const Duration(milliseconds: 777), curve: Curves.easeInOutCubic);
-
-                            } else {
-
-                              pageController.nextPage(duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
-
-                            }
-
-                          },
-                          child: Visibility(
+                        child: Visibility(
                             visible: nextVisibility,
                             child: Stack(
                                 children: [
 
                                   const Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Image(
-                                      image: AssetImage("assets/next_background.png"),
-                                    )
+                                      alignment: Alignment.bottomCenter,
+                                      child: Image(
+                                        image: AssetImage("assets/next_background.png"),
+                                      )
                                   ),
 
                                   Center(
                                       child: ClipRRect(
                                           borderRadius: BorderRadius.circular(99),
-                                          child: nextIconPlaceholder
+                                          child: InkWell(
+                                            onTap: () {
+
+                                              if ((pageIndex + 1) == allContent.length) {
+
+                                                pageController.animateToPage(0, duration: const Duration(milliseconds: 777), curve: Curves.easeInOutCubic);
+
+                                              } else {
+
+                                                pageController.nextPage(duration: const Duration(milliseconds: 555), curve: Curves.decelerate);
+
+                                              }
+
+                                            },
+                                            child: nextIconPlaceholder
+                                          )
                                       )
                                   )
 
                                 ]
                             )
-                          )
                         )
                       )
                     )
@@ -336,10 +336,10 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       } else {
 
         /* Start - Next Page */
-        nextPageIndicatorHeight = 49;
+        nextPageIndicatorHeight = 37;
 
-        nextPageIconHeight = 37;
-        nextPageIconWidth = 37;
+        nextPageIconHeight = 27;
+        nextPageIconWidth = 27;
         /* End - Next Page */
 
       }
