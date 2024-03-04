@@ -6,6 +6,14 @@ class ContentProvider {
 
     List<ContentDataStructure> allContent = [];
 
+    allContent.add(ContentDataStructure('https://play.google.com/store/apps/details?id=co.geeksempire.arwen.ai',
+        'Arwen AI: Floating AI Assistant', 'Floating Multitasking with Advanced AI Powered Assistant',
+        'Arwen AI Floating Multitasking with Beautiful, Advanced AI Powered Assistant for Better Lifestyle, Productivity.  Arwen means Muse; Inspiration; Very Beautiful; Noble Maiden. ',
+        'https://play-lh.googleusercontent.com/CxCi24U_ox-cZrcHg2faXW7LsVrOU4E3SvBXN9vvkafCA6Tose_T5FdDLhQ1vE2NWFGl=s512',
+        'https://geeksempire.co/wp-content/uploads/2024/03/Arwen-AI-Cover.png',
+        'https://play-lh.googleusercontent.com/tBMma3oinO207lr8KgGU2Of-JZMiGklcrmp4c-3G4OK0i-Vqm4-mLtFYUxU6o5SytDs=w2560-h1440,https://play-lh.googleusercontent.com/Y7AkslOd38I-5wCSQ5m9o-hkOEpFh4aUqXjB1sTm67lc-lZoZUazcq5Dhfv9Nkre2OUe=w2560-h1440,https://play-lh.googleusercontent.com/J_0bCnKxGmTGhJNLMkC2eQD5sh_6zIg8qSM1HZJxHGvSE6N3IrXRphcu0ByNdypoUsy1=w2560-h1440',
+        'https://www.youtube.com/watch?v=iSYqxcJ2c8E', 'https://twitter.com/GeeksEmpire', 'https://facebook.com/GeeksEmpire'));
+
     allContent.add(ContentDataStructure('https://play.google.com/store/apps/details?id=co.geeksempire.premium.storefront.android',
         'Premium Storefront', 'How To Find An Application Or A Game Among Over 3 Millions Choices?',
         'We have searched for you 🙂 We have found the best applications for you 👍 We have tested them for you 💠 Don\'t you want to be sure about the quality & security of the applications you about to pay...? Our collections assure you about those critical criteria. There are always some awesome applications & games that you cannot find them easily. You have to search, scroll deep down! You have to waste your time & money to find the best applications.',
