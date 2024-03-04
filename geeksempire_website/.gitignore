@@ -70,3 +70,4 @@ app.*.map.json
 /.firebase/geeks-empire-website/hosting/version.json
 /.firebase/hosting.LmZpcmViYXNlXGdlZWtzLWVtcGlyZS13ZWJzaXRlXGhvc3Rpbmc.cache
 /.firebaserc
+/.firebase/
