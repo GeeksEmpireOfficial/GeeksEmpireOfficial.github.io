@@ -103,7 +103,6 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             title: StringsResources.geeksEmpire(),
             color: ColorsResources.black,
             theme: ThemeData(
-              fontFamily: 'Ubuntu',
               colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.black),
               pageTransitionsTheme: const PageTransitionsTheme(builders: {
                 TargetPlatform.android: ZoomPageTransitionsBuilder(),
