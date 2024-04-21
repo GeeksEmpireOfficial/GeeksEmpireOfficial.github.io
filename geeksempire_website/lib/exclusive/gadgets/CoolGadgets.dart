@@ -28,8 +28,8 @@ class CoolGadgetsState extends State<CoolGadgets> {
               fontFamily: 'Ubuntu',
               colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.black),
               pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+                TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+                TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
               }),
             ),
             home: Scaffold(
