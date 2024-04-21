@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
 import 'package:sachiel_website/exclusive/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/resources/strings_resources.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -36,25 +35,16 @@ class _CoolGadgetsState extends State<CoolGadgets> {
   Widget build(BuildContext context) {
 
     return SafeArea(
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: StringsResources.geeksEmpire(),
-            color: ColorsResources.black,
-            theme: ThemeData(
-              fontFamily: 'Ubuntu',
-              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.black),
-              pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-                TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
-              }),
-            ),
-            home: Scaffold(
-                resizeToAvoidBottomInset: true,
-                backgroundColor: ColorsResources.premiumLight,
-                body: SizedBox(
-                  height: 137,
-                  width: double.maxFinite,
-                  child: contentPlaceholder
+        child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: ColorsResources.premiumLight,
+            body: Container(
+                height: 137,
+                alignment: Alignment.center,
+                child: SizedBox(
+                    height: 137,
+                    width: double.maxFinite,
+                    child: contentPlaceholder
                 )
             )
         )
@@ -89,6 +79,7 @@ class _CoolGadgetsState extends State<CoolGadgets> {
        contentPlaceholder = ListView(
          padding: const EdgeInsets.only(left: 37, right: 37),
          scrollDirection: Axis.horizontal,
+         shrinkWrap: true,
          physics: const BouncingScrollPhysics(),
          children: coolGadgetsList
        );
@@ -105,53 +96,74 @@ class _CoolGadgetsState extends State<CoolGadgets> {
           height: 119,
           width: 379,
           child: Padding(
-            padding: const EdgeInsets.only(right: 19),
+            padding: const EdgeInsets.only(right: 31),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(11)),
-              child: Material(
-                  shadowColor: Colors.transparent,
-                  color: Colors.transparent,
-                  child: InkWell(
-                      splashColor: ColorsResources.premiumDarkTransparent,
-                      splashFactory: InkRipple.splashFactory,
-                      onTap: () async {
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorsResources.premiumLight,
+                      ColorsResources.white,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.centerRight
+                  )
+                ),
+                child: Material(
+                    shadowColor: Colors.transparent,
+                    color: Colors.transparent,
+                    child: InkWell(
+                        splashColor: ColorsResources.white,
+                        splashFactory: InkRipple.splashFactory,
+                        onTap: () async {
 
-                        launchUrl(Uri.parse(productDataStructure.productLink()));
+                          launchUrl(Uri.parse(productDataStructure.productLink()));
 
-                      },
-                      child: Row(
-                          children: [
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
 
-                            SizedBox(
-                                height: 119,
-                                width: 119,
-                                child: WidgetMask(
-                                    blendMode: BlendMode.srcIn,
+                              SizedBox(
+                                  height: 119,
+                                  width: 119,
+                                  child: WidgetMask(
+                                    blendMode: BlendMode.srcATop,
                                     childSaveLayer: true,
                                     mask: Image.network(
                                         productDataStructure.productImage(),
                                         fit: BoxFit.cover
                                     ),
-                                    child: Image(
+                                    child: const Image(
                                       image: AssetImage("assets/squircle_shape.png"),
+                                      color: ColorsResources.black,
                                     ),
-                                )
-                            ),
+                                  )
+                              ),
 
-                            Expanded(
-                                child: Text(
-                                  productDataStructure.productName(),
-                                  maxLines: 2,
-                                  style: const TextStyle(
-                                      color: ColorsResources.premiumDark,
-                                      fontSize: 15
-                                  ),
-                                )
-                            )
+                              Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 13, right: 13),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                          productDataStructure.productName(),
+                                          maxLines: 3,
+                                          style: const TextStyle(
+                                              color: ColorsResources.premiumDark,
+                                              fontSize: 15
+                                          )
+                                      )
+                                    )
+                                  )
+                              )
 
-                          ]
-                      )
-                  )
+                            ]
+                        )
+                    )
+                )
               )
             )
           )
