@@ -8,6 +8,7 @@ import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
+// <iframe src="https://geeks-empire-website.web.app/#/CoolGadgets" title="Geeks Empire - Cool Gadgets" style="border:none;" width="100%" height="137px" />
 class CoolGadgets extends StatefulWidget {
 
   final String coolGadgetTag = "5408";
@@ -73,6 +74,8 @@ class _CoolGadgetsState extends State<CoolGadgets> {
       coolGadgetsList.add(itemCoolGadgets(productDataStructure));
 
     }
+
+    coolGadgetsList.shuffle();
 
      setState(() {
 
