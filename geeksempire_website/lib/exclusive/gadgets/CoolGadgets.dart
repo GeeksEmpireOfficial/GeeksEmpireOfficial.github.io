@@ -6,6 +6,7 @@ import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
 import 'package:sachiel_website/exclusive/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class CoolGadgets extends StatefulWidget {
@@ -108,43 +109,49 @@ class _CoolGadgetsState extends State<CoolGadgets> {
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(11)),
               child: Material(
+                  shadowColor: Colors.transparent,
+                  color: Colors.transparent,
+                  child: InkWell(
+                      splashColor: ColorsResources.premiumDarkTransparent,
+                      splashFactory: InkRipple.splashFactory,
+                      onTap: () async {
 
-                child: InkWell(
-                  onTap: () async {
+                        launchUrl(Uri.parse(productDataStructure.productLink()));
 
+                      },
+                      child: Row(
+                          children: [
 
+                            SizedBox(
+                                height: 119,
+                                width: 119,
+                                child: WidgetMask(
+                                    blendMode: BlendMode.srcIn,
+                                    childSaveLayer: true,
+                                    mask: Image.network(
+                                        productDataStructure.productImage(),
+                                        fit: BoxFit.cover
+                                    ),
+                                    child: Image(
+                                      image: AssetImage("assets/squircle_shape.png"),
+                                    ),
+                                )
+                            ),
 
-                  },
-                  child: Row(
-                    children: [
-
-                      SizedBox(
-                        height: 119,
-                        width: 119,
-                        child: WidgetMask(
-                            blendMode: BlendMode.srcIn,
-                            childSaveLayer: true,
-                            mask: Image.network(productDataStructure.productImage()),
-                            child: const Image(
-                              image: AssetImage('assets/squircle_shape.png'),
+                            Expanded(
+                                child: Text(
+                                  productDataStructure.productName(),
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                      color: ColorsResources.premiumDark,
+                                      fontSize: 15
+                                  ),
+                                )
                             )
-                        )
-                      ),
 
-                      Expanded(
-                        child: Text(
-                          productDataStructure.productName(),
-                          maxLines: 2,
-                          style: const TextStyle(
-                              color: ColorsResources.premiumDark,
-                              fontSize: 15
-                          ),
-                        )
+                          ]
                       )
-
-                    ]
                   )
-                )
               )
             )
           )
