@@ -16,6 +16,7 @@ void main() async {
       home: dashboard,
       routes: <String, WidgetBuilder> {
         '/Home': (BuildContext context) => dashboard,
+        '/CoolGadgets': (BuildContext context) => dashboard,
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute<void>(
