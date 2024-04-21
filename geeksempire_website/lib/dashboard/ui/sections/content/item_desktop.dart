@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
+import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';

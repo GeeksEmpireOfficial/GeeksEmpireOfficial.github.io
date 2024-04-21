@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sachiel_website/dashboard/provider/content_data_structure.dart';
-import 'package:sachiel_website/dashboard/provider/content_provider.dart';
+import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
+import 'package:sachiel_website/dashboard/provider/ContentProvider.dart';
 import 'package:sachiel_website/dashboard/ui/sections/content/item_desktop.dart';
 import 'package:sachiel_website/dashboard/ui/sections/content/item_mobile.dart';
 import 'package:sachiel_website/dashboard/ui/sections/header.dart';

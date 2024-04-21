@@ -46,6 +46,12 @@ dependencies:
   ####### ####### #######
 
 
+
+  ####### ####### #######
+  http: ^0.13.6
+  ####### ####### #######
+
+
   ####### ####### #######
   loading_animation_widget:
     path: 'X:\Xlutter\Libraries\loading_animation_widget'
@@ -66,6 +72,7 @@ dependencies:
 
   ####### ####### #######
   widget_mask: ^1.0.0+0
+
   ####### ####### #######
 
 
