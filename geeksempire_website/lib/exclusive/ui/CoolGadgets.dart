@@ -9,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 // <iframe src="https://geeks-empire-website.web.app/#/CoolGadgets" title="Geeks Empire - Cool Gadgets" loading="lazy" style="border:none;" width="100%" height="137px" />
+// <object type="text/html" data="https://geeks-empire-website.web.app/#/CoolGadgets" style="width:100%; height:137px; border:none;"> <p></p> </object>
 class CoolGadgets extends StatefulWidget {
 
   final String coolGadgetTag = "5408";
