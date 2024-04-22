@@ -20,11 +20,13 @@ class CoolGadgets extends StatefulWidget {
   @override
   State<CoolGadgets> createState() => _CoolGadgetsState();
 }
-class _CoolGadgetsState extends State<CoolGadgets> {
+class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin {
 
   Endpoints endpoints = Endpoints();
 
   Widget contentPlaceholder = Container();
+
+  late Animation<double> scaleAnimation;
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -90,7 +92,10 @@ class _CoolGadgetsState extends State<CoolGadgets> {
       ProductDataStructure productDataStructure = ProductDataStructure(element);
       debugPrint('Cool Gadget Json: ${productDataStructure.productId()}');
 
-      coolGadgetsList.add(itemCoolGadgets(productDataStructure));
+      coolGadgetsList.add(itemCoolGadgets(productDataStructure, AnimationController(vsync: this,
+          duration: const Duration(milliseconds: 777),
+          reverseDuration: const Duration(milliseconds: 333),
+          animationBehavior: AnimationBehavior.preserve)));
 
     }
 
@@ -110,85 +115,100 @@ class _CoolGadgetsState extends State<CoolGadgets> {
 
   }
 
-  Widget itemCoolGadgets(ProductDataStructure productDataStructure) {
+  Widget itemCoolGadgets(ProductDataStructure productDataStructure, AnimationController animationController) {
 
     return Align(
       alignment: Alignment.centerLeft,
-      child: SizedBox(
-          height: 119,
-          width: 379,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 31),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(11)),
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorsResources.premiumLight,
-                      ColorsResources.white,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.centerRight
-                  )
-                ),
-                child: Material(
-                    shadowColor: Colors.transparent,
-                    color: Colors.transparent,
-                    child: InkWell(
-                        splashColor: ColorsResources.white,
-                        splashFactory: InkRipple.splashFactory,
-                        onTap: () async {
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 1, end: 1.013)
+            .animate(CurvedAnimation(
+            parent: animationController,
+            curve: Curves.easeOut
+        )),
+        child: SizedBox(
+            height: 119,
+            width: 379,
+            child: Padding(
+                padding: const EdgeInsets.only(right: 31),
+                child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(11)),
+                    child: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [
+                                  ColorsResources.premiumLight,
+                                  ColorsResources.white,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.centerRight
+                            )
+                        ),
+                        child: Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                                splashColor: ColorsResources.white,
+                                splashFactory: InkRipple.splashFactory,
+                                onTap: () async {
 
-                          launchUrl(Uri.parse(productDataStructure.productLink()));
+                                  launchUrl(Uri.parse(productDataStructure.productLink()));
 
-                        },
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
+                                },
+                                onHover: (hovering) {
 
-                              SizedBox(
-                                  height: 119,
-                                  width: 119,
-                                  child: WidgetMask(
-                                    blendMode: BlendMode.srcATop,
-                                    childSaveLayer: true,
-                                    mask: Image.network(
-                                        productDataStructure.productImage(),
-                                        fit: BoxFit.cover
-                                    ),
-                                    child: const Image(
-                                      image: AssetImage("assets/squircle_shape.png"),
-                                      fit: BoxFit.cover,
-                                    )
-                                  )
-                              ),
+                                  hovering ? animationController.forward() : animationController.reverse();
 
-                              Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 13, right: 13),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                          productDataStructure.productName(),
-                                          maxLines: 3,
-                                          style: const TextStyle(
-                                              color: ColorsResources.premiumDark,
-                                              fontSize: 15
+                                },
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+
+                                      SizedBox(
+                                          height: 119,
+                                          width: 119,
+                                          child: WidgetMask(
+                                              blendMode: BlendMode.srcATop,
+                                              childSaveLayer: true,
+                                              mask: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(13),
+                                                  child: Image.network(
+                                                      productDataStructure.productImage(),
+                                                      fit: BoxFit.cover
+                                                  )
+                                              ),
+                                              child: const Image(
+                                                image: AssetImage("assets/squircle_shape.png"),
+                                                fit: BoxFit.cover,
+                                              )
+                                          )
+                                      ),
+
+                                      Expanded(
+                                          child: Padding(
+                                              padding: const EdgeInsets.only(left: 13, right: 13),
+                                              child: Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Text(
+                                                      productDataStructure.productName(),
+                                                      maxLines: 3,
+                                                      style: const TextStyle(
+                                                          color: ColorsResources.premiumDark,
+                                                          fontSize: 15
+                                                      )
+                                                  )
+                                              )
                                           )
                                       )
-                                    )
-                                  )
-                              )
 
-                            ]
+                                    ]
+                                )
+                            )
                         )
                     )
                 )
-              )
             )
-          )
+        )
       )
     );
   }
