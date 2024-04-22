@@ -160,8 +160,8 @@ class _CoolGadgetsState extends State<CoolGadgets> {
                                     ),
                                     child: const Image(
                                       image: AssetImage("assets/squircle_shape.png"),
-                                      color: ColorsResources.black,
-                                    ),
+                                      fit: BoxFit.cover,
+                                    )
                                   )
                               ),
 
