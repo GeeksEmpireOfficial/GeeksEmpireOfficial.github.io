@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
-import 'package:sachiel_website/exclusive/gadgets/CoolGadgets.dart';
+import 'package:sachiel_website/exclusive/ui/CoolGadgets.dart';
 import 'package:sachiel_website/firebase_options.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
