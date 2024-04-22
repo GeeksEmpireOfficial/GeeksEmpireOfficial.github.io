@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
@@ -25,11 +26,28 @@ class _CoolGadgetsState extends State<CoolGadgets> {
 
   Widget contentPlaceholder = Container();
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    Navigator.pop(context);
+
+    return true;
+  }
+
   @override
   void initState() {
     super.initState();
 
+    BackButtonInterceptor.add(aInterceptor);
+
     retrieveCoolGadgets();
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    BackButtonInterceptor.remove(aInterceptor);
 
   }
 
