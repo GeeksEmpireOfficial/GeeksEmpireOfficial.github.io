@@ -24,7 +24,9 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   Endpoints endpoints = Endpoints();
 
-  Widget contentPlaceholder = Container();
+  ScrollController scrollController = ScrollController();
+
+  ListView listViewPlaceholder = ListView();
 
   late Animation<double> scaleAnimation;
 
@@ -40,6 +42,11 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
+
+    listViewPlaceholder = ListView(
+        controller: scrollController,
+        children: const []
+    );
 
     retrieveCoolGadgets();
 
@@ -66,7 +73,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                 child: SizedBox(
                     height: 137,
                     width: double.maxFinite,
-                    child: contentPlaceholder
+                    child: listViewPlaceholder
                 )
             )
         )
@@ -90,7 +97,6 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
     for (var element in coolGadgetsJson) {
 
       ProductDataStructure productDataStructure = ProductDataStructure(element);
-      debugPrint('Cool Gadget Json: ${productDataStructure.productId()}');
 
       coolGadgetsList.add(itemCoolGadgets(productDataStructure, AnimationController(vsync: this,
           duration: const Duration(milliseconds: 777),
@@ -101,17 +107,36 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
     coolGadgetsList.shuffle();
 
-     setState(() {
+    setState(() {
 
-       contentPlaceholder = ListView(
-         padding: const EdgeInsets.only(left: 37, right: 37),
-         scrollDirection: Axis.horizontal,
-         shrinkWrap: true,
-         physics: const BouncingScrollPhysics(),
-         children: coolGadgetsList
-       );
+      listViewPlaceholder = ListView(
+          controller: scrollController,
+          padding: const EdgeInsets.only(left: 37, right: 37),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          physics: const PageScrollPhysics(),
+          children: coolGadgetsList
+      );
 
-     });
+      initializeAutoScroll(listViewPlaceholder, scrollController);
+
+      scrollController.addListener(() {
+
+        if (scrollController.position.atEdge) {
+
+          bool atBeginning = scrollController.position.pixels == 0;
+
+          if (atBeginning) {
+            debugPrint("At Beginning");
+          } else {
+            debugPrint("At End");
+          }
+
+        }
+
+      });
+
+    });
 
   }
 
@@ -203,6 +228,46 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
         )
       )
     );
+  }
+
+  void initializeAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, {double startingPosition = 0}) {
+
+    scrollController.animateTo(startingPosition, duration: const Duration(milliseconds: 3579), curve: Curves.easeInOut).then((_) {
+
+      if (startingPosition <= scrollController.position.maxScrollExtent) {
+
+        initializeAutoScroll(listViewPlaceholder, scrollController, startingPosition: 379 + scrollController.offset);
+
+      } else {
+
+        Future.delayed(const Duration(milliseconds: 3579), () {
+
+          reverseAutoScroll(listViewPlaceholder, scrollController, scrollController.position.maxScrollExtent);
+
+        });
+
+      }
+
+    });
+
+  }
+
+  void reverseAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, double startingPosition) {
+
+    scrollController.animateTo(startingPosition - 379, duration: const Duration(milliseconds: 3579), curve: Curves.easeInOut).then((_) {
+
+      if (startingPosition <= scrollController.position.maxScrollExtent) {
+
+        reverseAutoScroll(listViewPlaceholder, scrollController, startingPosition - 379);
+
+      } else {
+
+       initializeAutoScroll(listViewPlaceholder, scrollController);
+
+      }
+
+    });
+
   }
 
 }
