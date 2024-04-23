@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
@@ -118,21 +119,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
           children: coolGadgetsList
       );
 
-      scrollController.addListener(() {
-
-        if (scrollController.position.atEdge) {
-
-          bool atBeginning = scrollController.position.pixels == 0;
-
-          if (atBeginning) {
-            debugPrint("At Beginning");
-          } else {
-            debugPrint("At End");
-          }
-
-        }
-
-      });
+      // initializeAutoScroll();
 
     });
 
@@ -227,6 +214,8 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
       )
     );
   }
+
+  double scrollPosition = 0;
 
   void initializeAutoScroll({double startingPosition = 379}) {
 
