@@ -232,7 +232,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   void initializeAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, {double startingPosition = 0}) {
 
-    scrollController.animateTo(startingPosition, duration: const Duration(milliseconds: 3579), curve: Curves.easeInOut).then((_) {
+    scrollController.animateTo(startingPosition, duration: const Duration(milliseconds: 5555), curve: Curves.easeInOut).then((_) {
 
       if (startingPosition <= scrollController.position.maxScrollExtent) {
 
@@ -240,7 +240,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
       } else {
 
-        Future.delayed(const Duration(milliseconds: 3579), () {
+        Future.delayed(const Duration(milliseconds: 5555), () {
 
           reverseAutoScroll(listViewPlaceholder, scrollController, scrollController.position.maxScrollExtent);
 
@@ -254,7 +254,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   void reverseAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, double startingPosition) {
 
-    scrollController.animateTo(startingPosition - (379), duration: const Duration(milliseconds: 3579), curve: Curves.easeInOut).then((_) {
+    scrollController.animateTo(startingPosition - (379), duration: const Duration(milliseconds: 5555), curve: Curves.easeInOut).then((_) {
 
       if (startingPosition >= scrollController.position.minScrollExtent) {
 
@@ -262,7 +262,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
       } else {
 
-       Future.delayed(const Duration(milliseconds: 3579), () {
+       Future.delayed(const Duration(milliseconds: 5555), () {
 
          initializeAutoScroll(listViewPlaceholder, scrollController, startingPosition: 0);
 
