@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
 import 'package:sachiel_website/exclusive/ui/CoolGadgets.dart';
 import 'package:sachiel_website/firebase_options.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
@@ -31,9 +32,9 @@ void main() async {
           PointerDeviceKind.touch,
         },
       ),
-      home: const CoolGadgets(),
+      home: const Dashboard(),
       routes: <String, WidgetBuilder> {
-        '/Home': (BuildContext context) => const CoolGadgets(),
+        '/Home': (BuildContext context) => const Dashboard(),
         '/CoolGadgets': (BuildContext context) => const CoolGadgets(),
       },
       onUnknownRoute: (RouteSettings settings) {
@@ -41,7 +42,7 @@ void main() async {
             settings: settings,
             builder: (BuildContext context) {
 
-              return const CoolGadgets();
+              return const Dashboard();
             }
         );
       }
