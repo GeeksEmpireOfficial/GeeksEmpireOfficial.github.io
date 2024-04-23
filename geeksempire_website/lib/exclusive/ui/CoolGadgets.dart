@@ -254,15 +254,19 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   void reverseAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, double startingPosition) {
 
-    scrollController.animateTo(startingPosition - 379, duration: const Duration(milliseconds: 3579), curve: Curves.easeInOut).then((_) {
+    scrollController.animateTo(startingPosition - (379), duration: const Duration(milliseconds: 3579), curve: Curves.easeInOut).then((_) {
 
-      if (startingPosition <= scrollController.position.maxScrollExtent) {
+      if (startingPosition >= scrollController.position.minScrollExtent) {
 
-        reverseAutoScroll(listViewPlaceholder, scrollController, startingPosition - 379);
+        reverseAutoScroll(listViewPlaceholder, scrollController, startingPosition - (379));
 
       } else {
 
-       initializeAutoScroll(listViewPlaceholder, scrollController);
+       Future.delayed(const Duration(milliseconds: 3579), () {
+
+         initializeAutoScroll(listViewPlaceholder, scrollController, startingPosition: 0);
+
+       });
 
       }
 
