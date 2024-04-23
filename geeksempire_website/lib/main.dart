@@ -32,7 +32,7 @@ void main() async {
           PointerDeviceKind.touch,
         },
       ),
-      home: const Dashboard(),
+      home: const CoolGadgets(),
       routes: <String, WidgetBuilder> {
         '/Home': (BuildContext context) => const Dashboard(),
         '/CoolGadgets': (BuildContext context) => const CoolGadgets(),

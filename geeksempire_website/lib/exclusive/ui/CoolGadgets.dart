@@ -99,8 +99,8 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
       ProductDataStructure productDataStructure = ProductDataStructure(element);
 
       coolGadgetsList.add(itemCoolGadgets(productDataStructure, AnimationController(vsync: this,
-          duration: const Duration(milliseconds: 777),
-          reverseDuration: const Duration(milliseconds: 333),
+          duration: const Duration(milliseconds: 333),
+          reverseDuration: const Duration(milliseconds: 111),
           animationBehavior: AnimationBehavior.preserve)));
 
     }
@@ -117,8 +117,6 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
           physics: const PageScrollPhysics(),
           children: coolGadgetsList
       );
-
-      initializeAutoScroll(listViewPlaceholder, scrollController);
 
       scrollController.addListener(() {
 
@@ -230,19 +228,19 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
     );
   }
 
-  void initializeAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, {double startingPosition = 0}) {
+  void initializeAutoScroll({double startingPosition = 379}) {
 
     scrollController.animateTo(startingPosition, duration: const Duration(milliseconds: 5555), curve: Curves.easeInOut).then((_) {
 
       if (startingPosition <= scrollController.position.maxScrollExtent) {
 
-        initializeAutoScroll(listViewPlaceholder, scrollController, startingPosition: 379 + scrollController.offset);
+        initializeAutoScroll(startingPosition: scrollController.position.pixels + 379);
 
       } else {
 
-        Future.delayed(const Duration(milliseconds: 5555), () {
+        Future.delayed(const Duration(milliseconds: 3333), () {
 
-          reverseAutoScroll(listViewPlaceholder, scrollController, scrollController.position.maxScrollExtent);
+          reverseAutoScroll(scrollController.position.maxScrollExtent);
 
         });
 
@@ -252,21 +250,21 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   }
 
-  void reverseAutoScroll(ListView listViewPlaceholder, ScrollController scrollController, double startingPosition) {
+  void reverseAutoScroll(double startingPosition) {
 
     scrollController.animateTo(startingPosition - (379), duration: const Duration(milliseconds: 5555), curve: Curves.easeInOut).then((_) {
 
       if (startingPosition >= scrollController.position.minScrollExtent) {
 
-        reverseAutoScroll(listViewPlaceholder, scrollController, startingPosition - (379));
+        reverseAutoScroll(startingPosition - (379));
 
       } else {
 
-       Future.delayed(const Duration(milliseconds: 5555), () {
+        Future.delayed(const Duration(milliseconds: 3333), () {
 
-         initializeAutoScroll(listViewPlaceholder, scrollController, startingPosition: 0);
+          initializeAutoScroll(startingPosition: 0);
 
-       });
+        });
 
       }
 
