@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
 import 'package:sachiel_website/exclusive/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
+import 'package:shaped_image/shaped_image.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:widget_mask/widget_mask.dart';
 
 // <iframe src="https://geeks-empire-website.web.app/#/CoolGadgets" title="Geeks Empire - Cool Gadgets" loading="lazy" style="border:none;" width="100%" height="137px" />
 // <object type="text/html" data="https://geeks-empire-website.web.app/#/CoolGadgets" style="width:100%; height:137px; border:none;"> <p></p> </object>
@@ -167,21 +167,13 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                                       SizedBox(
                                           height: 119,
                                           width: 119,
-                                          child: WidgetMask(
-                                              blendMode: BlendMode.srcATop,
-                                              childSaveLayer: true,
-                                              mask: ClipRRect(
-                                                  borderRadius: BorderRadius.circular(13),
-                                                  child: Image.network(
-                                                      productDataStructure.productImage(),
-                                                      fit: BoxFit.cover
-                                                  )
-                                              ),
-                                              child: const Image(
-                                                image: AssetImage("assets/squircle_shape.png"),
-                                                fit: BoxFit.cover,
-                                              )
-                                          )
+                                          child: ShapedImage(
+                                              imageTye: ImageType.NETWORK,
+                                              path: productDataStructure.productImage(),
+                                              shape: Shape.Squircle,
+                                              width: 200,
+                                              height: 200
+                                          ),
                                       ),
 
                                       Expanded(
