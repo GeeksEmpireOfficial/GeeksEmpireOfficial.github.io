@@ -83,7 +83,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   Future retrieveCoolGadgets() async {
 
-    final coolGadgetsResponse = await http.get(Uri.parse(endpoints.productsByTag(widget.coolGadgetTag)));
+    final coolGadgetsResponse = await http.get(Uri.parse(endpoints.productsByTag(widget.coolGadgetTag, productsPerPage: "99")));
 
     final coolGadgetsJson = List.from(jsonDecode(coolGadgetsResponse.body));
 
@@ -91,11 +91,21 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   }
 
-  void prepareCoolGadgets(coolGadgetsJson) {
+  void prepareCoolGadgets(List<dynamic> coolGadgetsJson) {
+
+    coolGadgetsJson.shuffle();
 
     List<Widget> coolGadgetsList = [];
 
-    for (var element in coolGadgetsJson) {
+    int listSize = 13;
+
+    if (coolGadgetsList.length <= 13) {
+
+      listSize = coolGadgetsList.length;
+
+    }
+
+    for (var element in coolGadgetsJson.sublist(0, listSize)) {
 
       ProductDataStructure productDataStructure = ProductDataStructure(element);
 
