@@ -30,6 +30,9 @@ void main() async {
         dragDevices: {
           PointerDeviceKind.mouse,
           PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.unknown,
         },
       ),
       home: const Dashboard(),
