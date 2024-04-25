@@ -99,9 +99,9 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
     int listSize = 13;
 
-    if (coolGadgetsList.length <= 13) {
+    if (coolGadgetsJson.length < 13) {
 
-      listSize = coolGadgetsList.length;
+      listSize = coolGadgetsJson.length;
 
     }
 
