@@ -8,6 +8,7 @@ import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
 import 'package:sachiel_website/exclusive/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:shaped_image/shaped_image.dart';
+import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // <iframe src="https://geeks-empire-website.web.app/#/CoolGadgets" title="Geeks Empire - Cool Gadgets" loading="lazy" style="border:none;" width="100%" height="137px" />
@@ -27,7 +28,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   ScrollController scrollController = ScrollController();
 
-  ListView listViewPlaceholder = ListView();
+  Widget listViewPlaceholder = ListView();
 
   late Animation<double> scaleAnimation;
 
@@ -120,13 +121,18 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
     setState(() {
 
-      listViewPlaceholder = ListView(
-          controller: scrollController,
-          padding: const EdgeInsets.only(left: 37, right: 37),
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          physics: const PageScrollPhysics(),
-          children: coolGadgetsList
+      listViewPlaceholder = DynMouseScroll(
+        durationMS: 555,
+        scrollSpeed: 5.5,
+        animationCurve: Curves.easeInOut,
+        builder: (context, controller, physics) => ListView(
+            controller: scrollController,
+            padding: const EdgeInsets.only(left: 37, right: 37),
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            physics: const RangeMaintainingScrollPhysics(),
+            children: coolGadgetsList
+        )
       );
 
       // initializeAutoScroll();
