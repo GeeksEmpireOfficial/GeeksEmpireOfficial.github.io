@@ -72,7 +72,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
             height: 137,
             alignment: Alignment.center,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(37),
+              borderRadius: BorderRadius.circular(19),
               child: SizedBox(
                   height: 137,
                   width: double.maxFinite,
