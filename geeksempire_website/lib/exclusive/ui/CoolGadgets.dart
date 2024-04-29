@@ -65,18 +65,19 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: ColorsResources.premiumLight,
-            body: Container(
-                height: 137,
-                alignment: Alignment.center,
-                child: SizedBox(
-                    height: 137,
-                    width: double.maxFinite,
-                    child: listViewPlaceholder
-                )
+    return Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: ColorsResources.premiumLight,
+        body: Container(
+            height: 137,
+            alignment: Alignment.center,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(37),
+              child: SizedBox(
+                  height: 137,
+                  width: double.maxFinite,
+                  child: listViewPlaceholder
+              )
             )
         )
     );
