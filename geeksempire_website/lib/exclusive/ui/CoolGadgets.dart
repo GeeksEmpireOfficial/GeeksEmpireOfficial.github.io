@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
 import 'package:sachiel_website/exclusive/endpoints/Endpoints.dart';
@@ -35,7 +35,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    window.close();
+    SystemNavigator.pop();
 
     return true;
   }

@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
 import 'package:sachiel_website/dashboard/provider/ContentProvider.dart';
@@ -67,7 +66,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    window.close();
+    SystemNavigator.pop();
 
     return true;
   }
