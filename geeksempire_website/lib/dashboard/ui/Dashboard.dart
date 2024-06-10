@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
@@ -7,7 +8,6 @@ import 'package:sachiel_website/dashboard/ui/sections/content/item_mobile.dart';
 import 'package:sachiel_website/dashboard/ui/sections/header.dart';
 import 'package:sachiel_website/dashboard/ui/sections/menus.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/resources/strings_resources.dart';
 import 'package:sachiel_website/utils/modifications/numbers.dart';
 import 'package:sachiel_website/utils/ui/display.dart';
 import 'package:sachiel_website/utils/ui/nexted_page_controller.dart';
@@ -63,10 +63,18 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   double nextPageIconWidth = 51;
   /* End - Next Page */
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    Navigator.pop(context);
+
+    return true;
+  }
 
   @override
   void initState() {
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
 
     animationController = AnimationController(vsync: this,
         duration: const Duration(milliseconds: 777),
@@ -95,37 +103,31 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+  }
+
+  @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: StringsResources.geeksEmpire(),
-            color: ColorsResources.black,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.black),
-              pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-              }),
-            ),
-            home: Scaffold(
-                resizeToAvoidBottomInset: true,
-                backgroundColor: ColorsResources.black,
-                body: Stack(
-                    children: [
+    return Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: ColorsResources.black,
+        body: Stack(
+            children: [
 
-                      /* Start - Menu Items */
-                      menuItems(),
-                      /* End - Menu Items */
+              /* Start - Menu Items */
+              menuItems(),
+              /* End - Menu Items */
 
-                      /* Start - Contents Widgets */
-                      allContentsWidgets(),
-                      /* End - Contents Widgets */
+              /* Start - Contents Widgets */
+              allContentsWidgets(),
+              /* End - Contents Widgets */
 
-                    ]
-                )
-            )
+            ]
         )
     );
   }
