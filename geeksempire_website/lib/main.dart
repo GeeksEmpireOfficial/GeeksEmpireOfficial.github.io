@@ -57,7 +57,7 @@ void main() async {
         if (parameters["productId"].toString().isNotEmpty) {
           debugPrint("Product Id: ${parameters["productId"].toString().toUpperCase()}");
 
-          //https://geeks-empire-website.web.app/#/Categories?productId
+          //https://geeks-empire-website.web.app/#/Categories?productId=[]
           return MaterialPageRoute(
               builder: (_) => Categories(productId: int.parse(parameters["productId"]))
           );

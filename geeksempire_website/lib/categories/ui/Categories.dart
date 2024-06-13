@@ -28,6 +28,7 @@ class CategoriesState extends State<Categories> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    debugPrint("Product Id: ${widget.productId}");
 
     BackButtonInterceptor.add(aInterceptor);
 
@@ -44,7 +45,8 @@ class CategoriesState extends State<Categories> with TickerProviderStateMixin {
             Text(
                 widget.productId.toString(),
                 style: TextStyle(
-                  color: ColorsResources.red
+                  color: ColorsResources.red,
+                  fontSize: 19
                 )
             )
           ]
