@@ -127,7 +127,6 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
         animationCurve: Curves.easeInOut,
         builder: (context, controller, physics) => ListView(
             controller: scrollController,
-            padding: const EdgeInsets.only(left: 37, right: 37),
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             physics: const RangeMaintainingScrollPhysics(),
@@ -154,73 +153,74 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
             width: 379,
             child: Padding(
                 padding: const EdgeInsets.only(right: 31),
-                child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(11)),
-                    child: Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                                  ColorsResources.premiumLight,
-                                  ColorsResources.white,
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.centerRight
-                            )
-                        ),
-                        child: Material(
-                            shadowColor: Colors.transparent,
-                            color: Colors.transparent,
-                            child: InkWell(
-                                splashColor: ColorsResources.white,
-                                splashFactory: InkRipple.splashFactory,
-                                onTap: () async {
-
-                                  launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
-
-                                },
-                                onHover: (hovering) {
-
-                                  hovering ? animationController.forward() : animationController.reverse();
-
-                                },
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-
-                                      SizedBox(
-                                          height: 119,
-                                          width: 119,
-                                          child: ShapedImage(
-                                              imageTye: ImageType.NETWORK,
-                                              path: productDataStructure.productImage(),
-                                              shape: Shape.Squircle,
-                                              width: 200,
-                                              height: 200
-                                          ),
-                                      ),
-
-                                      Expanded(
-                                          child: Padding(
-                                              padding: const EdgeInsets.only(left: 13, right: 13),
-                                              child: Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text(
-                                                      productDataStructure.productName(),
-                                                      maxLines: 3,
-                                                      style: const TextStyle(
-                                                          color: ColorsResources.premiumDark,
-                                                          fontSize: 15
-                                                      )
-                                                  )
-                                              )
-                                          )
-                                      )
-
-                                    ]
-                                )
-                            )
+                child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(99), bottomLeft: Radius.circular(99), topRight: Radius.circular(13), bottomRight: Radius.circular(13)),
+                        gradient: LinearGradient(
+                            colors: [
+                              ColorsResources.premiumLight,
+                              ColorsResources.white.withOpacity(0.51),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.centerRight
                         )
+                    ),
+                    child: ClipRRect(
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(99), bottomLeft: Radius.circular(99), topRight: Radius.circular(13), bottomRight: Radius.circular(13)),
+                      child: Material(
+                          shadowColor: Colors.transparent,
+                          color: Colors.transparent,
+                          child: InkWell(
+                              splashColor: ColorsResources.white,
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () async {
+
+                                launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
+
+                              },
+                              onHover: (hovering) {
+
+                                hovering ? animationController.forward() : animationController.reverse();
+
+                              },
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+
+                                    SizedBox(
+                                      height: 119,
+                                      width: 119,
+                                      child: ShapedImage(
+                                          imageTye: ImageType.NETWORK,
+                                          path: productDataStructure.productImage(),
+                                          shape: Shape.Squircle,
+                                          width: 200,
+                                          height: 200
+                                      ),
+                                    ),
+
+                                    Expanded(
+                                        child: Padding(
+                                            padding: const EdgeInsets.only(left: 13, right: 13),
+                                            child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                    productDataStructure.productName(),
+                                                    maxLines: 3,
+                                                    style: const TextStyle(
+                                                        color: ColorsResources.premiumDark,
+                                                        fontSize: 15
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+
+                                  ]
+                              )
+                          )
+                      )
                     )
                 )
             )
