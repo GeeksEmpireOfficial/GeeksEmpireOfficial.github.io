@@ -181,7 +181,7 @@ class CategoriesState extends State<Categories> with TickerProviderStateMixin {
                                 shadowColor: Colors.transparent,
                                 color: Colors.transparent,
                                 child: InkWell(
-                                    splashColor: ColorsResources.white,
+                                    splashColor: ColorsResources.lightBlue,
                                     splashFactory: InkRipple.splashFactory,
                                     onTap: () async {
 

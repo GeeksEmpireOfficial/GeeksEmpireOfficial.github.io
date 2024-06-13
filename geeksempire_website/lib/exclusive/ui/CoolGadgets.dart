@@ -155,7 +155,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                 padding: const EdgeInsets.only(right: 31),
                 child: Container(
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(99), bottomLeft: Radius.circular(99), topRight: Radius.circular(13), bottomRight: Radius.circular(13)),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(37), bottomLeft: Radius.circular(37), topRight: Radius.circular(17), bottomRight: Radius.circular(17)),
                         gradient: LinearGradient(
                             colors: [
                               ColorsResources.premiumLight,
@@ -166,12 +166,12 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                         )
                     ),
                     child: ClipRRect(
-                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(99), bottomLeft: Radius.circular(99), topRight: Radius.circular(13), bottomRight: Radius.circular(13)),
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(37), bottomLeft: Radius.circular(37), topRight: Radius.circular(17), bottomRight: Radius.circular(17)),
                       child: Material(
                           shadowColor: Colors.transparent,
                           color: Colors.transparent,
                           child: InkWell(
-                              splashColor: ColorsResources.white,
+                              splashColor: ColorsResources.lightBlue,
                               splashFactory: InkRipple.splashFactory,
                               onTap: () async {
 
