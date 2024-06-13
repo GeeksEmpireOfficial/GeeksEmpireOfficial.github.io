@@ -31,8 +31,6 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   ScrollController scrollController = ScrollController();
 
-  late Animation<double> scaleAnimation;
-
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     SystemNavigator.pop();
@@ -137,8 +135,6 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
         )
       );
 
-      // initializeAutoScroll();
-
     });
 
   }
@@ -179,7 +175,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                                 splashFactory: InkRipple.splashFactory,
                                 onTap: () async {
 
-                                  launchUrl(Uri.parse(productDataStructure.productLink()));
+                                  launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
 
                                 },
                                 onHover: (hovering) {

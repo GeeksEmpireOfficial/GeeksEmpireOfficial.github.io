@@ -24,4 +24,14 @@ class Endpoints {
         "&consumer_secret=$_consumerSecret";
   }
 
+  String searchUrl(String categoryName) {
+
+    return "https://geeksempire.co/?s=$categoryName";
+  }
+
+  String categoryUrl(String categorySlug) {
+
+    return "https://geeksempire.co/products/$categorySlug";
+  }
+
 }
