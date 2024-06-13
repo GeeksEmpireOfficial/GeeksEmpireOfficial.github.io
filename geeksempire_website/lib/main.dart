@@ -42,6 +42,7 @@ void main() async {
         '/Home': (BuildContext context) => const Dashboard(),
         '/CoolGadgets': (BuildContext context) => const CoolGadgets(),
         '/MagazineCategories': (BuildContext context) => MagazineCategories(postId: 0),
+        '/StorefrontCategories': (BuildContext context) => StorefrontCategories(productId: 0),
       },
       onGenerateRoute: (routeSettings) {
 
@@ -55,18 +56,18 @@ void main() async {
 
         });
 
-        if (parameters["productId"].toString().isNotEmpty) {
+        if (parameters["productId"].toString().isNotEmpty) { // Storefront
           debugPrint("Product Id: ${parameters["productId"].toString().toUpperCase()}");
 
-          //https://geeks-empire-website.web.app/#/Categories?productId=[]
+          //https://geeks-empire-website.web.app/#/StorefrontCategories?productId=[]
           return MaterialPageRoute(
               builder: (_) => StorefrontCategories(productId: int.parse(parameters["productId"]))
           );
 
-        } else if (parameters["postId"].toString().isNotEmpty) {
+        } else if (parameters["postId"].toString().isNotEmpty) { // Magazine
           debugPrint("Post Id: ${parameters["postId"].toString().toUpperCase()}");
 
-          //https://geeks-empire-website.web.app/#/Categories?postId=[]
+          //https://geeks-empire-website.web.app/#/MagazineCategories?postId=[]
           return MaterialPageRoute(
               builder: (_) => MagazineCategories(postId: int.parse(parameters["postId"]))
           );
