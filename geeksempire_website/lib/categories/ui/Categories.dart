@@ -95,12 +95,22 @@ class CategoriesState extends State<Categories> with TickerProviderStateMixin {
   }
 
   void prepareCategories(productCategories) {
-    debugPrint(productCategories.toString());
 
-    for (var element in productCategories.sublist(0, 3)) {
-      debugPrint(element);
+    var categoriesList = List.from(productCategories);
+
+    for (var element in categoriesList) {
+
+      String categoryId = element['id'].toString();
+      String categoryName = element['name'].toString();
+
+      // Exclusions: 6004 - 5120
+      if (categoryId != '6004'
+        && categoryId != '5120') {
+        debugPrint(element['name'].toString());
 
 
+
+      }
 
     }
 
