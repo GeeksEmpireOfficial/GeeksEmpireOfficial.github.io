@@ -17,7 +17,7 @@ class Endpoints {
 
   String productsById(int productId) {
 
-    // /#/Categories?productId=15873
+    // /#/StorefrontCategories?productId=15873
     return "https://geeksempire.co/wp-json/wc/v3/products/"
         "$productId" "?"
         "consumer_key=$_consumerKey"
@@ -26,9 +26,16 @@ class Endpoints {
 
   String postsById(int postId) {
 
-    // /#/Categories?productId=15873
+    // /#/MagazineCategories?postId=15200
     return "https://geeksempire.co/wp-json/wp/v2/posts/"
         "$postId";
+  }
+
+  String categoriesById(int categoryId) {
+
+    // /#/MagazineCategories?postId=15200
+    return "https://geeksempire.co/wp-json/wp/v2/categories/"
+        "$categoryId";
   }
 
   String searchUrl(String categoryName) {

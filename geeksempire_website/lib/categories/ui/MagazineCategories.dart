@@ -98,19 +98,24 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
 
   }
 
-  void prepareCategories(postCategories) {
+  Future prepareCategories(postCategories) async {
 
     var categoriesList = List.from(postCategories);
 
     for (var element in categoriesList) {
 
-      String categoryId = element['id'].toString();
-      String categoryName = element['name'].toString();
+      int categoryId = element;
 
       // Exclusions: 6004 - 5120
-      if (categoryId != '1480'
-        && categoryId != '1857') {
-        debugPrint(element['name'].toString());
+      if (categoryId != 1480
+        && categoryId != 1857) {
+
+        final categoryResponse = await http.get(Uri.parse(endpoints.categoriesById(categoryId)));
+
+        final categoryJson = jsonDecode(categoryResponse.body);
+
+        final categoryName = categoryJson['name'];
+        debugPrint(categoryName);
 
         categoriesWidgets.add(categoryItem(categoryName, AnimationController(vsync: this,
             duration: const Duration(milliseconds: 333),

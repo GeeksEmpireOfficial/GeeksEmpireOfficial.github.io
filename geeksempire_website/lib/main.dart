@@ -56,7 +56,10 @@ void main() async {
 
         });
 
-        if (parameters["productId"].toString().isNotEmpty) { // Storefront
+        print(parameters["productId"]);
+        print(parameters["postId"]);
+
+        if (parameters["productId"] != null) { // Storefront
           debugPrint("Product Id: ${parameters["productId"].toString().toUpperCase()}");
 
           //https://geeks-empire-website.web.app/#/StorefrontCategories?productId=[]
@@ -64,18 +67,12 @@ void main() async {
               builder: (_) => StorefrontCategories(productId: int.parse(parameters["productId"]))
           );
 
-        } else if (parameters["postId"].toString().isNotEmpty) { // Magazine
+        } else if (parameters["postId"] != null) { // Magazine
           debugPrint("Post Id: ${parameters["postId"].toString().toUpperCase()}");
 
           //https://geeks-empire-website.web.app/#/MagazineCategories?postId=[]
           return MaterialPageRoute(
               builder: (_) => MagazineCategories(postId: int.parse(parameters["postId"]))
-          );
-
-        } else {
-
-          return MaterialPageRoute(
-              builder: (_) => const Dashboard()
           );
 
         }
