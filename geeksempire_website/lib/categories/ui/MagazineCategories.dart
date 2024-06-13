@@ -39,7 +39,7 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
   @override
   void initState() {
     super.initState();
-    debugPrint("Product Id: ${widget.postId}");
+    debugPrint("Post Id: ${widget.postId}");
 
     BackButtonInterceptor.add(aInterceptor);
 
@@ -108,8 +108,8 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
       String categoryName = element['name'].toString();
 
       // Exclusions: 6004 - 5120
-      if (categoryId != '6004'
-        && categoryId != '5120') {
+      if (categoryId != '1480'
+        && categoryId != '1857') {
         debugPrint(element['name'].toString());
 
         categoriesWidgets.add(categoryItem(categoryName, AnimationController(vsync: this,
