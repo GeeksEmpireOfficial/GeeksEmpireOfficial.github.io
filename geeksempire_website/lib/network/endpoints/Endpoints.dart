@@ -15,4 +15,13 @@ class Endpoints {
         "&tag=$tagId";
   }
 
+  String productsById(int productId) {
+
+    // /#/Categories?productId=15873
+    return "https://geeksempire.co/wp-json/wc/v3/products/"
+        "$productId" "?"
+        "consumer_key=$_consumerKey"
+        "&consumer_secret=$_consumerSecret";
+  }
+
 }

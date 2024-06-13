@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
-import 'package:sachiel_website/exclusive/endpoints/Endpoints.dart';
+import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:shaped_image/shaped_image.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
@@ -27,9 +27,9 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   Endpoints endpoints = Endpoints();
 
-  ScrollController scrollController = ScrollController();
-
   Widget listViewPlaceholder = ListView();
+
+  ScrollController scrollController = ScrollController();
 
   late Animation<double> scaleAnimation;
 

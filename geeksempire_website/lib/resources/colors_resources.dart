@@ -86,4 +86,6 @@ class ColorsResources {
   static const Color gameGeeksEmpire = Color.fromARGB(255, 174, 35, 87);
   static const Color gameLightGeeksEmpire = Color.fromARGB(255, 255, 0, 94);
 
+  static const Color transparent = Colors.transparent;
+
 }

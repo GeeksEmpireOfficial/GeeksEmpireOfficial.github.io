@@ -1,6 +1,11 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 
 class Categories extends StatefulWidget {
@@ -14,9 +19,11 @@ class Categories extends StatefulWidget {
 }
 class CategoriesState extends State<Categories> with TickerProviderStateMixin {
 
-  ScrollController scrollController = ScrollController();
+  Endpoints endpoints = Endpoints();
 
   Widget listViewPlaceholder = ListView();
+
+  ScrollController scrollController = ScrollController();
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -34,23 +41,14 @@ class CategoriesState extends State<Categories> with TickerProviderStateMixin {
 
     if (widget.productId == 0) {
 
-      // Most Used Category
-
     } else {
 
-      // Category for Id
       listViewPlaceholder = ListView(
           controller: scrollController,
-          children: [
-            Text(
-                widget.productId.toString(),
-                style: TextStyle(
-                  color: ColorsResources.red,
-                  fontSize: 19
-                )
-            )
-          ]
+          children: const []
       );
+
+      retrieveProduct(widget.productId);
 
     }
 
@@ -83,6 +81,29 @@ class CategoriesState extends State<Categories> with TickerProviderStateMixin {
             )
         )
     );
+  }
+
+  Future retrieveProduct(int productId) async {
+    debugPrint(endpoints.productsById(productId));
+
+    final productResponse = await http.get(Uri.parse(endpoints.productsById(productId)));
+
+    final productJson = jsonDecode(productResponse.body);
+
+    prepareCategories(productJson['categories']);
+
+  }
+
+  void prepareCategories(productCategories) {
+    debugPrint(productCategories.toString());
+
+    for (var element in productCategories.sublist(0, 3)) {
+      debugPrint(element);
+
+
+
+    }
+
   }
 
 }
