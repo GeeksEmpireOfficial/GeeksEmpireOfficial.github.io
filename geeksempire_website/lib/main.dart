@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/categories/ui/Categories.dart';
+import 'package:sachiel_website/categories/ui/MagazineCategories.dart';
+import 'package:sachiel_website/categories/ui/StorefrontCategories.dart';
 import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
 import 'package:sachiel_website/exclusive/ui/CoolGadgets.dart';
 import 'package:sachiel_website/firebase_options.dart';
@@ -40,7 +41,7 @@ void main() async {
       routes: <String, WidgetBuilder> {
         '/Home': (BuildContext context) => const Dashboard(),
         '/CoolGadgets': (BuildContext context) => const CoolGadgets(),
-        '/Categories': (BuildContext context) => Categories(productId: 0),
+        '/MagazineCategories': (BuildContext context) => MagazineCategories(postId: 0),
       },
       onGenerateRoute: (routeSettings) {
 
@@ -59,7 +60,15 @@ void main() async {
 
           //https://geeks-empire-website.web.app/#/Categories?productId=[]
           return MaterialPageRoute(
-              builder: (_) => Categories(productId: int.parse(parameters["productId"]))
+              builder: (_) => StorefrontCategories(productId: int.parse(parameters["productId"]))
+          );
+
+        } else if (parameters["postId"].toString().isNotEmpty) {
+          debugPrint("Post Id: ${parameters["postId"].toString().toUpperCase()}");
+
+          //https://geeks-empire-website.web.app/#/Categories?postId=[]
+          return MaterialPageRoute(
+              builder: (_) => MagazineCategories(postId: int.parse(parameters["postId"]))
           );
 
         } else {

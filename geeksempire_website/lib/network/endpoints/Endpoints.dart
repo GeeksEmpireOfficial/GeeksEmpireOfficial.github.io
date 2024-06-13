@@ -24,14 +24,26 @@ class Endpoints {
         "&consumer_secret=$_consumerSecret";
   }
 
+  String postsById(int postId) {
+
+    // /#/Categories?productId=15873
+    return "https://geeksempire.co/wp-json/wp/v2/posts/"
+        "$postId";
+  }
+
   String searchUrl(String categoryName) {
 
     return "https://geeksempire.co/?s=$categoryName";
   }
 
-  String categoryUrl(String categorySlug) {
+  String productCategoryUrl(String categorySlug) {
 
     return "https://geeksempire.co/products/$categorySlug";
+  }
+
+  String postCategoryUrl(String categorySlug) {
+
+    return "https://geeksempire.co/category/$categorySlug";
   }
 
 }

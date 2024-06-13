@@ -10,16 +10,16 @@ import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Categories extends StatefulWidget {
+class StorefrontCategories extends StatefulWidget {
 
   int productId;
 
-  Categories({Key? key, required this.productId}) : super(key: key);
+  StorefrontCategories({Key? key, required this.productId}) : super(key: key);
 
   @override
-  State<Categories> createState() => CategoriesState();
+  State<StorefrontCategories> createState() => StorefrontCategoriesState();
 }
-class CategoriesState extends State<Categories> with TickerProviderStateMixin {
+class StorefrontCategoriesState extends State<StorefrontCategories> with TickerProviderStateMixin {
 
   Endpoints endpoints = Endpoints();
 
