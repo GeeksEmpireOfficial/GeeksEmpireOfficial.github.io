@@ -163,18 +163,18 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
                   child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(19)),
                       child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               border: Border(
-                                left: BorderSide(width: 7, color: ColorsResources.white),
-                                right: BorderSide(width: 7, color: ColorsResources.white),
-                                top: BorderSide(width: 3, color: ColorsResources.white),
-                                bottom: BorderSide(width: 3, color: ColorsResources.white),
+                                left: BorderSide(width: 7, color: ColorsResources.white.withOpacity(0.51)),
+                                right: BorderSide(width: 7, color: ColorsResources.white.withOpacity(0.51)),
+                                top: BorderSide(width: 3, color: ColorsResources.white.withOpacity(0.51)),
+                                bottom: BorderSide(width: 3, color: ColorsResources.white.withOpacity(0.51)),
                               ),
-                              borderRadius: BorderRadius.all(Radius.circular(17)),
+                              borderRadius: const BorderRadius.all(Radius.circular(17)),
                               gradient: LinearGradient(
                                   colors: [
                                     ColorsResources.premiumLight,
-                                    ColorsResources.white,
+                                    ColorsResources.white.withOpacity(0.51),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.centerRight
