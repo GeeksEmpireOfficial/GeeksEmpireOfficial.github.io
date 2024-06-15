@@ -193,6 +193,11 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
                                       launchUrl(Uri.parse(endpoints.searchUrl(categoryName)), mode: LaunchMode.externalApplication);
 
                                     },
+                                    onLongPress: () async {
+
+                                      launchUrl(Uri.parse(endpoints.searchUrl(categoryName)), mode: LaunchMode.externalApplication);
+
+                                    },
                                     onHover: (hovering) {
 
                                       hovering ? animationController.forward() : animationController.reverse();
