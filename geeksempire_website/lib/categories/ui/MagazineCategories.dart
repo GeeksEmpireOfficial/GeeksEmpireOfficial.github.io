@@ -108,6 +108,8 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
 
       // Exclusions: 6004 - 5120
       if (categoryId != 1480
+        && categoryId != 4576
+        && categoryId != 5118
         && categoryId != 1857) {
 
         final categoryResponse = await http.get(Uri.parse(endpoints.categoriesById(categoryId)));
