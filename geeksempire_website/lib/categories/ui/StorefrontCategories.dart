@@ -109,6 +109,11 @@ class StorefrontCategoriesState extends State<StorefrontCategories> with TickerP
 
       // Exclusions: 6004 - 5120
       if (categoryId != '6004'
+        && categoryId != '15'
+        && categoryId != '80'
+        && categoryId != '5969'
+        && categoryId != '546'
+        && categoryId != '982'
         && categoryId != '5120') {
         debugPrint(element['name'].toString());
 
