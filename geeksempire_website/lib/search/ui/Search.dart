@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -79,15 +80,23 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           child: ListView(
               children: [
 
-                Text(
-                  "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
-                  maxLines: 1,
-                  style: const TextStyle(
-                      color: ColorsResources.premiumDark,
-                      fontSize: 31,
-                      letterSpacing: 1.37,
-                      fontWeight: FontWeight.bold
-                  ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: BorderedText(
+                      strokeColor: ColorsResources.premiumDark,
+                      strokeWidth: 1,
+                      strokeCap: StrokeCap.round,
+                      strokeJoin: StrokeJoin.round,
+                      child: Text(
+                        "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
+                        maxLines: 1,
+                        style: const TextStyle(
+                            color: ColorsResources.premiumDark,
+                            fontSize: 31,
+                            letterSpacing: 1.37,
+                        ),
+                      )
+                  )
                 ),
 
                 const Divider(
