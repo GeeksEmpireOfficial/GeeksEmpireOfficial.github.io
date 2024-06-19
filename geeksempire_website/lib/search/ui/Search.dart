@@ -83,10 +83,10 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                   "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
                   maxLines: 1,
                   style: const TextStyle(
-                    color: ColorsResources.premiumDark,
-                    fontSize: 31,
-                    letterSpacing: 1.37,
-                    fontWeight: FontWeight.bold
+                      color: ColorsResources.premiumDark,
+                      fontSize: 31,
+                      letterSpacing: 1.37,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
 
