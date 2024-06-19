@@ -37,7 +37,6 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    debugPrint("Search Query: ${widget.searchQuery}");
 
     BackButtonInterceptor.add(aInterceptor);
 
