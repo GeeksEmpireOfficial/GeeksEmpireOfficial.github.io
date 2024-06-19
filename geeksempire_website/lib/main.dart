@@ -77,7 +77,7 @@ void main() async {
         } else if (parameters["searchQuery"] != null) { // Search
           debugPrint("Search Query: ${parameters["searchQuery"].toString().toUpperCase()}");
 
-          //https://geeks-empire-website.web.app/#/Search?searchQuery=[]
+          //https://geeks-empire-website.web.app/#/Search?searchQuery=ABCXYZ
           return MaterialPageRoute(
               builder: (_) => Search(searchQuery: parameters["searchQuery"])
           );

@@ -106,7 +106,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                         style: const TextStyle(
                             color: ColorsResources.premiumDark,
                             fontSize: 31,
-                            letterSpacing: 1.73
+                            letterSpacing: 7
                         ),
                       ),
 
@@ -132,7 +132,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                         style: const TextStyle(
                             color: ColorsResources.premiumDark,
                             fontSize: 31,
-                            letterSpacing: 1.73
+                            letterSpacing: 7
                         ),
                       ),
 
