@@ -7,8 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Search extends StatefulWidget {
 
@@ -50,7 +48,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           children: const []
       );
 
-      retrieveProduct(widget.searchQuery);
+      retrieveSearch(widget.searchQuery);
 
     }
 
@@ -85,147 +83,30 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
     );
   }
 
-  Future retrieveProduct(String searchQuery) async {
+  void retrieveSearch(String searchQuery) {
+
+    retrieveSearchStorefront(searchQuery);
+
+    retrieveSearchMagazine(searchQuery);
+
+  }
+
+  Future retrieveSearchStorefront(String searchQuery) async {
     debugPrint(endpoints.productsSearch(searchQuery));
 
     final productResponse = await http.get(Uri.parse(endpoints.productsSearch(searchQuery)));
 
     final productJson = jsonDecode(productResponse.body);
 
-    prepareCategories(productJson['categories']);
-
   }
 
-  void prepareCategories(productCategories) {
+  Future retrieveSearchMagazine(String searchQuery) async {
+    debugPrint(endpoints.postsSearch(searchQuery));
 
-    var categoriesList = List.from(productCategories);
+    final postResponse = await http.get(Uri.parse(endpoints.postsSearch(searchQuery)));
 
-    for (var element in categoriesList) {
+    final postJson = jsonDecode(postResponse.body);
 
-      String categoryId = element['id'].toString();
-      String categoryName = element['name'].toString();
-
-      // Exclusions: 6004 - 5120
-      if (categoryId != '6004'
-        && categoryId != '15'
-        && categoryId != '80'
-        && categoryId != '5969'
-        && categoryId != '546'
-        && categoryId != '982'
-        && categoryId != '5120') {
-        debugPrint(element['name'].toString());
-
-        categoriesWidgets.add(categoryItem(categoryName, AnimationController(vsync: this,
-            duration: const Duration(milliseconds: 333),
-            reverseDuration: const Duration(milliseconds: 111),
-            animationBehavior: AnimationBehavior.preserve)));
-
-      }
-
-    }
-
-    setState(() {
-
-      listViewPlaceholder = DynMouseScroll(
-          durationMS: 555,
-          scrollSpeed: 5.5,
-          animationCurve: Curves.easeInOut,
-          builder: (context, controller, physics) => ListView(
-              controller: scrollController,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              physics: const RangeMaintainingScrollPhysics(),
-              children: categoriesWidgets
-          )
-      );
-
-    });
-    
-  }
-
-  Widget categoryItem(String categoryName, AnimationController animationController) {
-
-    return Align(
-        alignment: Alignment.centerLeft,
-        child: ScaleTransition(
-            scale: Tween<double>(begin: 1, end: 1.013)
-                .animate(CurvedAnimation(
-                parent: animationController,
-                curve: Curves.easeOut
-            )),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 13),
-              child: SizedBox(
-                  height: 51,
-                  width: 173,
-                  child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(19)),
-                      child: Container(
-                          decoration: BoxDecoration(
-                              border: Border(
-                                left: BorderSide(width: 7, color: ColorsResources.white.withOpacity(0.51)),
-                                right: BorderSide(width: 7, color: ColorsResources.white.withOpacity(0.51)),
-                                top: BorderSide(width: 3, color: ColorsResources.white.withOpacity(0.51)),
-                                bottom: BorderSide(width: 3, color: ColorsResources.white.withOpacity(0.51)),
-                              ),
-                              borderRadius: const BorderRadius.all(Radius.circular(17)),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    ColorsResources.premiumLight,
-                                    ColorsResources.white.withOpacity(0.51),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.centerRight
-                              )
-                          ),
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.all(Radius.circular(17)),
-                            child: Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                    splashColor: ColorsResources.lightBlue,
-                                    splashFactory: InkRipple.splashFactory,
-                                    onTap: () async {
-
-                                      launchUrl(Uri.parse(endpoints.searchUrl(categoryName)), mode: LaunchMode.externalApplication);
-
-                                    },
-                                    onLongPress: () async {
-
-                                      launchUrl(Uri.parse(endpoints.searchUrl(categoryName)), mode: LaunchMode.externalApplication);
-
-                                    },
-                                    onHover: (hovering) {
-
-                                      hovering ? animationController.forward() : animationController.reverse();
-
-                                    },
-                                    child: Padding(
-                                        padding: const EdgeInsets.only(left: 13, right: 13),
-                                        child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                                categoryName.replaceAll("Products", ""),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: ColorsResources.premiumDark.withOpacity(0.73),
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                          )
-                      )
-                  )
-              )
-            )
-        )
-    );
   }
   
 }
