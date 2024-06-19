@@ -79,7 +79,7 @@ void main() async {
 
           //https://geeks-empire-website.web.app/#/Search?searchQuery=[]
           return MaterialPageRoute(
-              builder: (_) => MagazineCategories(postId: int.parse(parameters["searchQuery"]))
+              builder: (_) => Search(searchQuery: parameters["searchQuery"])
           );
 
         }
