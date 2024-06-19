@@ -12,7 +12,6 @@ import 'package:shaped_image/shaped_image.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// <iframe src="https://geeks-empire-website.web.app/#/CoolGadgets" title="Geeks Empire - Cool Gadgets" loading="lazy" style="border:none;" width="100%" height="137px" />
 // <object type="text/html" data="https://geeks-empire-website.web.app/#/CoolGadgets" style="width:100%; height:137px; border:none;"> <p></p> </object>
 class CoolGadgets extends StatefulWidget {
 
@@ -194,7 +193,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                                       child: ShapedImage(
                                           imageTye: ImageType.NETWORK,
                                           path: productDataStructure.productImage(),
-                                          shape: Shape.Squircle,
+                                          shape: Shape.Squarcle,
                                           width: 200,
                                           height: 200
                                       ),
