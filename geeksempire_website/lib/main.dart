@@ -9,6 +9,7 @@ import 'package:sachiel_website/exclusive/ui/CoolGadgets.dart';
 import 'package:sachiel_website/firebase_options.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:sachiel_website/search/ui/Search.dart';
 
 void main() async {
 
@@ -43,6 +44,7 @@ void main() async {
         '/CoolGadgets': (BuildContext context) => const CoolGadgets(),
         '/MagazineCategories': (BuildContext context) => MagazineCategories(postId: 0),
         '/StorefrontCategories': (BuildContext context) => StorefrontCategories(productId: 0),
+        '/Search': (BuildContext context) => Search(searchQuery: ''),
       },
       onGenerateRoute: (routeSettings) {
 
@@ -55,9 +57,6 @@ void main() async {
           parameters[key] = value;
 
         });
-
-        print(parameters["productId"]);
-        print(parameters["postId"]);
 
         if (parameters["productId"] != null) { // Storefront
           debugPrint("Product Id: ${parameters["productId"].toString().toUpperCase()}");
@@ -73,6 +72,14 @@ void main() async {
           //https://geeks-empire-website.web.app/#/MagazineCategories?postId=[]
           return MaterialPageRoute(
               builder: (_) => MagazineCategories(postId: int.parse(parameters["postId"]))
+          );
+
+        } else if (parameters["searchQuery"] != null) { // Search
+          debugPrint("Search Query: ${parameters["searchQuery"].toString().toUpperCase()}");
+
+          //https://geeks-empire-website.web.app/#/Search?searchQuery=[]
+          return MaterialPageRoute(
+              builder: (_) => MagazineCategories(postId: int.parse(parameters["searchQuery"]))
           );
 
         }
