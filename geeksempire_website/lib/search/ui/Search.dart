@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
-import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 
 class Search extends StatefulWidget {
 
@@ -77,48 +76,78 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         backgroundColor: ColorsResources.premiumLight,
         body: Container(
           alignment: Alignment.topLeft,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
               children: [
 
                 Text(
-                  "${StringsResources.exploringTitle()} ${widget.searchQuery}",
+                  "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
                   maxLines: 1,
                   style: const TextStyle(
-                    color: ColorsResources.premiumDark
+                    color: ColorsResources.premiumDark,
+                    fontSize: 31,
+                    letterSpacing: 1.37,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
 
-                DynMouseScroll(
-                    durationMS: 555,
-                    scrollSpeed: 5.5,
-                    animationCurve: Curves.easeInOut,
-                    builder: (context, controller, physics) => ListView(
-                        controller: scrollController,
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        physics: const RangeMaintainingScrollPhysics(),
-                        children: [
+                const Divider(
+                  height: 37,
+                  color: ColorsResources.transparent,
+                ),
 
-                          SizedBox(
-                            height: 392,
-                            width: double.infinity,
-                            child: listViewStorefront,
-                          ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
 
-                          const Divider(
-                            height: 51,
-                          ),
+                      Text(
+                        StringsResources.storefrontTitle(),
+                        maxLines: 1,
+                        style: const TextStyle(
+                            color: ColorsResources.premiumDark,
+                            fontSize: 31,
+                            letterSpacing: 1.73
+                        ),
+                      ),
 
-                          SizedBox(
-                            height: 392,
-                            width: double.infinity,
-                            child: listViewMagazine,
-                          ),
+                      const Divider(
+                        height: 19,
+                        color: ColorsResources.transparent,
+                      ),
 
-                        ]
-                    )
+                      SizedBox(
+                        height: 392,
+                        width: double.infinity,
+                        child: listViewStorefront,
+                      ),
+
+                      const Divider(
+                        height: 37,
+                        color: ColorsResources.transparent,
+                      ),
+
+                      Text(
+                        StringsResources.magazineTitle(),
+                        maxLines: 1,
+                        style: const TextStyle(
+                            color: ColorsResources.premiumDark,
+                            fontSize: 31,
+                            letterSpacing: 1.73
+                        ),
+                      ),
+
+                      const Divider(
+                        height: 19,
+                        color: ColorsResources.transparent,
+                      ),
+
+                      SizedBox(
+                        height: 392,
+                        width: double.infinity,
+                        child: listViewMagazine,
+                      ),
+
+                    ]
                 )
 
               ]

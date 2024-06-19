@@ -27,7 +27,7 @@ class StringsResources {
 
   static String magazineTitle() {
 
-    return "Storefront";
+    return "Magazine";
   }
 
   static String projects() {
