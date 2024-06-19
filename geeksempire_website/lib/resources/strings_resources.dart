@@ -15,11 +15,25 @@ class StringsResources {
     return "Geeks Empire";
   }
 
+  static String exploringTitle() {
+
+    return "Exploring";
+  }
+
+  static String storefrontTitle() {
+
+    return "Storefront";
+  }
+
+  static String magazineTitle() {
+
+    return "Storefront";
+  }
+
   static String projects() {
 
     return "Projects";
   }
-
   static String projectsLink() {
 
     return "https://GeeksEmpire.co/Projects";
@@ -29,7 +43,6 @@ class StringsResources {
 
     return "Terms Of Services";
   }
-
   static String termServiceLink() {
 
     return "https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/";
@@ -39,7 +52,6 @@ class StringsResources {
 
     return "Privacy Policy";
   }
-
   static String privacyPolicyLink() {
 
     return "https://geeksempire.co/privacypolicy/";
@@ -49,12 +61,10 @@ class StringsResources {
 
     return "https://www.twitter.com/GeeksEmpire";
   }
-
   static String threadsLink() {
 
     return "https://www.threads.net/@geeksempire.co";
   }
-
   static String youtubeLink() {
 
     return "https://www.youtube.com/@GeeksEmpireCo/";

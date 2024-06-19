@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
+import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 
 class Search extends StatefulWidget {
 
@@ -21,7 +23,8 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   Endpoints endpoints = Endpoints();
 
-  Widget listViewPlaceholder = ListView();
+  Widget listViewStorefront = ListView();
+  Widget listViewMagazine = ListView();
 
   ScrollController scrollController = ScrollController();
 
@@ -42,7 +45,12 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     if (widget.searchQuery.isNotEmpty) {
 
-      listViewPlaceholder = ListView(
+      listViewStorefront = ListView(
+          controller: scrollController,
+          children: const []
+      );
+
+      listViewMagazine = ListView(
           controller: scrollController,
           children: const []
       );
@@ -68,16 +76,53 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         resizeToAvoidBottomInset: true,
         backgroundColor: ColorsResources.premiumLight,
         body: Container(
-            height: 51,
-            alignment: Alignment.center,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(19),
-                child: SizedBox(
-                    height: 51,
-                    width: double.maxFinite,
-                    child: listViewPlaceholder
+          alignment: Alignment.topLeft,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Text(
+                  "${StringsResources.exploringTitle()} ${widget.searchQuery}",
+                  maxLines: 1,
+                  style: const TextStyle(
+                    color: ColorsResources.premiumDark
+                  ),
+                ),
+
+                DynMouseScroll(
+                    durationMS: 555,
+                    scrollSpeed: 5.5,
+                    animationCurve: Curves.easeInOut,
+                    builder: (context, controller, physics) => ListView(
+                        controller: scrollController,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: const RangeMaintainingScrollPhysics(),
+                        children: [
+
+                          SizedBox(
+                            height: 392,
+                            width: double.infinity,
+                            child: listViewStorefront,
+                          ),
+
+                          const Divider(
+                            height: 51,
+                          ),
+
+                          SizedBox(
+                            height: 392,
+                            width: double.infinity,
+                            child: listViewMagazine,
+                          ),
+
+                        ]
+                    )
                 )
-            )
+
+              ]
+          )
         )
     );
   }
