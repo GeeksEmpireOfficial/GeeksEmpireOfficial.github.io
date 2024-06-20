@@ -6,6 +6,7 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
@@ -24,11 +25,26 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Endpoints endpoints = Endpoints();
 
   Widget listViewStorefront = ListView();
+  Widget loadingStorefront = LoadingAnimationWidget.discreteCircle(
+      color: ColorsResources.premiumDark,
+      secondRingColor: ColorsResources.lightOrange,
+      thirdRingColor: ColorsResources.cyan,
+      size: 13
+  );
+
   Widget listViewMagazine = ListView();
+  Widget loadingMagazine = LoadingAnimationWidget.discreteCircle(
+      color: ColorsResources.premiumDark,
+      secondRingColor: ColorsResources.lightOrange,
+      thirdRingColor: ColorsResources.cyan,
+      size: 13
+  );
 
   ScrollController scrollController = ScrollController();
 
   List<Widget> categoriesWidgets = [];
+
+  String searchQueryExcerpt = "Loading...";
   
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -82,20 +98,36 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: BorderedText(
-                      strokeColor: ColorsResources.premiumDark,
-                      strokeWidth: 1,
-                      strokeCap: StrokeCap.round,
-                      strokeJoin: StrokeJoin.round,
-                      child: Text(
-                        "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
-                        maxLines: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+
+                      BorderedText(
+                          strokeColor: ColorsResources.premiumDark,
+                          strokeWidth: 1,
+                          strokeCap: StrokeCap.round,
+                          strokeJoin: StrokeJoin.round,
+                          child: Text(
+                              "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
+                              maxLines: 1,
+                              style: const TextStyle(
+                                  color: ColorsResources.premiumDark,
+                                  fontSize: 31,
+                                  letterSpacing: 1.37
+                              )
+                          )
+                      ),
+
+                      Text(
+                        searchQueryExcerpt,
                         style: const TextStyle(
-                            color: ColorsResources.premiumDark,
-                            fontSize: 31,
-                            letterSpacing: 1.37,
-                        ),
+                          color: ColorsResources.premiumDark,
+                          fontSize: 13
+                        )
                       )
+
+                    ]
                   )
                 ),
 
@@ -109,14 +141,22 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
 
-                      Text(
-                        StringsResources.storefrontTitle(),
-                        maxLines: 1,
-                        style: const TextStyle(
-                            color: ColorsResources.premiumDark,
-                            fontSize: 31,
-                            letterSpacing: 7
-                        ),
+                      Row(
+                        children: [
+
+                          Text(
+                            StringsResources.storefrontTitle(),
+                            maxLines: 1,
+                            style: const TextStyle(
+                                color: ColorsResources.premiumDark,
+                                fontSize: 31,
+                                letterSpacing: 7
+                            ),
+                          ),
+
+                          loadingStorefront
+
+                        ]
                       ),
 
                       const Divider(
@@ -135,14 +175,22 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                         color: ColorsResources.transparent,
                       ),
 
-                      Text(
-                        StringsResources.magazineTitle(),
-                        maxLines: 1,
-                        style: const TextStyle(
-                            color: ColorsResources.premiumDark,
-                            fontSize: 31,
-                            letterSpacing: 7
-                        ),
+                      Row(
+                          children: [
+
+                            Text(
+                              StringsResources.magazineTitle(),
+                              maxLines: 1,
+                              style: const TextStyle(
+                                  color: ColorsResources.premiumDark,
+                                  fontSize: 31,
+                                  letterSpacing: 7
+                              ),
+                            ),
+
+                            loadingMagazine
+
+                          ]
                       ),
 
                       const Divider(
