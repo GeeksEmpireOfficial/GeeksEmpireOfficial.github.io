@@ -30,6 +30,16 @@ class StringsResources {
     return "Magazine";
   }
 
+  static String completeSearch() {
+
+    return "Complete Search";
+  }
+
+  static String nothingFound() {
+
+    return "Nothing Found";
+  }
+
   static String projects() {
 
     return "Projects";

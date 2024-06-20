@@ -255,7 +255,21 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     final productsJson = List.from(jsonDecode(productsResponse.body));
 
-    prepareProducts(productsJson);
+    print('>>>>>>>>>>>>>>>>>>' + productsJson.toString());
+
+    if (productsJson.isEmpty) {
+
+      setState(() {
+
+        loadingStorefront = completeSearchDesign();
+
+      });
+
+    } else {
+
+      prepareProducts(productsJson);
+
+    }
 
   }
 
@@ -394,7 +408,19 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     final postJson = List.from(jsonDecode(postResponse.body));
 
-    preparePosts(postJson);
+    if (postJson.isEmpty) {
+
+      setState(() {
+
+        loadingMagazine = completeSearchDesign();
+
+      });
+
+    } else {
+
+      preparePosts(postJson);
+
+    }
 
   }
 
@@ -530,4 +556,57 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   /*
    * End - Magazine Search
    */
+
+  Widget completeSearchDesign() {
+
+    return Align(
+      alignment: Alignment.centerLeft,
+      child:  Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(11),
+          border: Border(
+            left: BorderSide(
+              width: 7,
+              color: ColorsResources.premiumDark.withOpacity(0.51)
+            ),
+            right: BorderSide(
+                width: 7,
+                color: ColorsResources.premiumDark.withOpacity(0.51)
+            ),
+            top: BorderSide(
+                width: 3,
+                color: ColorsResources.premiumDark.withOpacity(0.51)
+            ),
+            bottom: BorderSide(
+                width: 3,
+                color: ColorsResources.premiumDark.withOpacity(0.51)
+            ),
+          ),
+          color: ColorsResources.blueGray.withOpacity(0.51)
+        ),
+        child: Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 11, right: 11, top: 5, bottom: 5),
+            child: InkWell(
+              onTap: () async {
+
+                launchUrl(Uri.parse("https://GeeksEmpire.co/?s=${widget.searchQuery}"), mode: LaunchMode.platformDefault);
+
+              },
+              child: Text(
+                  StringsResources.completeSearch(),
+                  style: const TextStyle(
+                      color: ColorsResources.white,
+                      fontSize: 12,
+                      letterSpacing: 1.73
+                  )
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+
 }
