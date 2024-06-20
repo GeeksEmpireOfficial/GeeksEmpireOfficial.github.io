@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -175,12 +176,12 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                       ),
 
                       const Divider(
-                        height: 3,
+                        height: 7,
                         color: ColorsResources.transparent,
                       ),
 
                       SizedBox(
-                        height: 392,
+                        height: 313,
                         width: double.infinity,
                         child: listViewStorefront,
                       ),
@@ -217,12 +218,12 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                       ),
 
                       const Divider(
-                        height: 3,
+                        height: 7,
                         color: ColorsResources.transparent,
                       ),
 
                       SizedBox(
-                        height: 392,
+                        height: 313,
                         width: double.infinity,
                         child: listViewMagazine,
                       ),
@@ -288,6 +289,8 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           )
       );
 
+      loadingStorefront = Container();
+
     });
 
   }
@@ -303,68 +306,86 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                 parent: animationController,
                 curve: Curves.easeOut
             )),
-            child: InkWell(
-              onTap: () async {
+            child: GestureDetector(
+                onTap: () async {
 
-                launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
+                  launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
 
-              },
-              child: SizedBox(
-                  height: 312,
-                  width: 237,
-                  child: Stack(
-                      children: [
+                },
+                child: SizedBox(
+                    height: 312,
+                    width: 237,
+                    child: Stack(
+                        children: [
 
-                        SizedBox(
-                          height: 312,
-                          width: 237,
-                          child: ShapedImage(
-                            imageTye: ImageType.NETWORK,
-                            path: productDataStructure.productImage(),
-                            shape: Shape.Rectarcle,
-                            height: 312,
-                            width: 237,
-                            boxFit: BoxFit.cover,
+                          Align(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              height: 311,
+                              width: 236,
+                              child: ShapedImage(
+                                imageTye: ImageType.NETWORK,
+                                path: productDataStructure.productImage(),
+                                shape: Shape.Rectarcle,
+                                height: 311,
+                                width: 236,
+                                boxFit: BoxFit.cover,
+                              ).blurred(blur: 3, blurColor: ColorsResources.premiumLight.withOpacity(0.13), borderRadius: BorderRadius.circular(99)),
+                            )
                           ),
-                        ),
 
-                        const SizedBox(
-                            height: 312,
-                            width: 237,
-                            child: Image(
-                              image: AssetImage("assets/rectarcle_adjustment.png"),
-                              height: 312,
-                              width: 237,
-                              fit: BoxFit.cover,
-                            )
-                        ),
+                          // Align(
+                          //   alignment: Alignment.center,
+                          //   child: SizedBox(
+                          //     height: 311,
+                          //     width: 236,
+                          //     child: ShapedImage(
+                          //       imageTye: ImageType.NETWORK,
+                          //       path: productDataStructure.productImage(),
+                          //       shape: Shape.Rectarcle,
+                          //       height: 311,
+                          //       width: 236,
+                          //       boxFit: BoxFit.cover,
+                          //     ),
+                          //   )
+                          // ),
 
-                        Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 31),
-                              child: SizedBox(
-                                  height: 133,
-                                  width: 179,
-                                  child: Text(
-                                      productDataStructure.productName(),
-                                      textAlign: TextAlign.justify,
-                                      maxLines: 8,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: 15,
-                                          letterSpacing: 3.7
-                                      )
-                                  )
-                              ),
-                            )
-                        )
+                          const Align(
+                              alignment: Alignment.center,
+                              child: Image(
+                                image: AssetImage("assets/rectarcle_adjustment.png"),
+                                height: 312,
+                                width: 237,
+                                fit: BoxFit.cover,
+                              )
+                          ),
 
-                      ]
-                  )
-              )
-            )
+                          Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 31),
+                                child: SizedBox(
+                                    height: 133,
+                                    width: 179,
+                                    child: Text(
+                                        productDataStructure.productName(),
+                                        textAlign: TextAlign.justify,
+                                        maxLines: 8,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                            color: ColorsResources.premiumLight,
+                                            fontSize: 15,
+                                            letterSpacing:  1.37
+                                        )
+                                    )
+                                ),
+                              )
+                          )
+
+                        ]
+                    )
+                )
+            ),
         )
     );
   }
