@@ -129,6 +129,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
                       Text(
                         searchQueryExcerpt,
+                        maxLines: 5,
                         style: const TextStyle(
                           color: ColorsResources.premiumDark,
                           fontSize: 13
@@ -254,8 +255,6 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
     final productsResponse = await http.get(Uri.parse(endpoints.productsSearch(searchQuery)));
 
     final productsJson = List.from(jsonDecode(productsResponse.body));
-
-    print('>>>>>>>>>>>>>>>>>>' + productsJson.toString());
 
     if (productsJson.isEmpty) {
 
