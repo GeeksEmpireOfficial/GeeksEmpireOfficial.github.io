@@ -16,8 +16,6 @@ dependencies:
   back_button_interceptor: ^7.0.0
 
   blur: ^3.0.0
-
-  bordered_text: ^2.0.0
   ####### ####### #######
 
 

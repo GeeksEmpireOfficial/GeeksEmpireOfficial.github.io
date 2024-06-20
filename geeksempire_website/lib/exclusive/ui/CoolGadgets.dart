@@ -5,7 +5,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:sachiel_website/exclusive/data/ProductDataStructure.dart';
+import 'package:sachiel_website/data/ProductDataStructure.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:shaped_image/shaped_image.dart';
@@ -174,7 +174,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
                               splashFactory: InkRipple.splashFactory,
                               onTap: () async {
 
-                                launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
+                                launchUrl(Uri.parse(productDataStructure.productExternalLink()), mode: LaunchMode.externalApplication);
 
                               },
                               onHover: (hovering) {

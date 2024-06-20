@@ -20,6 +20,11 @@ class ProductDataStructure {
 
   String productLink() {
 
+    return inputDynamicJson['permalink'];
+  }
+
+  String productExternalLink() {
+
     return inputDynamicJson['external_url'];
   }
 

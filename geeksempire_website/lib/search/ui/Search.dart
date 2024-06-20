@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
-import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -10,6 +9,11 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:shaped_image/shaped_image.dart';
+import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../data/ProductDataStructure.dart';
 
 class Search extends StatefulWidget {
 
@@ -25,19 +29,27 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Endpoints endpoints = Endpoints();
 
   Widget listViewStorefront = ListView();
-  Widget loadingStorefront = LoadingAnimationWidget.discreteCircle(
-      color: ColorsResources.premiumDark,
-      secondRingColor: ColorsResources.lightOrange,
-      thirdRingColor: ColorsResources.cyan,
-      size: 13
+  Widget loadingStorefront = Container(
+      height: 59,
+      alignment: Alignment.centerLeft,
+      child: LoadingAnimationWidget.discreteCircle(
+          color: ColorsResources.premiumDark,
+          secondRingColor: ColorsResources.lightOrange,
+          thirdRingColor: ColorsResources.cyan,
+          size: 13
+      )
   );
 
   Widget listViewMagazine = ListView();
-  Widget loadingMagazine = LoadingAnimationWidget.discreteCircle(
-      color: ColorsResources.premiumDark,
-      secondRingColor: ColorsResources.lightOrange,
-      thirdRingColor: ColorsResources.cyan,
-      size: 13
+  Widget loadingMagazine = Container(
+      height: 59,
+      alignment: Alignment.centerLeft,
+      child: LoadingAnimationWidget.discreteCircle(
+          color: ColorsResources.premiumDark,
+          secondRingColor: ColorsResources.lightOrange,
+          thirdRingColor: ColorsResources.cyan,
+          size: 13
+      )
   );
 
   ScrollController scrollController = ScrollController();
@@ -103,19 +115,14 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
 
-                      BorderedText(
-                          strokeColor: ColorsResources.premiumDark,
-                          strokeWidth: 1,
-                          strokeCap: StrokeCap.round,
-                          strokeJoin: StrokeJoin.round,
-                          child: Text(
-                              "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
-                              maxLines: 1,
-                              style: const TextStyle(
-                                  color: ColorsResources.premiumDark,
-                                  fontSize: 31,
-                                  letterSpacing: 1.37
-                              )
+                      Text(
+                          "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
+                          maxLines: 1,
+                          style: const TextStyle(
+                            color: ColorsResources.premiumDark,
+                            fontSize: 31,
+                            letterSpacing: 1.37,
+                            fontWeight: FontWeight.bold
                           )
                       ),
 
@@ -144,14 +151,22 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                       Row(
                         children: [
 
-                          Text(
-                            StringsResources.storefrontTitle(),
-                            maxLines: 1,
-                            style: const TextStyle(
-                                color: ColorsResources.premiumDark,
-                                fontSize: 31,
-                                letterSpacing: 7
-                            ),
+                          Container(
+                            height: 59,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              StringsResources.storefrontTitle(),
+                              maxLines: 1,
+                              style: const TextStyle(
+                                  color: ColorsResources.premiumDark,
+                                  fontSize: 31,
+                                  letterSpacing: 7
+                              ),
+                            )
+                          ),
+
+                          const SizedBox(
+                            width: 13,
                           ),
 
                           loadingStorefront
@@ -160,7 +175,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                       ),
 
                       const Divider(
-                        height: 19,
+                        height: 3,
                         color: ColorsResources.transparent,
                       ),
 
@@ -178,14 +193,22 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                       Row(
                           children: [
 
-                            Text(
-                              StringsResources.magazineTitle(),
-                              maxLines: 1,
-                              style: const TextStyle(
-                                  color: ColorsResources.premiumDark,
-                                  fontSize: 31,
-                                  letterSpacing: 7
-                              ),
+                            Container(
+                                height: 59,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  StringsResources.magazineTitle(),
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                      color: ColorsResources.premiumDark,
+                                      fontSize: 31,
+                                      letterSpacing: 7
+                                  ),
+                                )
+                            ),
+
+                            const SizedBox(
+                              width: 13,
                             ),
 
                             loadingMagazine
@@ -194,7 +217,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                       ),
 
                       const Divider(
-                        height: 19,
+                        height: 3,
                         color: ColorsResources.transparent,
                       ),
 
@@ -221,15 +244,137 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   }
 
+  /*
+   * Start - Storefront Search
+   */
   Future retrieveSearchStorefront(String searchQuery) async {
     debugPrint(endpoints.productsSearch(searchQuery));
 
-    final productResponse = await http.get(Uri.parse(endpoints.productsSearch(searchQuery)));
+    final productsResponse = await http.get(Uri.parse(endpoints.productsSearch(searchQuery)));
 
-    final productJson = jsonDecode(productResponse.body);
+    final productsJson = List.from(jsonDecode(productsResponse.body));
+
+    prepareProducts(productsJson);
 
   }
 
+  void prepareProducts(List<dynamic> productsJson) {
+
+    List<Widget> productsList = [];
+
+    for (var element in productsJson) {
+
+      ProductDataStructure productDataStructure = ProductDataStructure(element);
+
+      productsList.add(itemProductsResults(productDataStructure, AnimationController(vsync: this,
+          duration: const Duration(milliseconds: 333),
+          reverseDuration: const Duration(milliseconds: 111),
+          animationBehavior: AnimationBehavior.preserve)));
+
+    }
+
+    setState(() {
+
+      listViewStorefront = DynMouseScroll(
+          durationMS: 555,
+          scrollSpeed: 5.5,
+          animationCurve: Curves.easeInOut,
+          builder: (context, controller, physics) => ListView(
+              controller: scrollController,
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: const RangeMaintainingScrollPhysics(),
+              children: productsList
+          )
+      );
+
+    });
+
+  }
+
+  Widget itemProductsResults(ProductDataStructure productDataStructure, AnimationController animationController) {
+
+    return Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.only(right: 19),
+        child: ScaleTransition(
+            scale: Tween<double>(begin: 1, end: 1.013)
+                .animate(CurvedAnimation(
+                parent: animationController,
+                curve: Curves.easeOut
+            )),
+            child: InkWell(
+              onTap: () async {
+
+                launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
+
+              },
+              child: SizedBox(
+                  height: 312,
+                  width: 237,
+                  child: Stack(
+                      children: [
+
+                        SizedBox(
+                          height: 312,
+                          width: 237,
+                          child: ShapedImage(
+                            imageTye: ImageType.NETWORK,
+                            path: productDataStructure.productImage(),
+                            shape: Shape.Rectarcle,
+                            height: 312,
+                            width: 237,
+                            boxFit: BoxFit.cover,
+                          ),
+                        ),
+
+                        const SizedBox(
+                            height: 312,
+                            width: 237,
+                            child: Image(
+                              image: AssetImage("assets/rectarcle_adjustment.png"),
+                              height: 312,
+                              width: 237,
+                              fit: BoxFit.cover,
+                            )
+                        ),
+
+                        Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 31),
+                              child: SizedBox(
+                                  height: 133,
+                                  width: 179,
+                                  child: Text(
+                                      productDataStructure.productName(),
+                                      textAlign: TextAlign.justify,
+                                      maxLines: 8,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: ColorsResources.premiumLight,
+                                          fontSize: 15,
+                                          letterSpacing: 3.7
+                                      )
+                                  )
+                              ),
+                            )
+                        )
+
+                      ]
+                  )
+              )
+            )
+        )
+    );
+  }
+  /*
+   * End - Storefront Search
+   */
+
+  /*
+   * Start - Magazine Search
+   */
   Future retrieveSearchMagazine(String searchQuery) async {
     debugPrint(endpoints.postsSearch(searchQuery));
 
@@ -238,5 +383,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
     final postJson = jsonDecode(postResponse.body);
 
   }
-  
+  /*
+   * End - Magazine Search
+   */
 }
