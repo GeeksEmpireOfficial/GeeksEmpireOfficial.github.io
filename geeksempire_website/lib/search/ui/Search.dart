@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
-import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:sachiel_website/data/PostDataStructure.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
@@ -57,7 +57,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   List<Widget> categoriesWidgets = [];
 
-  String searchQueryExcerpt = "Loading...";
+  String searchQueryExcerpt = "";
   
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -306,10 +306,15 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                 parent: animationController,
                 curve: Curves.easeOut
             )),
-            child: GestureDetector(
+            child: InkWell(
                 onTap: () async {
 
                   launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
+
+                },
+                onHover: (hovering) {
+
+                  hovering ? animationController.forward() : animationController.reverse();
 
                 },
                 child: SizedBox(
@@ -321,34 +326,18 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                           Align(
                             alignment: Alignment.center,
                             child: SizedBox(
-                              height: 311,
-                              width: 236,
+                              height: 310,
+                              width: 235,
                               child: ShapedImage(
                                 imageTye: ImageType.NETWORK,
                                 path: productDataStructure.productImage(),
                                 shape: Shape.Rectarcle,
-                                height: 311,
-                                width: 236,
+                                height: 310,
+                                width: 235,
                                 boxFit: BoxFit.cover,
-                              ).blurred(blur: 3, blurColor: ColorsResources.premiumLight.withOpacity(0.13), borderRadius: BorderRadius.circular(99)),
+                              ),
                             )
                           ),
-
-                          // Align(
-                          //   alignment: Alignment.center,
-                          //   child: SizedBox(
-                          //     height: 311,
-                          //     width: 236,
-                          //     child: ShapedImage(
-                          //       imageTye: ImageType.NETWORK,
-                          //       path: productDataStructure.productImage(),
-                          //       shape: Shape.Rectarcle,
-                          //       height: 311,
-                          //       width: 236,
-                          //       boxFit: BoxFit.cover,
-                          //     ),
-                          //   )
-                          // ),
 
                           const Align(
                               alignment: Alignment.center,
@@ -370,7 +359,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                     child: Text(
                                         productDataStructure.productName(),
                                         textAlign: TextAlign.justify,
-                                        maxLines: 8,
+                                        maxLines: 6,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
                                             color: ColorsResources.premiumLight,
@@ -401,8 +390,142 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     final postResponse = await http.get(Uri.parse(endpoints.postsSearch(searchQuery)));
 
-    final postJson = jsonDecode(postResponse.body);
+    final postJson = List.from(jsonDecode(postResponse.body));
 
+    preparePosts(postJson);
+
+  }
+
+  void preparePosts(List<dynamic> postsJson) async {
+
+    List<Widget> postsList = [];
+
+    for (var element in postsJson) {
+
+      PostDataStructure postDataStructure = PostDataStructure(element);
+
+      final postResponse = await http.get(Uri.parse(endpoints.postsById(postDataStructure.postId())));
+      final postJson = jsonDecode(postResponse.body);
+
+      print(postJson);
+
+      String featuredMedia = postJson['featured_media'];
+
+      final mediaResponse = await http.get(Uri.parse(endpoints.mediaUrl(featuredMedia)));
+      final mediaJson = jsonDecode(mediaResponse.body);
+
+      String productImage = mediaJson['guid']['rendered'];
+
+      postsList.add(itemPostsResults(postDataStructure, productImage, AnimationController(vsync: this,
+          duration: const Duration(milliseconds: 333),
+          reverseDuration: const Duration(milliseconds: 111),
+          animationBehavior: AnimationBehavior.preserve)));
+
+    }
+
+    setState(() {
+
+      listViewMagazine = DynMouseScroll(
+          durationMS: 555,
+          scrollSpeed: 5.5,
+          animationCurve: Curves.easeInOut,
+          builder: (context, controller, physics) => ListView(
+              controller: scrollController,
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: const RangeMaintainingScrollPhysics(),
+              children: postsList
+          )
+      );
+
+      loadingMagazine = Container();
+
+    });
+
+  }
+
+  Widget itemPostsResults(PostDataStructure postDataStructure, productImage, AnimationController animationController) {
+
+    return Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.only(right: 19),
+        child: ScaleTransition(
+          scale: Tween<double>(begin: 1, end: 1.013)
+              .animate(CurvedAnimation(
+              parent: animationController,
+              curve: Curves.easeOut
+          )),
+          child: InkWell(
+              onTap: () async {
+
+                launchUrl(Uri.parse(postDataStructure.postLink()), mode: LaunchMode.externalApplication);
+
+              },
+              onHover: (hovering) {
+
+                hovering ? animationController.forward() : animationController.reverse();
+
+              },
+              child: SizedBox(
+                  height: 312,
+                  width: 237,
+                  child: Stack(
+                      children: [
+
+                        Align(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              height: 310,
+                              width: 235,
+                              child: ShapedImage(
+                                imageTye: ImageType.NETWORK,
+                                path: productImage,
+                                shape: Shape.Rectarcle,
+                                height: 310,
+                                width: 235,
+                                boxFit: BoxFit.cover,
+                              ),
+                            )
+                        ),
+
+                        const Align(
+                            alignment: Alignment.center,
+                            child: Image(
+                              image: AssetImage("assets/rectarcle_adjustment.png"),
+                              height: 312,
+                              width: 237,
+                              fit: BoxFit.cover,
+                            )
+                        ),
+
+                        Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 31),
+                              child: SizedBox(
+                                  height: 133,
+                                  width: 254,
+                                  child: Text(
+                                      postDataStructure.postTitle(),
+                                      textAlign: TextAlign.justify,
+                                      maxLines: 6,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: ColorsResources.premiumLight,
+                                          fontSize: 15,
+                                          letterSpacing:  1.37
+                                      )
+                                  )
+                              ),
+                            )
+                        )
+
+                      ]
+                  )
+              )
+          ),
+        )
+    );
   }
   /*
    * End - Magazine Search

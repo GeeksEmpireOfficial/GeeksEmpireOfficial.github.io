@@ -88,9 +88,9 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
   }
 
   Future retrieveProduct(int postId) async {
-    debugPrint(endpoints.postsById(postId));
+    debugPrint(endpoints.postsById(postId.toString()));
 
-    final postResponse = await http.get(Uri.parse(endpoints.postsById(postId)));
+    final postResponse = await http.get(Uri.parse(endpoints.postsById(postId.toString())));
 
     final postJson = jsonDecode(postResponse.body);
 

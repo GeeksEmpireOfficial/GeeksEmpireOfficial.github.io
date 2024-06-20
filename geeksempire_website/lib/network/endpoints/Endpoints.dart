@@ -22,7 +22,7 @@ class Endpoints {
         "&consumer_secret=$_consumerSecret";
   }
 
-  String postsById(int postId) {
+  String postsById(String postId) {
 
     // /#/MagazineCategories?postId=15200
     return "https://geeksempire.co/wp-json/wp/v2/posts/"
@@ -63,6 +63,11 @@ class Endpoints {
     return "https://geeksempire.co/wp-json/wc/v3/products?consumer_key=ck_e469d717bd778da4fb9ec24881ee589d9b202662&consumer_secret=cs_ac53c1b36d1a85e36a362855d83af93f0d377686"
         "&search=$searchQuery"
         "&per_page=99&orderby=date&order=desc";
+  }
+
+  String mediaUrl(String mediaId) {
+
+    return "https://geeksempire.co/wp-json/wp/v2/media/$mediaId";
   }
 
 }
