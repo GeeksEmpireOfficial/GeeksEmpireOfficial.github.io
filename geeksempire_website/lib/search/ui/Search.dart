@@ -301,80 +301,82 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.only(right: 19),
         child: ScaleTransition(
-            scale: Tween<double>(begin: 1, end: 1.013)
-                .animate(CurvedAnimation(
-                parent: animationController,
-                curve: Curves.easeOut
-            )),
-            child: InkWell(
-                onTap: () async {
+          scale: Tween<double>(begin: 1, end: 1.013)
+              .animate(CurvedAnimation(
+              parent: animationController,
+              curve: Curves.easeOut
+          )),
+          child: InkWell(
+              onTap: () async {
 
-                  launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
+                launchUrl(Uri.parse(productDataStructure.productLink()), mode: LaunchMode.externalApplication);
 
-                },
-                onHover: (hovering) {
+              },
+              onHover: (hovering) {
 
-                  hovering ? animationController.forward() : animationController.reverse();
+                hovering ? animationController.forward() : animationController.reverse();
 
-                },
-                child: SizedBox(
-                    height: 312,
-                    width: 237,
-                    child: Stack(
-                        children: [
+              },
+              child: SizedBox(
+                  height: 312,
+                  width: 312,
+                  child: Stack(
+                      children: [
 
-                          Align(
+                        Align(
                             alignment: Alignment.center,
                             child: SizedBox(
-                              height: 310,
-                              width: 235,
+                              height: 307,
+                              width: 310,
                               child: ShapedImage(
                                 imageTye: ImageType.NETWORK,
                                 path: productDataStructure.productImage(),
-                                shape: Shape.Rectarcle,
-                                height: 310,
-                                width: 235,
+                                shape: Shape.Squarcle,
+                                height: 307,
+                                width: 310,
                                 boxFit: BoxFit.cover,
+                              )
+                            )
+                        ),
+
+                        Align(
+                            alignment: Alignment.center,
+                            child: ShapedImage(
+                              imageTye: ImageType.ASSET,
+                              path: "assets/squarcle_adjustment.png",
+                              shape: Shape.Squarcle,
+                              height: 312,
+                              width: 312,
+                              boxFit: BoxFit.fill,
+                            )
+                        ),
+
+                        Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 31),
+                              child: SizedBox(
+                                  height: 133,
+                                  width: 254,
+                                  child: Text(
+                                      productDataStructure.productName(),
+                                      textAlign: TextAlign.justify,
+                                      maxLines: 6,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: ColorsResources.premiumLight,
+                                          fontSize: 15,
+                                          letterSpacing:  1.37
+                                      )
+                                  )
                               ),
                             )
-                          ),
+                        )
 
-                          const Align(
-                              alignment: Alignment.center,
-                              child: Image(
-                                image: AssetImage("assets/rectarcle_adjustment.png"),
-                                height: 312,
-                                width: 237,
-                                fit: BoxFit.cover,
-                              )
-                          ),
-
-                          Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 31),
-                                child: SizedBox(
-                                    height: 133,
-                                    width: 179,
-                                    child: Text(
-                                        productDataStructure.productName(),
-                                        textAlign: TextAlign.justify,
-                                        maxLines: 6,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                            color: ColorsResources.premiumLight,
-                                            fontSize: 15,
-                                            letterSpacing:  1.37
-                                        )
-                                    )
-                                ),
-                              )
-                          )
-
-                        ]
-                    )
-                )
-            ),
+                      ]
+                  )
+              )
+          ),
         )
     );
   }
@@ -407,11 +409,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
       final postResponse = await http.get(Uri.parse(endpoints.postsById(postDataStructure.postId())));
       final postJson = jsonDecode(postResponse.body);
 
-      print(postJson);
+      int featuredMedia = postJson['featured_media'];
 
-      String featuredMedia = postJson['featured_media'];
-
-      final mediaResponse = await http.get(Uri.parse(endpoints.mediaUrl(featuredMedia)));
+      final mediaResponse = await http.get(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())));
       final mediaJson = jsonDecode(mediaResponse.body);
 
       String productImage = mediaJson['guid']['rendered'];
@@ -444,7 +444,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   }
 
-  Widget itemPostsResults(PostDataStructure postDataStructure, productImage, AnimationController animationController) {
+  Widget itemPostsResults(PostDataStructure postDataStructure, featuredImage, AnimationController animationController) {
 
     return Container(
         alignment: Alignment.centerLeft,
@@ -458,7 +458,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           child: InkWell(
               onTap: () async {
 
-                launchUrl(Uri.parse(postDataStructure.postLink()), mode: LaunchMode.externalApplication);
+                launchUrl(Uri.parse(postDataStructure.postTitle()), mode: LaunchMode.externalApplication);
 
               },
               onHover: (hovering) {
@@ -479,7 +479,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                               width: 235,
                               child: ShapedImage(
                                 imageTye: ImageType.NETWORK,
-                                path: productImage,
+                                path: featuredImage,
                                 shape: Shape.Rectarcle,
                                 height: 310,
                                 width: 235,
@@ -504,7 +504,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                               padding: const EdgeInsets.only(bottom: 31),
                               child: SizedBox(
                                   height: 133,
-                                  width: 254,
+                                  width: 179,
                                   child: Text(
                                       postDataStructure.postTitle(),
                                       textAlign: TextAlign.justify,
