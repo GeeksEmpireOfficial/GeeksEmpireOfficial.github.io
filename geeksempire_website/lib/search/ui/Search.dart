@@ -10,6 +10,7 @@ import 'package:sachiel_website/data/PostDataStructure.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:sachiel_website/search/ui/preview/ImagePreview.dart';
 import 'package:shaped_image/shaped_image.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -408,8 +409,6 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA==",
       });
 
-    print(postResponse.toString());
-
     final postJson = List.from(jsonDecode(postResponse.body));
 
     if (postJson.isEmpty) {
@@ -436,23 +435,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
       PostDataStructure postDataStructure = PostDataStructure(element);
 
-      final postResponse = await http.post(Uri.parse(endpoints.postsById(postDataStructure.postId())),
-        headers: {
-          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
-        });
-      final postJson = jsonDecode(postResponse.body);
-
-      int featuredMedia = postJson['featured_media'];
-
-      final mediaResponse = await http.post(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())),
-        headers: {
-          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
-        });
-      final mediaJson = jsonDecode(mediaResponse.body);
-
-      String productImage = mediaJson['guid']['rendered'];
-
-      postsList.add(itemPostsResults(postDataStructure, productImage, AnimationController(vsync: this,
+      postsList.add(itemPostsResults(postDataStructure, postDataStructure.postId(), AnimationController(vsync: this,
           duration: const Duration(milliseconds: 333),
           reverseDuration: const Duration(milliseconds: 111),
           animationBehavior: AnimationBehavior.preserve)));
@@ -478,7 +461,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   }
 
-  Widget itemPostsResults(PostDataStructure postDataStructure, featuredImage, AnimationController animationController) {
+  Widget itemPostsResults(PostDataStructure postDataStructure, postId, AnimationController animationController) {
 
     return Container(
         alignment: Alignment.centerLeft,
@@ -511,14 +494,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                             child: SizedBox(
                               height: 310,
                               width: 235,
-                              child: ShapedImage(
-                                imageTye: ImageType.NETWORK,
-                                path: featuredImage,
-                                shape: Shape.Rectarcle,
-                                height: 310,
-                                width: 235,
-                                boxFit: BoxFit.cover,
-                              ),
+                              child: ImagePreview(postId: postId)
                             )
                         ),
 
