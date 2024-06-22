@@ -435,7 +435,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
       PostDataStructure postDataStructure = PostDataStructure(element);
 
-      postsList.add(itemPostsResults(postDataStructure, postDataStructure.postId(), AnimationController(vsync: this,
+
+
+      postsList.add(itemPostsResults(postDataStructure, AnimationController(vsync: this,
           duration: const Duration(milliseconds: 333),
           reverseDuration: const Duration(milliseconds: 111),
           animationBehavior: AnimationBehavior.preserve)));
@@ -461,7 +463,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   }
 
-  Widget itemPostsResults(PostDataStructure postDataStructure, postId, AnimationController animationController) {
+  Widget itemPostsResults(PostDataStructure postDataStructure, AnimationController animationController) {
 
     return Container(
         alignment: Alignment.centerLeft,
@@ -494,7 +496,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                             child: SizedBox(
                               height: 310,
                               width: 235,
-                              child: ImagePreview(postId: postId)
+                              child: ImagePreview(postId: postDataStructure.postId())
                             )
                         ),
 
