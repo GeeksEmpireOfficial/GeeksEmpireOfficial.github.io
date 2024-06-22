@@ -90,10 +90,7 @@ class StorefrontCategoriesState extends State<StorefrontCategories> with TickerP
   Future retrieveProduct(int productId) async {
     debugPrint(endpoints.productsById(productId));
 
-    final productResponse = await http.post(Uri.parse(endpoints.productsById(productId)),
-      headers: {
-        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
-      });
+    final productResponse = await http.get(Uri.parse(endpoints.productsById(productId)));
 
     final productJson = jsonDecode(productResponse.body);
 

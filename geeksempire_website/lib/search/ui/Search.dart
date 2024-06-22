@@ -252,10 +252,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Future retrieveSearchStorefront(String searchQuery) async {
     debugPrint(endpoints.productsSearch(searchQuery));
 
-    final productsResponse = await http.post(Uri.parse(endpoints.productsSearch(searchQuery)),
-      headers: {
-        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
-      });
+    final productsResponse = await http.get(Uri.parse(endpoints.productsSearch(searchQuery)));
 
     final productsJson = List.from(jsonDecode(productsResponse.body));
 
@@ -406,10 +403,12 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Future retrieveSearchMagazine(String searchQuery) async {
     debugPrint(endpoints.postsSearch(searchQuery));
 
-    final postResponse = await http.post(Uri.parse(endpoints.postsSearch(searchQuery)),
+    final postResponse = await http.get(Uri.parse(endpoints.postsSearch(searchQuery)),
       headers: {
-        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA==",
       });
+
+    print(postResponse.toString());
 
     final postJson = List.from(jsonDecode(postResponse.body));
 
@@ -493,7 +492,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           child: InkWell(
               onTap: () async {
 
-                launchUrl(Uri.parse(postDataStructure.postTitle()), mode: LaunchMode.externalApplication);
+                launchUrl(Uri.parse(postDataStructure.postLink()), mode: LaunchMode.externalApplication);
 
               },
               onHover: (hovering) {

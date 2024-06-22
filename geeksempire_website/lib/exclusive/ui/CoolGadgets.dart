@@ -83,7 +83,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
   Future retrieveCoolGadgets() async {
 
-    final coolGadgetsResponse = await http.post(Uri.parse(endpoints.productsByTag(widget.coolGadgetTag, productsPerPage: "99")),
+    final coolGadgetsResponse = await http.get(Uri.parse(endpoints.productsByTag(widget.coolGadgetTag, productsPerPage: "99")),
       headers: {
         "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
       });
