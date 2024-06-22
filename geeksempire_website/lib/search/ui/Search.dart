@@ -32,7 +32,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Widget listViewStorefront = ListView();
   Widget loadingStorefront = Container(
       height: 59,
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.bottomCenter,
       child: LoadingAnimationWidget.discreteCircle(
           color: ColorsResources.premiumDark,
           secondRingColor: ColorsResources.lightOrange,
@@ -258,17 +258,17 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     if (productsJson.isEmpty) {
 
-      setState(() {
-
-        loadingStorefront = completeSearchDesign();
-
-      });
-
     } else {
 
       prepareProducts(productsJson);
 
     }
+
+    setState(() {
+
+      loadingMagazine = completeSearchDesign();
+
+    });
 
   }
 
@@ -409,17 +409,17 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     if (postJson.isEmpty) {
 
-      setState(() {
-
-        loadingMagazine = completeSearchDesign();
-
-      });
-
     } else {
 
       preparePosts(postJson);
 
     }
+
+    setState(() {
+
+      loadingMagazine = completeSearchDesign();
+
+    });
 
   }
 
@@ -559,7 +559,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Widget completeSearchDesign() {
 
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.bottomCenter,
       child:  Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(11),
@@ -581,7 +581,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                 color: ColorsResources.premiumDark.withOpacity(0.51)
             ),
           ),
-          color: ColorsResources.blueGray.withOpacity(0.51)
+          color: ColorsResources.transparent
         ),
         child: Align(
           alignment: Alignment.center,
