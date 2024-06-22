@@ -4,6 +4,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:sachiel_website/cache/io/CacheIO.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
 import 'package:shaped_image/shaped_image.dart';
 
@@ -19,9 +20,11 @@ class ImagePreview extends StatefulWidget {
 }
 class ImagePreviewState extends State<ImagePreview> {
 
+  CacheIO cacheIO = CacheIO();
+
   Endpoints endpoints = Endpoints();
 
-  String featuredImagePath = "https://geeksempire.co/wp-content/uploads/2024/01/Geeks-Empire-Logo.png";
+  String featuredImagePath = "https://geeks-empire-website.web.app/favicon.png";
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -63,26 +66,43 @@ class ImagePreviewState extends State<ImagePreview> {
 
   Future retrieveImage(String postId) async {
 
-    final postResponse = await http.post(Uri.parse(endpoints.postsById(postId)),
-        headers: {
-          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
-        });
-    final postJson = jsonDecode(postResponse.body);
+    String? cachedFeaturedImagePath = await cacheIO.retrieveImagePath(postId);
 
-    int featuredMedia = postJson['featured_media'];
+    if (cachedFeaturedImagePath == null) {
 
-    final mediaResponse = await http.post(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())),
-        headers: {
-          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
-        });
-    final mediaJson = jsonDecode(mediaResponse.body);
+      final postResponse = await http.post(Uri.parse(endpoints.postsById(postId)),
+          headers: {
+            "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+          });
+      final postJson = jsonDecode(postResponse.body);
 
-    setState(() {
+      int featuredMedia = postJson['featured_media'];
 
-      featuredImagePath = mediaJson['guid']['rendered'];
-      debugPrint(featuredImagePath);
+      final mediaResponse = await http.post(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())),
+          headers: {
+            "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+          });
+      final mediaJson = jsonDecode(mediaResponse.body);
 
-    });
+      cacheIO.storeImagePath(postId, mediaJson['guid']['rendered']);
+
+      setState(() {
+
+        featuredImagePath = mediaJson['guid']['rendered'];
+        debugPrint('Network Image Path: $featuredImagePath');
+
+      });
+
+    } else {
+
+      setState(() {
+
+        featuredImagePath = cachedFeaturedImagePath;
+        debugPrint('Cached Image Path: $featuredImagePath');
+
+      });
+
+    }
 
   }
 
