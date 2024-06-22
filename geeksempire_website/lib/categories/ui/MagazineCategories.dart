@@ -90,7 +90,10 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
   Future retrieveProduct(int postId) async {
     debugPrint(endpoints.postsById(postId.toString()));
 
-    final postResponse = await http.get(Uri.parse(endpoints.postsById(postId.toString())));
+    final postResponse = await http.post(Uri.parse(endpoints.postsById(postId.toString())),
+        headers: {
+          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+        });
 
     final postJson = jsonDecode(postResponse.body);
 
@@ -112,7 +115,10 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
         && categoryId != 5118
         && categoryId != 1857) {
 
-        final categoryResponse = await http.get(Uri.parse(endpoints.categoriesById(categoryId)));
+        final categoryResponse = await http.post(Uri.parse(endpoints.categoriesById(categoryId)),
+            headers: {
+              "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+            });
 
         final categoryJson = jsonDecode(categoryResponse.body);
 

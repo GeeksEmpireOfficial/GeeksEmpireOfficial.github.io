@@ -252,7 +252,10 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Future retrieveSearchStorefront(String searchQuery) async {
     debugPrint(endpoints.productsSearch(searchQuery));
 
-    final productsResponse = await http.get(Uri.parse(endpoints.productsSearch(searchQuery)));
+    final productsResponse = await http.post(Uri.parse(endpoints.productsSearch(searchQuery)),
+      headers: {
+        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+      });
 
     final productsJson = List.from(jsonDecode(productsResponse.body));
 
@@ -403,7 +406,10 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Future retrieveSearchMagazine(String searchQuery) async {
     debugPrint(endpoints.postsSearch(searchQuery));
 
-    final postResponse = await http.get(Uri.parse(endpoints.postsSearch(searchQuery)));
+    final postResponse = await http.post(Uri.parse(endpoints.postsSearch(searchQuery)),
+      headers: {
+        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+      });
 
     final postJson = List.from(jsonDecode(postResponse.body));
 
@@ -431,12 +437,18 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
       PostDataStructure postDataStructure = PostDataStructure(element);
 
-      final postResponse = await http.get(Uri.parse(endpoints.postsById(postDataStructure.postId())));
+      final postResponse = await http.post(Uri.parse(endpoints.postsById(postDataStructure.postId())),
+        headers: {
+          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+        });
       final postJson = jsonDecode(postResponse.body);
 
       int featuredMedia = postJson['featured_media'];
 
-      final mediaResponse = await http.get(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())));
+      final mediaResponse = await http.post(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())),
+        headers: {
+          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+        });
       final mediaJson = jsonDecode(mediaResponse.body);
 
       String productImage = mediaJson['guid']['rendered'];
