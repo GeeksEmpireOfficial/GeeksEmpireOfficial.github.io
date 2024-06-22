@@ -32,7 +32,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   Widget listViewStorefront = ListView();
   Widget loadingStorefront = Container(
       height: 59,
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.centerLeft,
       child: LoadingAnimationWidget.discreteCircle(
           color: ColorsResources.premiumDark,
           secondRingColor: ColorsResources.lightOrange,
@@ -266,7 +266,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     setState(() {
 
-      loadingMagazine = completeSearchDesign();
+      loadingStorefront = completeSearchDesign();
 
     });
 
@@ -463,8 +463,6 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           )
       );
 
-      loadingMagazine = Container();
-
     });
 
   }
@@ -565,19 +563,19 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(11),
           border: Border(
             left: BorderSide(
-              width: 7,
+              width: 5,
               color: ColorsResources.premiumDark.withOpacity(0.51)
             ),
             right: BorderSide(
-                width: 7,
+                width: 5,
                 color: ColorsResources.premiumDark.withOpacity(0.51)
             ),
             top: BorderSide(
-                width: 3,
+                width: 2,
                 color: ColorsResources.premiumDark.withOpacity(0.51)
             ),
             bottom: BorderSide(
-                width: 3,
+                width: 2,
                 color: ColorsResources.premiumDark.withOpacity(0.51)
             ),
           ),
@@ -585,22 +583,22 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         ),
         child: Align(
           alignment: Alignment.center,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 11, right: 11, top: 5, bottom: 5),
-            child: InkWell(
-              onTap: () async {
+          child: InkWell(
+            onTap: () {
 
-                launchUrl(Uri.parse("https://GeeksEmpire.co/?s=${widget.searchQuery}"), mode: LaunchMode.platformDefault);
+              launchUrl(Uri.parse("https://GeeksEmpire.co/?s=${widget.searchQuery}"), mode: LaunchMode.platformDefault);
 
-              },
-              child: Text(
-                  StringsResources.completeSearch(),
-                  style: const TextStyle(
-                      color: ColorsResources.white,
-                      fontSize: 12,
-                      letterSpacing: 1.73
-                  )
-              )
+            },
+            child: Padding(
+                padding: const EdgeInsets.only(left: 17, right: 17, top: 3.7, bottom: 3.7),
+                child: Text(
+                    StringsResources.allSearch(),
+                    style: const TextStyle(
+                        color: ColorsResources.premiumDark,
+                        fontSize: 11,
+                        letterSpacing: 1.73
+                    )
+                )
             )
           )
         )

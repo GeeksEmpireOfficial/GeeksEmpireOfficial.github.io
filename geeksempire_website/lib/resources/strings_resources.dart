@@ -30,9 +30,9 @@ class StringsResources {
     return "Magazine";
   }
 
-  static String completeSearch() {
+  static String allSearch() {
 
-    return "Complete Search";
+    return "Search All";
   }
 
   static String nothingFound() {
