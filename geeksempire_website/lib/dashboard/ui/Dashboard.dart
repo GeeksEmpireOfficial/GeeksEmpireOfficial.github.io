@@ -179,7 +179,7 @@ class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   const Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Image(
-                                        image: AssetImage("next_background.png"),
+                                        image: AssetImage("images/next_background.png"),
                                       )
                                   ),
 
