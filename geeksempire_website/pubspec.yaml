@@ -101,4 +101,4 @@ flutter:
   fonts:
     - family: Ubuntu
       fonts:
-        - asset: fonts/ubuntu.ttf
+        - asset: fonts/ubuntu.otf
