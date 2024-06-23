@@ -1,17 +1,17 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geeksempire_website/dashboard/provider/ContentDataStructure.dart';
+import 'package:geeksempire_website/dashboard/provider/ContentProvider.dart';
+import 'package:geeksempire_website/dashboard/ui/sections/content/item_desktop.dart';
+import 'package:geeksempire_website/dashboard/ui/sections/content/item_mobile.dart';
+import 'package:geeksempire_website/dashboard/ui/sections/header.dart';
+import 'package:geeksempire_website/dashboard/ui/sections/menus.dart';
+import 'package:geeksempire_website/resources/colors_resources.dart';
+import 'package:geeksempire_website/utils/modifications/numbers.dart';
+import 'package:geeksempire_website/utils/ui/display.dart';
+import 'package:geeksempire_website/utils/ui/nexted_page_controller.dart';
 import 'package:get/get.dart';
-import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
-import 'package:sachiel_website/dashboard/provider/ContentProvider.dart';
-import 'package:sachiel_website/dashboard/ui/sections/content/item_desktop.dart';
-import 'package:sachiel_website/dashboard/ui/sections/content/item_mobile.dart';
-import 'package:sachiel_website/dashboard/ui/sections/header.dart';
-import 'package:sachiel_website/dashboard/ui/sections/menus.dart';
-import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/utils/modifications/numbers.dart';
-import 'package:sachiel_website/utils/ui/display.dart';
-import 'package:sachiel_website/utils/ui/nexted_page_controller.dart';
 
 class Dashboard extends StatefulWidget {
 

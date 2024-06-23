@@ -9,8 +9,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/resources/strings_resources.dart';
+import 'package:geeksempire_website/resources/colors_resources.dart';
+import 'package:geeksempire_website/resources/strings_resources.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Menus extends StatefulWidget {

@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:geeksempire_website/cache/io/CacheIO.dart';
+import 'package:geeksempire_website/network/endpoints/Endpoints.dart';
+import 'package:geeksempire_website/private/Privates.dart';
 import 'package:http/http.dart' as http;
-import 'package:sachiel_website/cache/io/CacheIO.dart';
-import 'package:sachiel_website/network/endpoints/Endpoints.dart';
-import 'package:sachiel_website/private/Privates.dart';
 import 'package:shaped_image/shaped_image.dart';
 
 class ImagePreview extends StatefulWidget {

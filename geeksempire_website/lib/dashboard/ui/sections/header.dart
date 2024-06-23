@@ -10,9 +10,9 @@
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:geeksempire_website/dashboard/ui/Dashboard.dart';
+import 'package:geeksempire_website/resources/colors_resources.dart';
 import 'package:get/get.dart';
-import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
-import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Header extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
+import 'package:geeksempire_website/dashboard/provider/ContentDataStructure.dart';
 
 class ContentProvider {
 

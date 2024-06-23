@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/dashboard/provider/ContentDataStructure.dart';
-import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/utils/modifications/numbers.dart';
-import 'package:sachiel_website/utils/ui/display.dart';
+import 'package:geeksempire_website/dashboard/provider/ContentDataStructure.dart';
+import 'package:geeksempire_website/resources/colors_resources.dart';
+import 'package:geeksempire_website/utils/modifications/numbers.dart';
+import 'package:geeksempire_website/utils/ui/display.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ItemMobile extends StatefulWidget {

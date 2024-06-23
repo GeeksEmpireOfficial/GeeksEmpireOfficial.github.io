@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sachiel_website/categories/ui/MagazineCategories.dart';
-import 'package:sachiel_website/categories/ui/StorefrontCategories.dart';
-import 'package:sachiel_website/dashboard/ui/Dashboard.dart';
-import 'package:sachiel_website/exclusive/ui/CoolGadgets.dart';
-import 'package:sachiel_website/firebase_options.dart';
-import 'package:sachiel_website/private/Privates.dart';
-import 'package:sachiel_website/resources/colors_resources.dart';
-import 'package:sachiel_website/resources/strings_resources.dart';
-import 'package:sachiel_website/search/ui/Search.dart';
+import 'package:geeksempire_website/categories/ui/MagazineCategories.dart';
+import 'package:geeksempire_website/categories/ui/StorefrontCategories.dart';
+import 'package:geeksempire_website/dashboard/ui/Dashboard.dart';
+import 'package:geeksempire_website/exclusive/ui/CoolGadgets.dart';
+import 'package:geeksempire_website/firebase_options.dart';
+import 'package:geeksempire_website/private/Privates.dart';
+import 'package:geeksempire_website/resources/colors_resources.dart';
+import 'package:geeksempire_website/resources/strings_resources.dart';
+import 'package:geeksempire_website/search/ui/Search.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
