@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/cache/io/CacheIO.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
+import 'package:sachiel_website/private/Privates.dart';
 import 'package:shaped_image/shaped_image.dart';
 
 class ImagePreview extends StatefulWidget {
@@ -72,7 +73,7 @@ class ImagePreviewState extends State<ImagePreview> {
 
       final postResponse = await http.post(Uri.parse(endpoints.postsById(postId)),
           headers: {
-            "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+            "Authorization": Privates.authenticationAPI
           });
       final postJson = jsonDecode(postResponse.body);
 
@@ -80,7 +81,7 @@ class ImagePreviewState extends State<ImagePreview> {
 
       final mediaResponse = await http.post(Uri.parse(endpoints.mediaUrl(featuredMedia.toString())),
           headers: {
-            "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+            "Authorization": Privates.authenticationAPI
           });
       final mediaJson = jsonDecode(mediaResponse.body);
 

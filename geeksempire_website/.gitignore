@@ -71,3 +71,4 @@ app.*.map.json
 /.firebase/hosting.LmZpcmViYXNlXGdlZWtzLWVtcGlyZS13ZWJzaXRlXGhvc3Rpbmc.cache
 /.firebaserc
 /.firebase/
+/lib/private/Privates.dart

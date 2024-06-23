@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
+import 'package:sachiel_website/private/Privates.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -92,7 +93,7 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
 
     final postResponse = await http.post(Uri.parse(endpoints.postsById(postId.toString())),
         headers: {
-          "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+          "Authorization": Privates.authenticationAPI
         });
 
     final postJson = jsonDecode(postResponse.body);
@@ -117,7 +118,7 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
 
         final categoryResponse = await http.post(Uri.parse(endpoints.categoriesById(categoryId)),
             headers: {
-              "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+              "Authorization": Privates.authenticationAPI
             });
 
         final categoryJson = jsonDecode(categoryResponse.body);

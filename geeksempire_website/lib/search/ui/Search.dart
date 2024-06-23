@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel_website/data/PostDataStructure.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
+import 'package:sachiel_website/private/Privates.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:sachiel_website/resources/strings_resources.dart';
 import 'package:sachiel_website/search/ui/preview/ImagePreview.dart';
@@ -406,7 +407,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     final postResponse = await http.get(Uri.parse(endpoints.postsSearch(searchQuery)),
       headers: {
-        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA==",
+        "Authorization": Privates.authenticationAPI,
       });
 
     final postJson = List.from(jsonDecode(postResponse.body));
@@ -503,7 +504,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                         const Align(
                             alignment: Alignment.center,
                             child: Image(
-                              image: AssetImage("assets/rectarcle_adjustment.png"),
+                              image: AssetImage("images/rectarcle_adjustment.png"),
                               height: 312,
                               width: 237,
                               fit: BoxFit.cover,

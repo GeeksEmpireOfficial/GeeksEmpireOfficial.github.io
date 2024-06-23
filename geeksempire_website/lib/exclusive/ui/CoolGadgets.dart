@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sachiel_website/data/ProductDataStructure.dart';
 import 'package:sachiel_website/network/endpoints/Endpoints.dart';
+import 'package:sachiel_website/private/Privates.dart';
 import 'package:sachiel_website/resources/colors_resources.dart';
 import 'package:shaped_image/shaped_image.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
@@ -85,7 +86,7 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
 
     final coolGadgetsResponse = await http.get(Uri.parse(endpoints.productsByTag(widget.coolGadgetTag, productsPerPage: "99")),
       headers: {
-        "Authorization": "Basic Z2Vla3NlbXBpcmVpbmM6KmdYZW1waXJlIzEwMjk2JA=="
+        "Authorization": Privates.authenticationAPI
       });
 
     final coolGadgetsJson = List.from(jsonDecode(coolGadgetsResponse.body));
