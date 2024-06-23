@@ -55,7 +55,7 @@ class StringsResources {
   }
   static String termServiceLink() {
 
-    return "https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/";
+    return "https://geeksempire.co/sachiels-ai-trading-signals/term-of-services/";
   }
 
   static String privacyPolicy() {
@@ -64,7 +64,7 @@ class StringsResources {
   }
   static String privacyPolicyLink() {
 
-    return "https://geeksempire.co/privacypolicy/";
+    return "https://geeksempire.co/about-geeks-empire/privacypolicy/";
   }
 
   static String twitterLink() {
