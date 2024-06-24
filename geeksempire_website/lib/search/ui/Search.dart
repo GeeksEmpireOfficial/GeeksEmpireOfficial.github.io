@@ -131,10 +131,10 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
                       Text(
                         searchQueryExcerpt,
-                        maxLines: 5,
-                        style: const TextStyle(
-                          color: ColorsResources.premiumDark,
-                          fontSize: 13
+                        maxLines: 7,
+                        style: TextStyle(
+                          color: ColorsResources.premiumDark.withOpacity(0.73),
+                          fontSize: 15
                         )
                       )
 
