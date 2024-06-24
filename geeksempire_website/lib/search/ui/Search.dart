@@ -246,6 +246,8 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     retrieveSearchMagazine(searchQuery);
 
+    generateDescription(searchQuery);
+
   }
 
   /*
@@ -544,6 +546,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
    * End - Magazine Search
    */
 
+  /*
+   * Start - Search All
+   */
   Widget completeSearchDesign() {
 
     return Align(
@@ -595,5 +600,58 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
       )
     );
   }
+  /*
+   * End - Search All
+   */
+
+  /*
+   * Start - Get Search Query Description from AI
+   */
+  void generateDescription(String searchQuery) async {
+
+    var aiHeaders = {
+      'Content-Type': 'application/json'
+    };
+
+    var aiHttpRequest = http.Request('POST', Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Privates.aiKeyAPI}'));
+    aiHttpRequest.body = json.encode({
+      "contents": [
+        {
+          "parts": [
+            {
+              "text": "What is $searchQuery in Summary?"
+            }
+          ]
+        }
+      ]
+    });
+    aiHttpRequest.headers.addAll(aiHeaders);
+
+    http.StreamedResponse aiGenerativeHttpResponse = await aiHttpRequest.send();
+
+    if (aiGenerativeHttpResponse.statusCode == 200) {
+
+      String aiGenerativeResponse = (await aiGenerativeHttpResponse.stream.bytesToString());
+
+      final aiGenerativeJson = jsonDecode(aiGenerativeResponse);
+
+      final aiGenerativeContent = List.from(aiGenerativeJson['candidates']).first['content'];
+
+      final aiGenerativeResult = List.from(aiGenerativeContent['parts']).first['text'];
+
+      setState(() {
+
+        searchQueryExcerpt = aiGenerativeResult;
+
+      });
+
+    } else {
+
+    }
+
+  }
+  /*
+   * Start - Get Search Query Description from AI
+   */
 
 }
