@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geeksempire_website/cache/io/CacheIO.dart';
@@ -77,6 +78,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    debugPrint("Search Version: ${DateTime.now()}");
 
     BackButtonInterceptor.add(aInterceptor);
 
@@ -109,145 +111,175 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: ColorsResources.premiumLight,
-        body: Align(
-          alignment: Alignment.topLeft,
-          child: Column(
-              children: [
-
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: StringsResources.geeksEmpire(),
+        color: ColorsResources.black,
+        theme: ThemeData(
+          fontFamily: 'Ubuntu',
+          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.black),
+          pageTransitionsTheme: const PageTransitionsTheme(builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          }),
+        ),
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.stylus,
+            PointerDeviceKind.trackpad,
+            PointerDeviceKind.unknown,
+            PointerDeviceKind.invertedStylus
+          },
+        ),
+        home: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: ColorsResources.premiumLight,
+          body: Align(
+              alignment: Alignment.topLeft,
+              child: ListView(
+                    padding: const EdgeInsets.all(0),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
                     children: [
 
-                      Text(
-                          "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
-                          maxLines: 1,
-                          style: const TextStyle(
-                            color: ColorsResources.premiumDark,
-                            fontSize: 31,
-                            letterSpacing: 1.37,
-                            fontWeight: FontWeight.bold
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+
+                                Text(
+                                    "${StringsResources.exploringTitle()} ${widget.searchQuery.toUpperCase()}",
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                        color: ColorsResources.premiumDark,
+                                        fontSize: 31,
+                                        letterSpacing: 1.37,
+                                        fontWeight: FontWeight.bold
+                                    )
+                                ),
+
+                                Text(
+                                    searchQueryExcerpt,
+                                    style: TextStyle(
+                                        color: ColorsResources.premiumDark.withOpacity(0.73),
+                                        fontSize: 15
+                                    )
+                                )
+
+                              ]
                           )
                       ),
 
-                      Text(
-                        searchQueryExcerpt,
-                        style: TextStyle(
-                          color: ColorsResources.premiumDark.withOpacity(0.73),
-                          fontSize: 15
-                        )
+                      const Divider(
+                        height: 37,
+                        color: ColorsResources.transparent,
+                      ),
+
+                      Row(
+                          children: [
+
+                            Container(
+                                height: 59,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  StringsResources.storefrontTitle(),
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                      color: ColorsResources.premiumDark,
+                                      fontSize: 31,
+                                      letterSpacing: 7
+                                  ),
+                                )
+                            ),
+
+                            const SizedBox(
+                              width: 13,
+                            ),
+
+                            loadingStorefront
+
+                          ]
+                      ),
+
+                      const Divider(
+                        height: 7,
+                        color: ColorsResources.transparent,
+                      ),
+
+                      SizedBox(
+                        height: 313,
+                        width: double.infinity,
+                        child: listViewStorefront,
+                      ),
+
+                      const Divider(
+                        height: 37,
+                        color: ColorsResources.transparent,
+                      ),
+
+                      Row(
+                          children: [
+
+                            Container(
+                                height: 59,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  StringsResources.magazineTitle(),
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                      color: ColorsResources.premiumDark,
+                                      fontSize: 31,
+                                      letterSpacing: 7
+                                  ),
+                                )
+                            ),
+
+                            const SizedBox(
+                              width: 13,
+                            ),
+
+                            loadingMagazine
+
+                          ]
+                      ),
+
+                      const Divider(
+                        height: 7,
+                        color: ColorsResources.transparent,
+                      ),
+
+                      SizedBox(
+                        height: 313,
+                        width: double.infinity,
+                        child: listViewMagazine,
                       )
 
                     ]
-                  )
-                ),
-
-                const Divider(
-                  height: 37,
-                  color: ColorsResources.transparent,
-                ),
-
-                Row(
-                    children: [
-
-                      Container(
-                          height: 59,
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            StringsResources.storefrontTitle(),
-                            maxLines: 1,
-                            style: const TextStyle(
-                                color: ColorsResources.premiumDark,
-                                fontSize: 31,
-                                letterSpacing: 7
-                            ),
-                          )
-                      ),
-
-                      const SizedBox(
-                        width: 13,
-                      ),
-
-                      loadingStorefront
-
-                    ]
-                ),
-
-                const Divider(
-                  height: 7,
-                  color: ColorsResources.transparent,
-                ),
-
-                SizedBox(
-                  height: 313,
-                  width: double.infinity,
-                  child: listViewStorefront,
-                ),
-
-                const Divider(
-                  height: 37,
-                  color: ColorsResources.transparent,
-                ),
-
-                Row(
-                    children: [
-
-                      Container(
-                          height: 59,
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            StringsResources.magazineTitle(),
-                            maxLines: 1,
-                            style: const TextStyle(
-                                color: ColorsResources.premiumDark,
-                                fontSize: 31,
-                                letterSpacing: 7
-                            ),
-                          )
-                      ),
-
-                      const SizedBox(
-                        width: 13,
-                      ),
-
-                      loadingMagazine
-
-                    ]
-                ),
-
-                const Divider(
-                  height: 7,
-                  color: ColorsResources.transparent,
-                ),
-
-                SizedBox(
-                  height: 313,
-                  width: double.infinity,
-                  child: listViewMagazine,
                 )
-
-              ]
           )
-        )
+      )
     );
   }
 
   void retrieveSearch(String searchQuery) {
 
-    searchFilter.searchQueryFilter().then((value) {
+    searchFilter.searchQueryFilter(searchQuery).then((value) {
 
       if (value) {
 
-        retrieveSearchStorefront(searchQuery);
+        searchFilter.prepareSearchQuery(searchQuery).then((searchQueryValue) {
 
-        retrieveSearchMagazine(searchQuery);
+          retrieveSearchStorefront(searchQueryValue);
 
-        generateDescription(searchQuery);
+          retrieveSearchMagazine(searchQueryValue);
+
+          generateDescription(searchQueryValue);
+
+        });
 
       }
 
@@ -275,7 +307,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     setState(() {
 
-      loadingStorefront = completeSearchDesign();
+      loadingStorefront = allStorefront();
 
     });
 
@@ -402,6 +434,64 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         )
     );
   }
+
+  /*
+   * Start - Search All
+   */
+  Widget allStorefront() {
+
+    return Align(
+        alignment: Alignment.bottomCenter,
+        child:  Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(11),
+                border: Border(
+                  left: BorderSide(
+                      width: 5,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                  right: BorderSide(
+                      width: 5,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                  top: BorderSide(
+                      width: 2,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                  bottom: BorderSide(
+                      width: 2,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                ),
+                color: ColorsResources.transparent
+            ),
+            child: Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                    onTap: () {
+
+                      launchUrl(Uri.parse("https://geeksempire.co/storefront/?yith_wcan=1&product_tag=${widget.searchQuery}&product_cat=${widget.searchQuery}"), mode: LaunchMode.platformDefault);
+
+                    },
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 17, right: 17, top: 3.7, bottom: 3.7),
+                        child: Text(
+                            StringsResources.allSearch(),
+                            style: const TextStyle(
+                                color: ColorsResources.premiumDark,
+                                fontSize: 11,
+                                letterSpacing: 1.73
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    );
+  }
+  /*
+   * End - Search All
+   */
   /*
    * End - Storefront Search
    */
@@ -429,7 +519,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     setState(() {
 
-      loadingMagazine = completeSearchDesign();
+      loadingMagazine = allMagazine();
 
     });
 
@@ -547,66 +637,66 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         )
     );
   }
-  /*
-   * End - Magazine Search
-   */
 
   /*
    * Start - Search All
    */
-  Widget completeSearchDesign() {
+  Widget allMagazine() {
 
     return Align(
-      alignment: Alignment.bottomCenter,
-      child:  Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(11),
-          border: Border(
-            left: BorderSide(
-              width: 5,
-              color: ColorsResources.premiumDark.withOpacity(0.51)
+        alignment: Alignment.bottomCenter,
+        child:  Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(11),
+                border: Border(
+                  left: BorderSide(
+                      width: 5,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                  right: BorderSide(
+                      width: 5,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                  top: BorderSide(
+                      width: 2,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                  bottom: BorderSide(
+                      width: 2,
+                      color: ColorsResources.premiumDark.withOpacity(0.51)
+                  ),
+                ),
+                color: ColorsResources.transparent
             ),
-            right: BorderSide(
-                width: 5,
-                color: ColorsResources.premiumDark.withOpacity(0.51)
-            ),
-            top: BorderSide(
-                width: 2,
-                color: ColorsResources.premiumDark.withOpacity(0.51)
-            ),
-            bottom: BorderSide(
-                width: 2,
-                color: ColorsResources.premiumDark.withOpacity(0.51)
-            ),
-          ),
-          color: ColorsResources.transparent
-        ),
-        child: Align(
-          alignment: Alignment.center,
-          child: InkWell(
-            onTap: () {
+            child: Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                    onTap: () {
 
-              launchUrl(Uri.parse("https://GeeksEmpire.co/?s=${widget.searchQuery}"), mode: LaunchMode.platformDefault);
+                      launchUrl(Uri.parse("https://GeeksEmpire.co/?s=${widget.searchQuery}"), mode: LaunchMode.platformDefault);
 
-            },
-            child: Padding(
-                padding: const EdgeInsets.only(left: 17, right: 17, top: 3.7, bottom: 3.7),
-                child: Text(
-                    StringsResources.allSearch(),
-                    style: const TextStyle(
-                        color: ColorsResources.premiumDark,
-                        fontSize: 11,
-                        letterSpacing: 1.73
+                    },
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 17, right: 17, top: 3.7, bottom: 3.7),
+                        child: Text(
+                            StringsResources.allSearch(),
+                            style: const TextStyle(
+                                color: ColorsResources.premiumDark,
+                                fontSize: 11,
+                                letterSpacing: 1.73
+                            )
+                        )
                     )
                 )
             )
-          )
         )
-      )
     );
   }
   /*
    * End - Search All
+   */
+  /*
+   * End - Magazine Search
    */
 
   /*
