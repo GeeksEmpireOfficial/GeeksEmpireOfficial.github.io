@@ -14,6 +14,7 @@ import 'package:geeksempire_website/resources/colors_resources.dart';
 import 'package:geeksempire_website/resources/strings_resources.dart';
 import 'package:geeksempire_website/search/ui/preview/ImagePreview.dart';
 import 'package:http/http.dart' as http;
+import 'package:indexed/indexed.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shaped_image/shaped_image.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
@@ -330,17 +331,20 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     setState(() {
 
-      listViewStorefront = DynMouseScroll(
-          durationMS: 555,
-          scrollSpeed: 5.5,
-          animationCurve: Curves.easeInOut,
-          builder: (context, controller, physics) => ListView(
-              controller: scrollController,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              physics: const RangeMaintainingScrollPhysics(),
-              children: productsList
-          )
+      listViewStorefront = Indexed(
+        index: 1000,
+        child: DynMouseScroll(
+            durationMS: 555,
+            scrollSpeed: 5.5,
+            animationCurve: Curves.easeInOut,
+            builder: (context, controller, physics) => ListView(
+                controller: scrollController,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                physics: const RangeMaintainingScrollPhysics(),
+                children: productsList
+            )
+        )
       );
 
       loadingStorefront = Container();
@@ -544,17 +548,20 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
     setState(() {
 
-      listViewMagazine = DynMouseScroll(
-          durationMS: 555,
-          scrollSpeed: 5.5,
-          animationCurve: Curves.easeInOut,
-          builder: (context, controller, physics) => ListView(
-              controller: scrollController,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              physics: const RangeMaintainingScrollPhysics(),
-              children: postsList
-          )
+      listViewMagazine = Indexed(
+        index: 1000,
+        child: DynMouseScroll(
+            durationMS: 555,
+            scrollSpeed: 5.5,
+            animationCurve: Curves.easeInOut,
+            builder: (context, controller, physics) => ListView(
+                controller: scrollController,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                physics: const RangeMaintainingScrollPhysics(),
+                children: postsList
+            )
+        )
       );
 
     });

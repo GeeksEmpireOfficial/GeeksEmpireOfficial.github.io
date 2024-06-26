@@ -56,6 +56,11 @@ dependencies:
 
 
   ####### ####### #######
+  indexed: ^0.0.8
+  ####### ####### #######
+
+
+  ####### ####### #######
   loading_animation_widget:
     path: 'X:\Xlutter\Libraries\loading_animation_widget'
   ####### ####### #######
