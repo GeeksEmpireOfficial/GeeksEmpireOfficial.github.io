@@ -2,7 +2,7 @@ class SearchFilter {
 
   final _uselessWords = "sex,fuck,blowjob,cum";
 
-  final _keywordsMap = {
+  final Map<String, String> _keywordsMap = {
     'lego': 'brick',
     'security': 'vpn',
   };
@@ -14,6 +14,14 @@ class SearchFilter {
     preparedSearchQuery = searchQuery.replaceAll("_", " ");
     preparedSearchQuery = searchQuery.replaceAll("?", " ");
     preparedSearchQuery = searchQuery.replaceAll("!", " ");
+
+    final synonymQuery = _keywordsMap[preparedSearchQuery];
+
+    if (synonymQuery != null) {
+
+      preparedSearchQuery = "$preparedSearchQuery $synonymQuery";
+
+    }
 
     return preparedSearchQuery;
   }
