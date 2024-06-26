@@ -3,10 +3,8 @@ class SearchFilter {
   final _uselessWords = "sex,fuck,blowjob,cum";
 
   final _keywordsMap = {
-    'brick': 'lego',
-    'lego': 'lego',
+    'lego': 'brick',
     'security': 'vpn',
-    'vpn': 'security',
   };
 
   Future<String> prepareSearchQuery(String searchQuery) async {
