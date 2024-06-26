@@ -112,12 +112,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: ColorsResources.premiumLight,
-        body: Container(
+        body: Align(
           alignment: Alignment.topLeft,
-          child: ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+          child: Column(
               children: [
 
                 Align(
@@ -140,7 +137,6 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
                       Text(
                         searchQueryExcerpt,
-                        maxLines: 7,
                         style: TextStyle(
                           color: ColorsResources.premiumDark.withOpacity(0.73),
                           fontSize: 15
@@ -156,91 +152,83 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                   color: ColorsResources.transparent,
                 ),
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                Row(
+                    children: [
 
-                      Row(
-                        children: [
-
-                          Container(
-                            height: 59,
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              StringsResources.storefrontTitle(),
-                              maxLines: 1,
-                              style: const TextStyle(
-                                  color: ColorsResources.premiumDark,
-                                  fontSize: 31,
-                                  letterSpacing: 7
-                              ),
-                            )
-                          ),
-
-                          const SizedBox(
-                            width: 13,
-                          ),
-
-                          loadingStorefront
-
-                        ]
-                      ),
-
-                      const Divider(
-                        height: 7,
-                        color: ColorsResources.transparent,
-                      ),
-
-                      SizedBox(
-                        height: 313,
-                        width: double.infinity,
-                        child: listViewStorefront,
-                      ),
-
-                      const Divider(
-                        height: 37,
-                        color: ColorsResources.transparent,
-                      ),
-
-                      Row(
-                          children: [
-
-                            Container(
-                                height: 59,
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  StringsResources.magazineTitle(),
-                                  maxLines: 1,
-                                  style: const TextStyle(
-                                      color: ColorsResources.premiumDark,
-                                      fontSize: 31,
-                                      letterSpacing: 7
-                                  ),
-                                )
+                      Container(
+                          height: 59,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            StringsResources.storefrontTitle(),
+                            maxLines: 1,
+                            style: const TextStyle(
+                                color: ColorsResources.premiumDark,
+                                fontSize: 31,
+                                letterSpacing: 7
                             ),
-
-                            const SizedBox(
-                              width: 13,
-                            ),
-
-                            loadingMagazine
-
-                          ]
+                          )
                       ),
 
-                      const Divider(
-                        height: 7,
-                        color: ColorsResources.transparent,
+                      const SizedBox(
+                        width: 13,
                       ),
 
-                      SizedBox(
-                        height: 313,
-                        width: double.infinity,
-                        child: listViewMagazine,
-                      ),
+                      loadingStorefront
 
                     ]
+                ),
+
+                const Divider(
+                  height: 7,
+                  color: ColorsResources.transparent,
+                ),
+
+                SizedBox(
+                  height: 313,
+                  width: double.infinity,
+                  child: listViewStorefront,
+                ),
+
+                const Divider(
+                  height: 37,
+                  color: ColorsResources.transparent,
+                ),
+
+                Row(
+                    children: [
+
+                      Container(
+                          height: 59,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            StringsResources.magazineTitle(),
+                            maxLines: 1,
+                            style: const TextStyle(
+                                color: ColorsResources.premiumDark,
+                                fontSize: 31,
+                                letterSpacing: 7
+                            ),
+                          )
+                      ),
+
+                      const SizedBox(
+                        width: 13,
+                      ),
+
+                      loadingMagazine
+
+                    ]
+                ),
+
+                const Divider(
+                  height: 7,
+                  color: ColorsResources.transparent,
+                ),
+
+                SizedBox(
+                  height: 313,
+                  width: double.infinity,
+                  child: listViewMagazine,
                 )
 
               ]
