@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geeksempire_website/cache/io/CacheIO.dart';
 import 'package:geeksempire_website/data/PostDataStructure.dart';
+import 'package:geeksempire_website/data/process/SearchFilter.dart';
 import 'package:geeksempire_website/network/endpoints/Endpoints.dart';
 import 'package:geeksempire_website/private/Privates.dart';
 import 'package:geeksempire_website/resources/colors_resources.dart';
@@ -29,7 +31,11 @@ class Search extends StatefulWidget {
 }
 class SearchState extends State<Search> with TickerProviderStateMixin {
 
+  CacheIO cacheIO = CacheIO();
+
   Endpoints endpoints = Endpoints();
+
+  SearchFilter searchFilter = SearchFilter();
 
   Widget listViewStorefront = ListView();
   Widget loadingStorefront = Container(
@@ -60,7 +66,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
   List<Widget> categoriesWidgets = [];
 
   String searchQueryExcerpt = "";
-  
+
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     SystemNavigator.pop();
@@ -109,6 +115,9 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
         body: Container(
           alignment: Alignment.topLeft,
           child: ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               children: [
 
                 Align(
@@ -242,11 +251,19 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
   void retrieveSearch(String searchQuery) {
 
-    retrieveSearchStorefront(searchQuery);
+    searchFilter.searchQueryFilter().then((value) {
 
-    retrieveSearchMagazine(searchQuery);
+      if (value) {
 
-    generateDescription(searchQuery);
+        retrieveSearchStorefront(searchQuery);
+
+        retrieveSearchMagazine(searchQuery);
+
+        generateDescription(searchQuery);
+
+      }
+
+    });
 
   }
 
@@ -609,45 +626,63 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
    */
   void generateDescription(String searchQuery) async {
 
-    var aiHeaders = {
-      'Content-Type': 'application/json'
-    };
+    final aiDescription = await cacheIO.retrieveContent(searchQuery.replaceAll(" ", ""));
 
-    var aiHttpRequest = http.Request('POST', Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Privates.aiKeyAPI}'));
-    aiHttpRequest.body = json.encode({
-      "contents": [
-        {
-          "parts": [
-            {
-              "text": "What is $searchQuery in Summary?"
-            }
-          ]
-        }
-      ]
-    });
-    aiHttpRequest.headers.addAll(aiHeaders);
+    if (aiDescription == null) {
 
-    http.StreamedResponse aiGenerativeHttpResponse = await aiHttpRequest.send();
+      var aiHeaders = {
+        'Content-Type': 'application/json'
+      };
 
-    if (aiGenerativeHttpResponse.statusCode == 200) {
-
-      String aiGenerativeResponse = (await aiGenerativeHttpResponse.stream.bytesToString());
-
-      final aiGenerativeJson = jsonDecode(aiGenerativeResponse);
-
-      final aiGenerativeContent = List.from(aiGenerativeJson['candidates']).first['content'];
-
-      final aiGenerativeResult = List.from(aiGenerativeContent['parts']).first['text'];
-
-      setState(() {
-
-        searchQueryExcerpt = aiGenerativeResult;
-
+      var aiHttpRequest = http.Request('POST', Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Privates.aiKeyAPI}'));
+      aiHttpRequest.body = json.encode({
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "What is $searchQuery in Summary?"
+              }
+            ]
+          }
+        ]
       });
+      aiHttpRequest.headers.addAll(aiHeaders);
+
+      http.StreamedResponse aiGenerativeHttpResponse = await aiHttpRequest.send();
+
+      if (aiGenerativeHttpResponse.statusCode == 200) {
+
+        String aiGenerativeResponse = (await aiGenerativeHttpResponse.stream.bytesToString());
+
+        final aiGenerativeJson = jsonDecode(aiGenerativeResponse);
+
+        final aiGenerativeContent = List.from(aiGenerativeJson['candidates']).first['content'];
+
+        final aiGenerativeResult = List.from(aiGenerativeContent['parts']).first['text'];
+
+        setState(() {
+
+          searchQueryExcerpt = aiGenerativeResult;
+
+        });
+
+        cacheIO.storeContent(searchQuery.replaceAll(" ", ""), aiGenerativeResult);
+
+      } else {
+
+      }
 
     } else {
 
+      setState(() {
+
+        searchQueryExcerpt = aiDescription;
+
+      });
+
     }
+
+
 
   }
   /*

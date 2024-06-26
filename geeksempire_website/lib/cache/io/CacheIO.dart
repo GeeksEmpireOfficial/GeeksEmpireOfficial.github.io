@@ -5,17 +5,17 @@ class CacheIO {
 
   final Future<SharedPreferences> sharedPreferences = SharedPreferences.getInstance();
 
-  Future<String?> retrieveImagePath(String postId) async {
+  Future<String?> retrieveContent(String contentId) async {
 
-    return (await sharedPreferences).getString(postId);
+    return (await sharedPreferences).getString(contentId);
   }
 
-  Future storeImagePath(String postId, String imagePath) async {
+  Future storeContent(String contentId, String contentValue) async {
 
     sharedPreferences.then((value) async => {
 
-      await value.setString(postId, imagePath).then((value) => {
-        debugPrint("Cached Successfully: $imagePath")
+      await value.setString(contentId, contentValue).then((value) => {
+        debugPrint("Cached Successfully: $contentValue")
       })
 
     });

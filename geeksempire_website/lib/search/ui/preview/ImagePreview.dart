@@ -67,7 +67,7 @@ class ImagePreviewState extends State<ImagePreview> {
 
   Future retrieveImage(String postId) async {
 
-    String? cachedFeaturedImagePath = await cacheIO.retrieveImagePath(postId);
+    String? cachedFeaturedImagePath = await cacheIO.retrieveContent(postId);
 
     if (cachedFeaturedImagePath == null) {
 
@@ -85,7 +85,7 @@ class ImagePreviewState extends State<ImagePreview> {
           });
       final mediaJson = jsonDecode(mediaResponse.body);
 
-      cacheIO.storeImagePath(postId, mediaJson['guid']['rendered']);
+      cacheIO.storeContent(postId, mediaJson['guid']['rendered']);
 
       setState(() {
 
