@@ -165,13 +165,13 @@ class StorefrontCategoriesState extends State<StorefrontCategories> with TickerP
                       child: Container(
                           decoration: const BoxDecoration(
                               border: Border(
-                                left: BorderSide(width: 7, color: Color.fromRGBO(226, 234, 247, 1)),
-                                right: BorderSide(width: 7, color: Color.fromRGBO(226, 234, 247, 1)),
-                                top: BorderSide(width: 3, color: Color.fromRGBO(226, 234, 247, 1)),
-                                bottom: BorderSide(width: 3, color: Color.fromRGBO(226, 234, 247, 1)),
+                                left: BorderSide(width: 7, color: Color.fromRGBO(205, 229, 251, 1)),
+                                right: BorderSide(width: 7, color: Color.fromRGBO(205, 229, 251, 1)),
+                                top: BorderSide(width: 3, color: Color.fromRGBO(205, 229, 251, 1)),
+                                bottom: BorderSide(width: 3, color: Color.fromRGBO(205, 229, 251, 1)),
                               ),
                               borderRadius: BorderRadius.all(Radius.circular(17)),
-                              color: Color.fromRGBO(205, 229, 251, 1)
+                              color: Color.fromRGBO(226, 234, 247, 1)
                           ),
                           child: ClipRRect(
                             borderRadius: const BorderRadius.all(Radius.circular(17)),
