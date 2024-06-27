@@ -26,6 +26,17 @@ class SearchFilter {
     return preparedSearchQuery;
   }
 
+  Future<String> sanitizeSearchQuery(String searchQuery) async {
+
+    String preparedSearchQuery = searchQuery.replaceAll(".", " ");
+    preparedSearchQuery = searchQuery.replaceAll("-", " ");
+    preparedSearchQuery = searchQuery.replaceAll("_", " ");
+    preparedSearchQuery = searchQuery.replaceAll("?", " ");
+    preparedSearchQuery = searchQuery.replaceAll("!", " ");
+
+    return preparedSearchQuery;
+  }
+
   Future<bool> searchQueryFilter(String searchQuery) async {
 
     bool allowQuery = false;

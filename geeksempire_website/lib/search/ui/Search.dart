@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geeksempire_website/cache/io/CacheIO.dart';
 import 'package:geeksempire_website/data/PostDataStructure.dart';
-import 'package:geeksempire_website/data/process/SearchFilter.dart';
 import 'package:geeksempire_website/network/endpoints/Endpoints.dart';
 import 'package:geeksempire_website/private/Privates.dart';
 import 'package:geeksempire_website/resources/colors_resources.dart';
 import 'package:geeksempire_website/resources/strings_resources.dart';
+import 'package:geeksempire_website/search/data/process/SearchFilter.dart';
 import 'package:geeksempire_website/search/ui/preview/ImagePreview.dart';
 import 'package:http/http.dart' as http;
 import 'package:indexed/indexed.dart';
@@ -272,13 +272,18 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
       if (value) {
 
-        searchFilter.prepareSearchQuery(searchQuery).then((searchQueryValue) {
+        searchFilter.sanitizeSearchQuery(searchQuery).then((sanitizedSearchQuery) {
 
-          retrieveSearchStorefront(searchQueryValue);
+          generateDescription(sanitizedSearchQuery);
 
-          retrieveSearchMagazine(searchQueryValue);
+          searchFilter.prepareSearchQuery(searchQuery).then((preparedSearchQuery) {
 
-          generateDescription(searchQueryValue);
+            retrieveSearchStorefront(preparedSearchQuery);
+
+            retrieveSearchMagazine(preparedSearchQuery);
+
+
+          });
 
         });
 
