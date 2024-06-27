@@ -157,16 +157,15 @@ class _CoolGadgetsState extends State<CoolGadgets> with TickerProviderStateMixin
             child: Padding(
                 padding: const EdgeInsets.only(right: 31),
                 child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(37), bottomLeft: Radius.circular(37), topRight: Radius.circular(17), bottomRight: Radius.circular(17)),
-                        gradient: LinearGradient(
-                            colors: [
-                              ColorsResources.premiumLight,
-                              ColorsResources.white.withOpacity(0.51),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.centerRight
-                        )
+                    decoration: const BoxDecoration(
+                        border: Border(
+                          left: BorderSide(width: 7, color: Color.fromRGBO(205, 229, 251, 1)),
+                          right: BorderSide(width: 7, color: Color.fromRGBO(205, 229, 251, 1)),
+                          top: BorderSide(width: 3, color: Color.fromRGBO(205, 229, 251, 1)),
+                          bottom: BorderSide(width: 3, color: Color.fromRGBO(205, 229, 251, 1)),
+                        ),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(37), bottomLeft: Radius.circular(37), topRight: Radius.circular(17), bottomRight: Radius.circular(17)),
+                        color: Color.fromRGBO(226, 234, 247, 1)
                     ),
                     child: ClipRRect(
                         borderRadius: const BorderRadius.only(topLeft: Radius.circular(37), bottomLeft: Radius.circular(37), topRight: Radius.circular(17), bottomRight: Radius.circular(17)),
