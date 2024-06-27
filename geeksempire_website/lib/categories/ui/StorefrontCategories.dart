@@ -163,22 +163,15 @@ class StorefrontCategoriesState extends State<StorefrontCategories> with TickerP
                   child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(19)),
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               border: Border(
-                                left: BorderSide(width: 7, color: ColorsResources.white.withOpacity(0.51)),
-                                right: BorderSide(width: 7, color: ColorsResources.white.withOpacity(0.51)),
-                                top: BorderSide(width: 3, color: ColorsResources.white.withOpacity(0.51)),
-                                bottom: BorderSide(width: 3, color: ColorsResources.white.withOpacity(0.51)),
+                                left: BorderSide(width: 7, color: Color.fromRGBO(226, 234, 247, 1)),
+                                right: BorderSide(width: 7, color: Color.fromRGBO(226, 234, 247, 1)),
+                                top: BorderSide(width: 3, color: Color.fromRGBO(226, 234, 247, 1)),
+                                bottom: BorderSide(width: 3, color: Color.fromRGBO(226, 234, 247, 1)),
                               ),
-                              borderRadius: const BorderRadius.all(Radius.circular(17)),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    ColorsResources.premiumLight,
-                                    ColorsResources.white.withOpacity(0.51),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.centerRight
-                              )
+                              borderRadius: BorderRadius.all(Radius.circular(17)),
+                              color: Color.fromRGBO(205, 229, 251, 1)
                           ),
                           child: ClipRRect(
                             borderRadius: const BorderRadius.all(Radius.circular(17)),
