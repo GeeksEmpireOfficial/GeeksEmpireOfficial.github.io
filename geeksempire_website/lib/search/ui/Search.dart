@@ -400,8 +400,8 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                         Align(
                             alignment: Alignment.center,
                             child: ShapedImage(
-                              imageTye: ImageType.NETWORK,
-                              path: "https://geeks-empire-website.web.app/squarcle_adjustment.png",
+                              imageTye: ImageType.ASSET,
+                              path: "images/squarcle_adjustment.png",
                               shape: Shape.Squarcle,
                               height: 312,
                               width: 312,
@@ -607,11 +607,13 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
                         Align(
                             alignment: Alignment.center,
-                            child: Image.network(
-                              "https://geeks-empire-website.web.app/rectarcle_adjustment.png",
+                            child: ShapedImage(
+                              imageTye: ImageType.ASSET,
+                              path: "images/rectarcle_adjustment.png",
+                              shape: Shape.Rectarcle,
                               height: 312,
-                              width: 237,
-                              fit: BoxFit.cover,
+                              width: 312,
+                              boxFit: BoxFit.fill,
                             )
                         ),
 
