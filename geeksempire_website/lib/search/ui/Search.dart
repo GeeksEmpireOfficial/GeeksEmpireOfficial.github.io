@@ -164,6 +164,11 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                     )
                                 ),
 
+                                const Divider(
+                                  height: 7,
+                                  color: ColorsResources.transparent
+                                ),
+
                                 SimpleRichText(
                                     searchQueryExcerpt,
                                     style: TextStyle(
