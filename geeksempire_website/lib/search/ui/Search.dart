@@ -17,6 +17,7 @@ import 'package:http/http.dart' as http;
 import 'package:indexed/indexed.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shaped_image/shaped_image.dart';
+import 'package:simple_rich_text/simple_rich_text.dart';
 import 'package:smooth_scroll_multiplatform/smooth_scroll_multiplatform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -163,7 +164,7 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
                                     )
                                 ),
 
-                                Text(
+                                SimpleRichText(
                                     searchQueryExcerpt,
                                     style: TextStyle(
                                         color: ColorsResources.premiumDark.withOpacity(0.73),
