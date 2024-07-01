@@ -116,7 +116,7 @@ class MagazineCategoriesState extends State<MagazineCategories> with TickerProvi
         && categoryId != 5118
         && categoryId != 1857) {
 
-        final categoryResponse = await http.post(Uri.parse(endpoints.categoriesById(categoryId)),
+        final categoryResponse = await http.get(Uri.parse(endpoints.categoriesById(categoryId)),
             headers: {
               "Authorization": Privates.authenticationAPI
             });
