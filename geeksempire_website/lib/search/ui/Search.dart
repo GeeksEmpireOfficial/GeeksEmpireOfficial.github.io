@@ -272,11 +272,11 @@ class SearchState extends State<Search> with TickerProviderStateMixin {
 
                       /* Start - Arwen AI */
                       SizedBox(
-                        height: 73,
+                        height: 51,
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Image.network(
-                            'https://geeksempire.co/wp-content/uploads/2024/07/Powered-By-Arwen-AI.png'
+                          child: Image.asset(
+                            'images/powered_by_arwen_ai.png'
                           )
                         )
                       )
